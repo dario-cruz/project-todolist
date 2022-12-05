@@ -1,0 +1,15 @@
+/* CSS Style reset. */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main-page {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 3fr;
+    grid-template-areas: 
+    "left right"
+    "left right"
+    "left right";
+}
