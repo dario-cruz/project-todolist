@@ -1,0 +1,1 @@
+(()=>{"use strict";document.body.innerHTML='<h1 class="main-body">Lorem Ipsum</h1>'})();
