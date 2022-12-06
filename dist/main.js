@@ -1,1 +1,1 @@
-(()=>{"use strict";document.body.innerHTML='<h1 class="main-body">Lorem Ipsum</h1>'})();
+(()=>{"use strict";function n(n,t,e,s){s.innerHTML=`<${n} class="${t}">${e}</${n}>`}const t=document.body;n("h1","main-body","Lorem Ipsum",t);const e=new class{constructor(n,t,e){this.type=n,this.classname=t,this.content=e}info(){console.log(`Type = ${type}, Class = ${this.classname}, Content = ${content}`)}}("h1","index-heading","The quick brown fox jumped over the lazy dog.");n(e.type,e.classname,e.content,t)})();

@@ -1,5 +1,5 @@
-function domAppender(element, classname, content, append) {
-    append.innerHTML = `<${element} class="${classname}">${content}</${element}>`    
+function domAppender(element, className, content, append) {
+    append.innerHTML = `<${element} class="${className}">${content}</${element}>`    
 }
-
+ 
 export { domAppender }
