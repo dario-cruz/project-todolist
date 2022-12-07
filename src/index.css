@@ -3,13 +3,24 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
+    border: 2px solid black;
 
-.main-page {
+}
+/* Setup grid for main page and task display */
+#content {
+    width: 100vw;
+    height: 100vh;
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr 3fr;
     grid-template-areas: 
     "left right"
     "left right"
     "left right";
+}
+/* Set grid positions for divs */
+.right-panel {
+    grid-area: right;
+}
+.left-panel {
+    grid-area: left;
 }

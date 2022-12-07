@@ -1,12 +1,13 @@
 import { domAppender } from "./components/domappender";
 import { pageElement } from "./components/element-class";
+import './index.css'
 
-const pageBody = document.body
-const pageText = 'Lorem Ipsum'
-const pageClass = 'main-body'
-const pageElem = 'h1'
-domAppender(pageElem, pageClass, pageText, pageBody)
+const contentDiv = document.getElementById('content')
 
-const newHeading =  new pageElement('h1', 'index-heading', 'The quick brown fox jumped over the lazy dog.')
+const leftPanel = document.createElement('div')
+const rightPanel = document.createElement('div')
 
-domAppender(newHeading.type, newHeading.classname, newHeading.content, pageBody)
+leftPanel.setAttribute('class', 'left-panel')
+rightPanel.setAttribute('class', 'right-panel')
+
+contentDiv.append(leftPanel, rightPanel)

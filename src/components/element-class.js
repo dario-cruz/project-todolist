@@ -5,7 +5,6 @@ class pageElement {
         this.content = content
         this.appendToWhat = appendToWhat
     }
-
     info() {
         console.log(`Type = ${type}, Class = ${this.className}, Content = ${content}, Appends to = ${this.appendToWhat}`)
     }
