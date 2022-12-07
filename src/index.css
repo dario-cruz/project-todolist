@@ -11,8 +11,9 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 3fr;
-    grid-template-areas: 
+    grid-template: 6rem 1fr 1fr 1fr / 1fr 3fr;
+    grid-template-areas:
+    "header header" 
     "left right"
     "left right"
     "left right";
@@ -20,7 +21,15 @@
 /* Set grid positions for divs */
 .right-panel {
     grid-area: right;
+    display: grid;
+    grid-template-rows: repeat(4, 6rem);
+    grid-template-rows: 1fr;
+    grid-auto-rows: 6rem;
 }
 .left-panel {
+    display: grid;
     grid-area: left;
+    grid-template-rows: repeat(4, 6rem);
+    grid-template-columns: 1fr;
+    grid-auto-rows: 6rem;
 }
