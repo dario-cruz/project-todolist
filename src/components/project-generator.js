@@ -11,6 +11,7 @@ class Project {
         return newTask
     }
     getAllTasks() {
+        console.log(this.projectTasks)
         return this.projectTasks
     }
 }
