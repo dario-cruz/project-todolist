@@ -12,8 +12,11 @@ inboxProject.makeNewTask('Take out Trash', 2, 'Remember to sort the recycling')
 inboxProject.getAllTasks()
 const InboxToDom = () => {
     inboxProject.projectTasks.forEach(task => {
-       domAppender('p', 'task', rightPanel, task.taskName) 
-       domAppender('p', 'task-notes', rightPanel, task.taskNotes)
+        let parentElem = document.createElement('div')
+        parentElem.setAttribute('class', 'task')
+        rightPanel.append(parentElem)
+        domAppender('h1', 'task-title', parentElem, task.taskName) 
+        domAppender('p', 'task-notes', parentElem, task.taskNotes)
     });
 }
 
