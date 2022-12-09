@@ -26,4 +26,4 @@ const projectToDom = (projectObj) => {
     });
 }
 
-export {projectToDom}
+export { projectToDom }

@@ -6,6 +6,16 @@
     border: 2px solid black;
 
 }
+/* Define all of the custom fonts used. */
+@font-face {
+    font-family: "quicksilver-reg";
+    src: url(./fonts/Quicksilver.otf) format('otf');
+}
+@font-face{
+    font-family: "quicksilver-itl";
+    src: url(./fonts/Quicksilver\ Italic.otf) format('otf');
+}
+
 /* Setup grid for main page and task display */
 #content {
     width: 100vw;
