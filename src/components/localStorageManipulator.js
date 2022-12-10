@@ -9,6 +9,16 @@ const retrieveFromStorage = (projectObj) => {
     return JSON.parse(unParsedItem)
 }
 
+// Remove item from localStorage by native js object name.
+const removeFromStorage = (projectObj) => {
+    window.localStorage.removeItem(`${projectObj.projectName}`)
+}
+
+// Clear all data from localStorage.
+const clearAllStorage = () => {
+    window.localStorage.clear()
+    console.log('All the data has been cleared.')
+}
 
 // Export all the functionality
-export {placeInStorage, retrieveFromStorage}
+export {placeInStorage, retrieveFromStorage, removeFromStorage, clearAllStorage }
