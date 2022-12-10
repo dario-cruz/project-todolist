@@ -12,6 +12,6 @@ inboxProject.makeNewTask('Clean the Kitchen', 1, 'Make sure to clean under the c
 inboxProject.makeNewTask('Take out Trash', 2, 'Remember to sort the recycling')
 inboxProject.getAllTasks()
 
-// projectToDom(inboxProject)
+
 
 export {inboxProject}

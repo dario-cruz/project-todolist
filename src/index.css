@@ -9,11 +9,11 @@
 /* Define all of the custom fonts used. */
 @font-face {
     font-family: "quicksilver-reg";
-    src: url(./fonts/Quicksilver.otf) format('otf');
+    src: url(./fonts/Quicksilver.otf);
 }
 @font-face{
     font-family: "quicksilver-itl";
-    src: url(./fonts/Quicksilver\ Italic.otf) format('otf');
+    src: url(./fonts/Quicksilver\ Italic.otf);
 }
 
 /* Setup grid for main page and task display */
@@ -49,4 +49,8 @@
 }
 .footer-panel {
     grid-area: footer;
+}
+/* Style the text elements. */
+.page-title {
+    font-family: "quicksilver-itl";
 }
