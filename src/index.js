@@ -26,7 +26,7 @@ footerPanel.setAttribute('class', 'footer-panel')
 pageTitle.setAttribute('class', 'page-title')
 
 // Content for main page elements.
-pageTitle.innerText = "-Just Do It!-"
+pageTitle.innerText = "- Just Do It! -"
 
 // Append all the elements needed to root elements.
 contentDiv.append(headerPanel, leftPanel, rightPanel, footerPanel)
