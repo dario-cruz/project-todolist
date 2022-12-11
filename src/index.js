@@ -31,13 +31,20 @@ addProjectButton.setAttribute('class', 'add-project-button')
 ProjectDiv.setAttribute('class', 'project-div')
 
 // Content for main page elements.
-pageTitle.innerText = "Just Do It!"
+pageTitle.innerText = "- Just Do It! -"
 addProjectButton.innerHTML = "Add Project"
 
 // Append all the elements needed to root elements.
 ProjectDiv.append(addProjectButton)
 contentDiv.append(headerPanel, leftPanel, rightPanel, footerPanel)
 headerPanel.append(pageTitle)
+
+// Testing localStorage
+console.log(inboxProject)
+window.localStorage.setItem("inboxProject", JSON.stringify(inboxProject))
+
+const testItem = window.localStorage.getItem("inboxProject")
+console.log(JSON.parse(testItem))
 
 // Process the project object and add the project to the DOM via various defined elements.
 projectToDom(inboxProject)
