@@ -51,4 +51,32 @@ projectToDom(inboxProject)
 // Append the add project div to the end of the left-panel div. 
 leftPanel.append(newProjectDiv)
 
+
+// Add events to elements appended to the dom. 
+addProjectButton.addEventListener('click', () => {
+    // Create input element and on button click replace the button with the input dialog. 
+    const newProjectInput = document.createElement('input')
+    newProjectInput.setAttribute('id', 'new-project-input')
+    newProjectInput.setAttribute('type', 'text')
+    newProjectInput.setAttribute('placeholder', 'Project Name')
+    addProjectButton.replaceWith(newProjectInput)
+    // Create submit button for input.
+    const newProjectInputButton = document.createElement('input')
+    newProjectInputButton.setAttribute('type', 'submit')
+    newProjectInputButton.setAttribute('value', 'Submit')
+    newProjectDiv.append(newProjectInputButton)
+
+    // On submit of input for new project, create project with name and add it to the dom. 
+    newProjectInput.addEventListener('submit', () => {
+        let newName = document.querySelector('id', 'new-project-input').value
+        const createdProject = new Project(document.querySelector('id', 'new-project-input').value)
+        console.log(createdProject)
+        newProjectInput.replaceWith(addProjectButton)
+        newProjectDiv.remove(newProjectInputButton)
+    })
+    
+    return newProjectInput
+})
+
+
 export {leftPanel, rightPanel, contentDiv, footerPanel, headerPanel, newProjectDiv, addProjectButton}
