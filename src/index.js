@@ -54,26 +54,41 @@ leftPanel.append(newProjectDiv)
 
 // Add events to elements appended to the dom. 
 addProjectButton.addEventListener('click', () => {
+    // Create form for input element and submit button
+    const newProjectForm = document.createElement('form')
+    newProjectForm.setAttribute('action', '')
+    newProjectDiv.append(newProjectForm)
     // Create input element and on button click replace the button with the input dialog. 
     const newProjectInput = document.createElement('input')
     newProjectInput.setAttribute('id', 'new-project-input')
     newProjectInput.setAttribute('type', 'text')
     newProjectInput.setAttribute('placeholder', 'Project Name')
-    addProjectButton.replaceWith(newProjectInput)
+    newProjectForm.append(newProjectInput)
     // Create submit button for input.
     const newProjectInputButton = document.createElement('input')
     newProjectInputButton.setAttribute('type', 'submit')
     newProjectInputButton.setAttribute('value', 'Submit')
-    newProjectDiv.append(newProjectInputButton)
-
+    newProjectForm.append(newProjectInputButton)
+    // Replace add project button with form element.
+    addProjectButton.replaceWith(newProjectForm)
+    
     // On submit of input for new project, create project with name and add it to the dom. 
-    newProjectInput.addEventListener('submit', () => {
-        let newName = document.querySelector('id', 'new-project-input').value
-        const createdProject = new Project(document.querySelector('id', 'new-project-input').value)
-        console.log(createdProject)
-        newProjectInput.replaceWith(addProjectButton)
+    newProjectForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        let newName = document.getElementById('new-project-input').value
+        // const createdProject = new Project(document.getElementById('new-project-input').value)
+        // console.log(createdProject)
+        projectObjectNamer(document.getElementById('new-project-input').value)
+        
+        newProjectForm.replaceWith(addProjectButton)
         newProjectDiv.remove(newProjectInputButton)
     })
+
+    const projectObjectNamer = (name) => {
+        name = new Project(name)
+        console.log(name)
+        return name
+    }
     
     return newProjectInput
 })
