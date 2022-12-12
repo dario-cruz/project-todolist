@@ -18,7 +18,7 @@ const leftPanel = document.createElement('div')
 const rightPanel = document.createElement('div')
 const footerPanel = document.createElement('div')
 const pageTitle = document.createElement('h1')
-const ProjectDiv = document.createElement('div')
+const newProjectDiv = document.createElement('div')
 const addProjectButton = document.createElement('button')
 
 // Set needed attributes for page elements. 
@@ -28,14 +28,14 @@ rightPanel.setAttribute('class', 'right-panel')
 footerPanel.setAttribute('class', 'footer-panel')
 pageTitle.setAttribute('class', 'page-title')
 addProjectButton.setAttribute('class', 'add-project-button')
-ProjectDiv.setAttribute('class', 'project-div')
+newProjectDiv.setAttribute('class', 'project-div')
 
 // Content for main page elements.
 pageTitle.innerText = "- Just Do It! -"
 addProjectButton.innerHTML = "Add Project"
 
 // Append all the elements needed to root elements.
-ProjectDiv.append(addProjectButton)
+newProjectDiv.append(addProjectButton)
 contentDiv.append(headerPanel, leftPanel, rightPanel, footerPanel)
 headerPanel.append(pageTitle)
 
@@ -48,6 +48,7 @@ console.log(JSON.parse(testItem))
 
 // Process the project object and add the project to the DOM via various defined elements.
 projectToDom(inboxProject)
-leftPanel.append(ProjectDiv)
+// Append the add project div to the end of the left-panel div. 
+leftPanel.append(newProjectDiv)
 
-export {leftPanel, rightPanel, contentDiv, footerPanel, headerPanel}
+export {leftPanel, rightPanel, contentDiv, footerPanel, headerPanel, newProjectDiv, addProjectButton}
