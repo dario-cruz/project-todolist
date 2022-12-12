@@ -9,7 +9,7 @@ const projectToDom = (projectObj) => {
     let processedProjectName = projectObj.projectName.toString().replaceAll(" ", "-").toLowerCase()
     projectTab.setAttribute('class', `${processedProjectName}-tab`)
     projectTabHeading.setAttribute('class', `${processedProjectName}-heading`)
-    projectTabHeading.innerText = `${processedProjectName}`
+    projectTabHeading.innerText = `${projectObj.projectName}`
     // Append the project-heading to the project-tab div.
     projectTab.append(projectTabHeading)
     // Append the project-tab to the left-panel DOM element.
