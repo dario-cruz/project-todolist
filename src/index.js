@@ -1,8 +1,4 @@
-import { domAppender } from "./components/domappender";
-import { pageElement } from "./components/pageElement-class";
 import './index.css'
-import { InboxToDom } from "./inbox";
-import { projectToDom } from "./components/dom-manipulation";
 import { inboxProject } from "./inbox";
 import { Project } from "./components/project-generator";
 import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./components/localStorageManipulator";
@@ -87,8 +83,7 @@ addProjectButton.addEventListener('click', () => {
         
         // Not working need to add elem back
         newProjectForm.replaceWith(addProjectButton)
-        newProjectDiv.remove(newProjectInputButton)
-        
+
         // Update the list of localStorage Stringified Objs
         getAllLocalStorage()
     })
@@ -101,8 +96,11 @@ addProjectButton.addEventListener('click', () => {
         return name
     }
     
+
     return newProjectInput
 })
+
+
 
 getAllLocalStorage()
 processAllLocalStorage(getAllLocalStorage.localObjs)
