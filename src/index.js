@@ -5,6 +5,7 @@ import { InboxToDom } from "./inbox";
 import { projectToDom } from "./components/dom-manipulation";
 import { inboxProject } from "./inbox";
 import { Project } from "./components/project-generator";
+import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./components/localStorageManipulator";
 
 // Add main content div to body for all other content to append to. 
 const contentDiv = document.createElement('div')
@@ -47,7 +48,7 @@ const testItem = window.localStorage.getItem("inboxProject")
 console.log(JSON.parse(testItem))
 
 // Process the project object and add the project to the DOM via various defined elements.
-projectToDom(inboxProject)
+// projectToDom(inboxProject)
 // Append the add project div to the end of the left-panel div. 
 leftPanel.append(newProjectDiv)
 
@@ -78,22 +79,32 @@ addProjectButton.addEventListener('click', () => {
         let newName = document.getElementById('new-project-input').value
         // newName = newName.toString.replaceAll(' ', '')
         console.log(newName)
-        // const createdProject = new Project(document.getElementById('new-project-input').value)
-        // console.log(createdProject)
+        
+        // Process the project name from the form.
+        // Create a new project using the name. 
+        // Add the project into local storage.
         projectObjectNamer(document.getElementById('new-project-input').value)
+        
         // Not working need to add elem back
         newProjectForm.replaceWith(addProjectButton)
         newProjectDiv.remove(newProjectInputButton)
-    })
         
+        // Update the list of localStorage Stringified Objs
+        getAllLocalStorage()
+    })
+    
     const projectObjectNamer = (name) => {
         name = new Project(name)
         console.log(name)
+        // Place item into local storage
+        placeInStorage(name)
         return name
     }
     
     return newProjectInput
 })
 
+getAllLocalStorage()
+processAllLocalStorage(getAllLocalStorage.localObjs)
 
 export {leftPanel, rightPanel, contentDiv, footerPanel, headerPanel, newProjectDiv, addProjectButton}

@@ -1,3 +1,5 @@
+import { projectToDom } from "./dom-manipulation"
+
 // Place project object into localStorage with identifier being the projectname.
 // Convert to JSON so object can be placed in localStorge. 
 const placeInStorage = (projectObj) => {
@@ -23,9 +25,24 @@ const clearAllStorage = () => {
 // Get all items in localStorage
 const getAllLocalStorage = () => {
     const localObjs = {...localStorage}
-    return localObjs
+    const logTheObjs = () => {
+        console.log(localObjs)
+    }
+    return {
+        localObjs,
+        logTheObjs,
+    }
 }
 
+// Process list of json and stringified objs into native JS objs.
+const processAllLocalStorage = (listOfLocalObjs) => {
+    for (const property in listOfLocalObjs) {
+        // Parse all stringified objs to JS objects.
+        console.log(property)
+        let processedObj = JSON.parse(localStorage.getItem(`${property}`))
+        projectToDom(processedObj)
+    }
+}
 
 // Export all the functionality
-export {placeInStorage, retrieveFromStorage, removeFromStorage, clearAllStorage, getAllLocalStorage }
+export { placeInStorage, retrieveFromStorage, removeFromStorage, clearAllStorage, getAllLocalStorage, processAllLocalStorage }
