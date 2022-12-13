@@ -1,5 +1,14 @@
 import { Task } from './task-generator'
 
+// Maintain a list of all projects created. 
+const projectList = []
+
+// Make function to add project to array
+const addProjectToArray = (Obj, Array) => {
+    // Append Object to the designated array.
+    Array.push(Obj)
+}
+
 class Project {
     // Make an array to hold all of the tasks that are included in a project. 
     constructor(projectName) {
@@ -15,7 +24,7 @@ class Project {
     }
    
     // Display all tasks related to the project object. 
-    getAllTasks() {
+    get getAllTasks() {
         console.log(this.projectTasks)
         return this.projectTasks
     }
@@ -24,6 +33,7 @@ class Project {
     set changeProjectName(newName) {
         this.projectName = newName
     }
+
 }
 
-export { Project }
+export { Project, projectList, addProjectToArray }

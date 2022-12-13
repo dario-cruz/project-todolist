@@ -10,7 +10,7 @@ const inboxProject = new Project('Inbox')
 // Create elements for the left-panel. 
 inboxProject.makeNewTask('Clean the Kitchen', 1, 'Make sure to clean under the cabinet')
 inboxProject.makeNewTask('Take out Trash', 2, 'Remember to sort the recycling')
-inboxProject.getAllTasks()
+inboxProject.getAllTasks
 
 
 
