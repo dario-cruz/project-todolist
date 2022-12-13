@@ -6,17 +6,32 @@ class Task {
         this.taskNotes = taskNotes
         this.taskDueDate = taskDueDate
     }
-    // Change task property functions for when the user  edits the task. 
-    changeName(newName) {
+    
+    // Getters for needed task elements
+    get getName() {
+        return this.taskName
+    }
+    get getPriority() {
+        return this.taskPriority
+    }
+    get getNotes() {
+        return this.taskNotes
+    }
+    get getDueDate() {
+        return this.taskDueDate
+    }
+
+    //Setters for changing task properties for when the user edits the task. 
+    set changeName(newName) {
         this.taskName = newName
     }
-    changePriority(newPriority) {
+    set changePriority(newPriority) {
         this.taskPriority = newPriority
     }
-    changeNotes(newNotes) {
+    set changeNotes(newNotes) {
         this.taskNotes = newNotes
     }
-    changeDueDate(newDueDate) {
+    set changeDueDate(newDueDate) {
         this.taskDueDate = newDueDate
     }
 }

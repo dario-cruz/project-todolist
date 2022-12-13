@@ -8,8 +8,8 @@ class Project {
     }
    
     // Make new task using imported task module and store it in the associated projectTasks array. 
-    makeNewTask(name, priority, notes) {
-        let newTask = new Task(name, priority, notes)
+    makeNewTask(name, priority, notes, dueDate) {
+        let newTask = new Task(name, priority, notes, dueDate)
         this.projectTasks.push(newTask)
         return newTask
     }
