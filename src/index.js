@@ -76,14 +76,16 @@ addProjectButton.addEventListener('click', () => {
     newProjectForm.addEventListener('submit', (event) => {
         event.preventDefault()
         let newName = document.getElementById('new-project-input').value
+        // newName = newName.toString.replaceAll(' ', '')
+        console.log(newName)
         // const createdProject = new Project(document.getElementById('new-project-input').value)
         // console.log(createdProject)
         projectObjectNamer(document.getElementById('new-project-input').value)
-        
+        // Not working need to add elem back
         newProjectForm.replaceWith(addProjectButton)
         newProjectDiv.remove(newProjectInputButton)
     })
-
+        
     const projectObjectNamer = (name) => {
         name = new Project(name)
         console.log(name)

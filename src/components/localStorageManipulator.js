@@ -20,5 +20,12 @@ const clearAllStorage = () => {
     console.log('All the data has been cleared.')
 }
 
+// Get all items in localStorage
+const getAllLocalStorage = () => {
+    const localObjs = {...localStorage}
+    return localObjs
+}
+
+
 // Export all the functionality
-export {placeInStorage, retrieveFromStorage, removeFromStorage, clearAllStorage }
+export {placeInStorage, retrieveFromStorage, removeFromStorage, clearAllStorage, getAllLocalStorage }
