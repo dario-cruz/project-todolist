@@ -1,4 +1,5 @@
 import { projectToDom } from "./dom-manipulation"
+import { projectList } from "./project-generator"
 
 // Place project object into localStorage with identifier being the projectname.
 // Convert to JSON so object can be placed in localStorge. 
@@ -34,6 +35,14 @@ const getAllLocalStorage = () => {
     }
 }
 
+// Process all of the objects created to localStorage JSON
+const processProjectList = () => {
+    projectList.forEach(item => {
+        item = JSON.stringify(item)
+        localStorage.setItem(item)
+    })
+}
+
 // Process list of json and stringified objs into native JS objs.
 const processAllLocalStorage = (listOfLocalObjs) => {
     for (const property in listOfLocalObjs) {
@@ -45,4 +54,4 @@ const processAllLocalStorage = (listOfLocalObjs) => {
 }
 
 // Export all the functionality
-export { placeInStorage, retrieveFromStorage, removeFromStorage, clearAllStorage, getAllLocalStorage, processAllLocalStorage }
+export { placeInStorage, retrieveFromStorage, removeFromStorage, clearAllStorage, getAllLocalStorage, processAllLocalStorage, processProjectList }

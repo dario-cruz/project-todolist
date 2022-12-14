@@ -28,7 +28,7 @@ addProjectButton.setAttribute('class', 'add-project-button')
 newProjectDiv.setAttribute('class', 'project-div')
 
 // Content for main page elements.
-pageTitle.innerText = "- Just Do It! -"
+pageTitle.innerText = "- Just Do It! - a Todo List by Dario Cruz"
 addProjectButton.innerHTML = "Add Project"
 
 // Append all the elements needed to root elements.
@@ -95,7 +95,7 @@ addProjectButton.addEventListener('click', () => {
             objectName = new Project(objectName)
             console.log(objectName)
             // Push to the list for appending to dom later. 
-            projectList.push(objectName)
+            objectName.addThisProjectTooArray(projectList)
             console.log(projectList)
         }
         createObjAndAppend(newProjectName)

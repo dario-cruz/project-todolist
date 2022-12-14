@@ -27,12 +27,18 @@ class Project {
         console.log(this.projectTasks)
         return this.projectTasks
     }
-   
+    
     // Allow for changing of the project name. 
     set changeProjectName(newName) {
         this.projectName = newName
     }
 
+    // Add the project to the array. 
+    set addThisProjectTooArray(array) {
+        array.push(this)
+        // Check if object was placed.
+        console.log(array)
+    }
 }
 
 export { Project, projectList, addProjectToArray }
