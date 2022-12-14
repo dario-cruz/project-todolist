@@ -1,6 +1,6 @@
 import './index.css'
 import { inboxProject } from "./inbox";
-import { Project } from "./components/project-generator";
+import { Project, projectList } from "./components/project-generator";
 import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./components/localStorageManipulator";
 
 // Add main content div to body for all other content to append to. 
@@ -35,6 +35,9 @@ addProjectButton.innerHTML = "Add Project"
 newProjectDiv.append(addProjectButton)
 contentDiv.append(headerPanel, leftPanel, rightPanel, footerPanel)
 headerPanel.append(pageTitle)
+
+// Check local storage for any JSON data. So we can process and add it to the dom. 
+
 
 // Testing localStorage
 console.log(inboxProject)
@@ -71,30 +74,43 @@ addProjectButton.addEventListener('click', () => {
     
     // On submit of input for new project, create project with name and add it to the dom. 
     newProjectForm.addEventListener('submit', (event) => {
+        // Prevent the default form post and refresh of the page.
         event.preventDefault()
+
         let newName = document.getElementById('new-project-input').value
         // newName = newName.toString.replaceAll(' ', '')
         console.log(newName)
         
-        // Process the project name from the form.
-        // Create a new project using the name. 
-        // Add the project into local storage.
-        projectObjectNamer(document.getElementById('new-project-input').value)
         
-        // Not working need to add elem back
+        // Process the project name from the form.
+        let newProjectName = document.getElementById('new-project-input').value
+        newProjectName = newProjectName.replaceAll(' ', '-')
+        
+        // Create a new project using the name. 
+        // newProjectName = new Project(newProjectName)
+        // console.log(newProjectName)
+        
+        const createObjAndAppend = (objectName) => {
+            // Create object from the given name argument.
+            objectName = new Project(objectName)
+            console.log(objectName)
+            // Push to the list for appending to dom later. 
+            projectList.push(objectName)
+            console.log(projectList)
+        }
+        createObjAndAppend(newProjectName)
+        
+        // Add project to the dom
+        
+        // Add the project into local storage.
+
+
+        // Replace the add new project form with the add project button.
         newProjectForm.replaceWith(addProjectButton)
 
         // Update the list of localStorage Stringified Objs
         getAllLocalStorage()
     })
-    
-    const projectObjectNamer = (name) => {
-        name = new Project(name)
-        console.log(name)
-        // Place item into local storage
-        placeInStorage(name)
-        return name
-    }
     
 
     return newProjectInput
