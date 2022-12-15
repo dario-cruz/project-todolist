@@ -72,24 +72,24 @@ addProjectButton.addEventListener('click', () => {
         newProjectName = newProjectName.replaceAll(' ', '-')
         
         // Create a new project using the name. 
-        // newProjectName = new Project(newProjectName)
-        // console.log(newProjectName)
-        
-        const createObjAndAppend = (objectName) => {
+        const createObjAndPush = ((objectName) => {
             // Create object from the given name argument.
             objectName = new Project(objectName)
             console.log(objectName)
+            
             // Push to the list for appending to dom later. 
             projectList.push(objectName)
+            
+            // Add the project into local storage.
+            placeInStorage(objectName)
+            
             // Check the contents of the array.
             console.log(projectList)
-        }
-
-        createObjAndAppend(newProjectName)
+        })(newProjectName)
+        
         
         // Add project to the dom
         
-        // Add the project into local storage.
 
 
         // Replace the add new project form with the add project button.
