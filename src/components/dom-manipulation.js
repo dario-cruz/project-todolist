@@ -9,7 +9,7 @@ const projectToDom = (projectObj) => {
     // Create string for attribute setting. So we can style and add eventlisteners. 
     let projectName = projectObj.projectName.toString()
     // Process the project name to a string with spaces so that we can use it as the heading.  
-    let processedProjectName = projectObj.projectName.toString().replaceAll("-", " ").toLowerCase()
+    let processedProjectName = projectObj.projectName.toString().replaceAll("-", " ")
     // Set attributes for dynamically added content.
     projectTab.setAttribute('id', `${projectName}-tab`)
     projectTabHeading.setAttribute('id', `${projectName}-heading`)
@@ -24,6 +24,21 @@ const projectToDom = (projectObj) => {
     
     // Append the project-tab to the left-panel DOM element.
     leftPanel.append(projectTab)
+
+    projectTab.addEventListener('click', () => {
+        // Remove all content form the task panel.
+        rightPanel.innerHTML = ""        
+    
+        // Iterate over the tasks items on the array and add then to the DOM. 
+        projectObj.projectTasks.forEach(task => {
+        // Create a div for each of the tasks. Headings and Notes will be attached to this.
+        let parentElement = document.createElement('div')
+        parentElement.setAttribute('class', 'task')
+        rightPanel.append(parentElement)
+        domAppender('h1', 'task-title', parentElement, task.taskName)
+        domAppender('p', 'task-notes', parentElement, task.taskNotes)
+    });
+    })
 
     // Iterate over the tasks items on the array and add then to the DOM. 
     projectObj.projectTasks.forEach(task => {
