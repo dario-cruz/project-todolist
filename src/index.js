@@ -18,6 +18,9 @@ const footerPanel = document.createElement('div')
 const pageTitle = document.createElement('h1')
 const newProjectDiv = document.createElement('div')
 const addProjectButton = document.createElement('button')
+const headingTextDiv = document.createElement('div')
+const headingButtonDiv = document.createElement('div')
+const addTaskButton = document.createElement('button')
 
 // Set needed attributes for page elements. 
 headerPanel.setAttribute('class', 'header-panel')
@@ -29,10 +32,16 @@ footerPanel.setAttribute('class', 'footer-panel')
 pageTitle.setAttribute('class', 'page-title')
 addProjectButton.setAttribute('class', 'add-project-button')
 newProjectDiv.setAttribute('class', 'project-div')
+headingTextDiv.setAttribute('class', 'heading-text-div')
+headingButtonDiv.setAttribute('class', 'heading-button-div')
+addTaskButton.setAttribute('class', 'task-button')
+
 
 // Content for main page elements.
 pageTitle.innerText = "- Just Do It! - a Todo List by Dario Cruz"
 addProjectButton.innerHTML = "Add Project"
+addTaskButton.innerText = 'Add Task'
+
 
 // Append all the elements needed to root elements.
 newProjectDiv.append(addProjectButton)
@@ -42,9 +51,9 @@ leftPanel.append(newProjectDiv)
 
 // Check all localStorage items, convert, and add to array for dom appending.
 processAllLocalStorage(projectList)
+
 // Append all items put in the array to the dom.
 processList(projectList)
-
 
 // Add events to elements appended to the dom. 
 addProjectButton.addEventListener('click', () => {
@@ -98,16 +107,17 @@ addProjectButton.addEventListener('click', () => {
         // Add project to the dom
         projectToDom(projectList[projectList.length - 1])
 
-
         // Replace the add new project form with the add project button.
         newProjectForm.replaceWith(addProjectButton)
 
     })
-    
-
     return newProjectInput
 })
-
+// On button click allow for adding of task.
+addTaskButton.addEventListener('click', () => {
+    let currentProject = rightPanel.getAttribute('data-object')
+    console.log(currentProject)
+}) 
 
 
 

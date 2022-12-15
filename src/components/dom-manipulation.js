@@ -6,7 +6,6 @@ const projectToDom = (projectObj) => {
     // Define all of the elements that need to be added to the dom. 
     const projectTab = document.createElement('div')
     const projectTabHeading = document.createElement('h1')
-    const addTaskButton = document.createElement('button')
 
     // Create string for attribute setting. So we can style and add eventlisteners. 
     let projectName = projectObj.projectName.toString()
@@ -17,37 +16,29 @@ const projectToDom = (projectObj) => {
     projectTabHeading.setAttribute('id', `${projectName}-heading`)
     projectTab.setAttribute('class', 'project-tab')
     projectTabHeading.setAttribute('class', 'project-heading')
-    addTaskButton.setAttribute('class', 'task-button')
 
     // Set the text content for elements. 
     projectTabHeading.innerText = `${processedProjectName}`
-    addTaskButton.innerText = 'Add Task'
 
     // Append the project-heading to the project-tab div.
     projectTab.append(projectTabHeading)
     
     // Append the project-tab to the left-panel DOM element.
     leftPanel.append(projectTab)
-
+    
     // Add event for changing displayed tasks related to projects.
     projectTab.addEventListener('click', () => {
         // Remove all content form the task panel.
         rightPanel.innerHTML = ""        
         
-        // Set location to append button because we do not want it hovering on top of the h1 heading.
-        projectTab.appendChild(addTaskButton)
-        
-        // On button click allow for adding of task.
-        addTaskButton.addEventListener('click', () => {
-
-        })
         // Set data attribute that changes with data being displayed.
         // We can reference this when we want to add tasks to the object and update the dom. 
         rightPanel.setAttribute('data-object', `${projectName}`)
 
         // Iterate over the tasks items on the array and add then to the DOM. 
         projectObj.projectTasks.forEach(task => {
-        // Create a div for each of the tasks. Headings and Notes will be attached to this.
+        
+            // Create a div for each of the tasks. Headings and Notes will be attached to this.
         let parentElement = document.createElement('div')
         parentElement.setAttribute('class', 'task')
         rightPanel.append(parentElement)
