@@ -40,6 +40,8 @@ leftPanel.append(newProjectDiv)
 
 // Check all localStorage items, convert, and add to array for dom appending.
 processAllLocalStorage(projectList)
+// Append all items put in the array to the dom.
+processList(projectList)
 
 
 // Add events to elements appended to the dom. 
@@ -72,24 +74,27 @@ addProjectButton.addEventListener('click', () => {
         newProjectName = newProjectName.replaceAll(' ', '-')
         
         // Create a new project using the name. 
-        const createObjAndPush = ((objectName) => {
+        const processFormSubmit = ((objectName) => {
             // Create object from the given name argument.
-            objectName = new Project(objectName)
-            console.log(objectName)
+            let newObject = new Project(objectName)
+            console.log(newObject)
             
             // Push to the list for appending to dom later. 
-            projectList.push(objectName)
+            projectList.push(newObject)
             
             // Add the project into local storage.
-            placeInStorage(objectName)
+            placeInStorage(newObject)
             
             // Check the contents of the array.
             console.log(projectList)
+
+            // Allow for access of new object outside of function. So we can append to the dom.
+            return newObject
         })(newProjectName)
         
         
         // Add project to the dom
-        
+        projectToDom(projectList[projectList.length - 1])
 
 
         // Replace the add new project form with the add project button.

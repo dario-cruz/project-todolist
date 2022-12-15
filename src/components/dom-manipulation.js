@@ -6,11 +6,12 @@ const projectToDom = (projectObj) => {
     let projectTab = document.createElement('div')
     let projectTabHeading = document.createElement('h1')
 
+    let projectName = projectObj.projectName.toString()
     // Process the project name to a string with no spaces so that we can use it as an identifier. 
-    let processedProjectName = projectObj.projectName.toString().replaceAll(" ", "-").toLowerCase()
-    projectTab.setAttribute('class', `${processedProjectName}-tab`)
-    projectTabHeading.setAttribute('class', `${processedProjectName}-heading`)
-    projectTabHeading.innerText = `${projectObj.projectName}`
+    let processedProjectName = projectObj.projectName.toString().replaceAll("-", " ").toLowerCase()
+    projectTab.setAttribute('class', `${projectName}-tab`)
+    projectTabHeading.setAttribute('class', `${projectName}-heading`)
+    projectTabHeading.innerText = `${projectName}`
     
     // Append the project-heading to the project-tab div.
     projectTab.append(projectTabHeading)
