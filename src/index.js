@@ -1,7 +1,8 @@
 import './index.css'
-import { inboxProject } from "./inbox";
+import { makeDefaultProject } from "./inbox";
 import { Project, projectList } from "./components/project-generator";
 import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./components/localStorageManipulator";
+import { processList, projectToDom } from './components/dom-manipulation';
 
 // Add main content div to body for all other content to append to. 
 const contentDiv = document.createElement('div')
@@ -35,21 +36,10 @@ addProjectButton.innerHTML = "Add Project"
 newProjectDiv.append(addProjectButton)
 contentDiv.append(headerPanel, leftPanel, rightPanel, footerPanel)
 headerPanel.append(pageTitle)
-
-// Check local storage for any JSON data. So we can process and add it to the dom. 
-
-
-// Testing localStorage
-console.log(inboxProject)
-window.localStorage.setItem("inboxProject", JSON.stringify(inboxProject))
-
-const testItem = window.localStorage.getItem("inboxProject")
-console.log(JSON.parse(testItem))
-
-// Process the project object and add the project to the DOM via various defined elements.
-// projectToDom(inboxProject)
-// Append the add project div to the end of the left-panel div. 
 leftPanel.append(newProjectDiv)
+
+// Check all localStorage items, convert, and add to array for dom appending.
+processAllLocalStorage(projectList)
 
 
 // Add events to elements appended to the dom. 
@@ -94,7 +84,7 @@ addProjectButton.addEventListener('click', () => {
             // Check the contents of the array.
             console.log(projectList)
         }
-        
+
         createObjAndAppend(newProjectName)
         
         // Add project to the dom
@@ -105,8 +95,6 @@ addProjectButton.addEventListener('click', () => {
         // Replace the add new project form with the add project button.
         newProjectForm.replaceWith(addProjectButton)
 
-        // Update the list of localStorage Stringified Objs
-        getAllLocalStorage()
     })
     
 
@@ -115,7 +103,5 @@ addProjectButton.addEventListener('click', () => {
 
 
 
-getAllLocalStorage()
-processAllLocalStorage(projectList)
 
 export {leftPanel, rightPanel, contentDiv, footerPanel, headerPanel, newProjectDiv, addProjectButton}

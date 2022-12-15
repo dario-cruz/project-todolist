@@ -48,8 +48,9 @@ const processAllLocalStorage = (destinationArray) => {
     // Get a list of all items in localStorage.
     let localStorageList = {...localStorage}
     // For each value, parse the object out of JSON
-    Object.values(localStorageList).forEach(val => {
-        destinationArray.push(JSON.parse(val))
+    Object.keys(localStorageList).forEach(key => {
+        let unprocessedItem = localStorage.getItem(`${key}`)
+        destinationArray.push(JSON.parse(`${unprocessedItem}`))
         // Check the status of the destination array.
         console.log(destinationArray)
     })

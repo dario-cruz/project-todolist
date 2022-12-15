@@ -7,6 +7,7 @@ const projectList = []
 const addProjectToArray = (Obj, Array) => {
     // Append Object to the designated array.
     Array.push(Obj)
+    console.log(Array)
 }
 
 class Project {
