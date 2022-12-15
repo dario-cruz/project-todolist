@@ -44,13 +44,15 @@ const processProjectList = () => {
 }
 
 // Process list of json and stringified objs into native JS objs.
-const processAllLocalStorage = (listOfLocalObjs) => {
-    for (const property in listOfLocalObjs) {
-        // Parse all stringified objs to JS objects.
-        console.log(property)
-        let processedObj = JSON.parse(localStorage.getItem(`${property}`))
-        projectToDom(processedObj)
-    }
+const processAllLocalStorage = (destinationArray) => {
+    // Get a list of all items in localStorage.
+    let localStorageList = {...localStorage}
+    // For each value, parse the object out of JSON
+    Object.values(localStorageList).forEach(val => {
+        destinationArray.push(JSON.parse(val))
+        // Check the status of the destination array.
+        console.log(destinationArray)
+    })
 }
 
 // Export all the functionality

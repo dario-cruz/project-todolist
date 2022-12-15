@@ -30,4 +30,11 @@ const projectToDom = (projectObj) => {
     });
 }
 
-export { projectToDom }
+// Process all of the objects in the projectList array and place them in the dom. 
+const processList = (arrayOfObjs) => {
+    arrayOfObjs.forEach(item => {
+        projectToDom(item)
+    })
+}
+
+export { projectToDom, processList }

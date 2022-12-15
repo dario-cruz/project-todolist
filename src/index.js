@@ -77,11 +77,6 @@ addProjectButton.addEventListener('click', () => {
         // Prevent the default form post and refresh of the page.
         event.preventDefault()
 
-        let newName = document.getElementById('new-project-input').value
-        // newName = newName.toString.replaceAll(' ', '')
-        console.log(newName)
-        
-        
         // Process the project name from the form.
         let newProjectName = document.getElementById('new-project-input').value
         newProjectName = newProjectName.replaceAll(' ', '-')
@@ -95,9 +90,11 @@ addProjectButton.addEventListener('click', () => {
             objectName = new Project(objectName)
             console.log(objectName)
             // Push to the list for appending to dom later. 
-            objectName.addThisProjectTooArray(projectList)
+            projectList.push(objectName)
+            // Check the contents of the array.
             console.log(projectList)
         }
+        
         createObjAndAppend(newProjectName)
         
         // Add project to the dom
@@ -119,6 +116,6 @@ addProjectButton.addEventListener('click', () => {
 
 
 getAllLocalStorage()
-processAllLocalStorage(getAllLocalStorage.localObjs)
+processAllLocalStorage(projectList)
 
 export {leftPanel, rightPanel, contentDiv, footerPanel, headerPanel, newProjectDiv, addProjectButton}
