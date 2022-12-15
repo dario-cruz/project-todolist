@@ -6,12 +6,18 @@ const projectToDom = (projectObj) => {
     let projectTab = document.createElement('div')
     let projectTabHeading = document.createElement('h1')
 
+    // Create string for attribute setting. So we can style and add eventlisteners. 
     let projectName = projectObj.projectName.toString()
-    // Process the project name to a string with no spaces so that we can use it as an identifier. 
+    // Process the project name to a string with spaces so that we can use it as the heading.  
     let processedProjectName = projectObj.projectName.toString().replaceAll("-", " ").toLowerCase()
-    projectTab.setAttribute('class', `${projectName}-tab`)
-    projectTabHeading.setAttribute('class', `${projectName}-heading`)
-    projectTabHeading.innerText = `${projectName}`
+    // Set attributes for dynamically added content.
+    projectTab.setAttribute('id', `${projectName}-tab`)
+    projectTabHeading.setAttribute('id', `${projectName}-heading`)
+    projectTab.setAttribute('class', 'project-tab')
+    projectTabHeading.setAttribute('class', 'project-heading')
+
+    // Set the text content for project heading. 
+    projectTabHeading.innerText = `${processedProjectName}`
     
     // Append the project-heading to the project-tab div.
     projectTab.append(projectTabHeading)
