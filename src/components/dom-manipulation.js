@@ -37,14 +37,13 @@ const projectToDom = (projectObj) => {
 
         // Iterate over the tasks items on the array and add then to the DOM. 
         projectObj.projectTasks.forEach(task => {
-        
             // Create a div for each of the tasks. Headings and Notes will be attached to this.
-        let parentElement = document.createElement('div')
-        parentElement.setAttribute('class', 'task')
-        rightPanel.append(parentElement)
-        domAppender('h1', 'task-title', parentElement, task.taskName)
-        domAppender('p', 'task-notes', parentElement, task.taskNotes)
-    });
+            let parentElement = document.createElement('div')
+            parentElement.setAttribute('class', 'task')
+            rightPanel.append(parentElement)
+            domAppender('h1', 'task-title', parentElement, task.taskName)
+            domAppender('p', 'task-notes', parentElement, task.taskNotes)
+        });
     })
 
     // Iterate over the tasks items on the array and add then to the DOM. 

@@ -9,7 +9,6 @@ const contentDiv = document.createElement('div')
 contentDiv.setAttribute('id', 'content')
 document.body.append(contentDiv)
 
-
 // Define the elements of the page to append,
 const headerPanel = document.createElement('div')
 const leftPanel = document.createElement('div')
@@ -46,8 +45,12 @@ addTaskButton.innerText = 'Add Task'
 // Append all the elements needed to root elements.
 newProjectDiv.append(addProjectButton)
 contentDiv.append(headerPanel, leftPanel, rightPanel, footerPanel)
-headerPanel.append(pageTitle)
+headerPanel.append(headingTextDiv)
+headerPanel.append(headingButtonDiv)
+headingTextDiv.append(pageTitle)
+headingButtonDiv.append(addTaskButton)
 leftPanel.append(newProjectDiv)
+
 
 // Check all localStorage items, convert, and add to array for dom appending.
 processAllLocalStorage(projectList)
@@ -103,13 +106,11 @@ addProjectButton.addEventListener('click', () => {
             return newObject
         })(newProjectName)
         
-        
         // Add project to the dom
         projectToDom(projectList[projectList.length - 1])
 
         // Replace the add new project form with the add project button.
         newProjectForm.replaceWith(addProjectButton)
-
     })
     return newProjectInput
 })
