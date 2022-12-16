@@ -20,6 +20,8 @@ const addProjectButton = document.createElement('button')
 const headingTextDiv = document.createElement('div')
 const headingButtonDiv = document.createElement('div')
 const addTaskButton = document.createElement('button')
+const newTaskDiv = document.createElement('div')
+
 
 // Set needed attributes for page elements. 
 headerPanel.setAttribute('class', 'header-panel')
@@ -39,7 +41,7 @@ addTaskButton.setAttribute('class', 'task-button')
 // Content for main page elements.
 pageTitle.innerText = "- Just Do It! - a Todo List by Dario Cruz"
 addProjectButton.innerHTML = "Add Project"
-addTaskButton.innerText = 'Add Task'
+addTaskButton.innerText = "Add Task"
 
 
 // Append all the elements needed to root elements.
@@ -116,8 +118,15 @@ addProjectButton.addEventListener('click', () => {
 })
 // On button click allow for adding of task.
 addTaskButton.addEventListener('click', () => {
+    // Obtain data on what project tasks are being displayed so that we can modify and store information
+    // in the correct place. 
     let currentProject = rightPanel.getAttribute('data-object')
-    console.log(currentProject)
+    
+    // Get the index position of the project being displayed. So we can modify it. 
+    let listPosition = projectList.findIndex(prop => prop.projectName == currentProject)
+    
+    // Check if the code is functioning as intended.
+    console.log(currentProject, listPosition)
 }) 
 
 
