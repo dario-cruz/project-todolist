@@ -7,7 +7,7 @@ addTaskButton.innerText = "New Task"
 
 // Create modal so that the user can add a task to the project.
 // On submit allow the form to close on form submit.
-const createModal = ((appedingElement) => {
+const createNewTaskModal = (appedingElement) => {
     const modalDiv = document.createElement('div')
     const modalContent = document.createElement('div')
     const spanElement = document.createElement('span')
@@ -31,9 +31,20 @@ const createModal = ((appedingElement) => {
     newTaskInput.setAttribute('placeholder', '...enter something')
     newTaskInputLabel.setAttribute('for', 'task-input')
 
+    // Set all of the attributes for the task details.
     newTaskDetail.setAttribute('type', 'text-area')
     newTaskDetail.setAttribute('col', '5')
     newTaskDetail.setAttribute('rows', '50')
+    newTaskDetail.setAttribute('placeholder', '....enter some details')
     newTaskDetail.setAttribute('class', 'task-detail')
     newTaskDetail.setAttribute('id', 'task-detail')
-})()
+
+    // Set attributes for task label.
+    newTaskLabel.innerText = "Task Details"
+
+    // Append the elements to one another.
+    modalDiv.append(modalContent)
+    modalContent.append(spanElement)
+    modalContent.append(modalContent)
+
+}
