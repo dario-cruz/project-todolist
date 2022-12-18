@@ -1,13 +1,17 @@
+import './page-elements.css'
 
 // Create button so the user can add a task to a project. 
-const addTaskButton = document.createElement('button')
-addTaskButton.setAttribute('class', 'task-button')
-addTaskButton.setAttribute('id', 'add-task-button')
-addTaskButton.innerText = "New Task"
+const newTaskButton = (appendElement) => {
+    const addTaskButton = document.createElement('button')
+    addTaskButton.setAttribute('class', 'task-button')
+    addTaskButton.setAttribute('id', 'add-task-button')
+    addTaskButton.innerText = "New Task"
+}
+
 
 // Create modal so that the user can add a task to the project.
 // On submit allow the form to close on form submit.
-const createNewTaskModal = (appedingElement) => {
+const newTaskModal = (appendElement) => {
     const modalDiv = document.createElement('div')
     const modalContent = document.createElement('div')
     const spanElement = document.createElement('span')
@@ -16,7 +20,7 @@ const createNewTaskModal = (appedingElement) => {
     const newTaskInput = document.createElement('input')
     const newTaskInputLabel = document.createElement('label')
     const newTaskDetail = document.createElement('input')
-    const newTaskLabel = document.createElement('label')
+    const newTaskDetailLabel = document.createElement('label')
 
     // Setup all of the attributes for the elements to be appended.
     modalDiv.setAttribute('class', 'modal-div')
@@ -28,7 +32,7 @@ const createNewTaskModal = (appedingElement) => {
     // Form attributes for linking labels.
     newTaskInput.setAttribute('type', 'text')
     newTaskInput.setAttribute('id', 'task-input')
-    newTaskInput.setAttribute('placeholder', '...enter something')
+    newTaskInput.setAttribute('placeholder', '...enter task name')
     newTaskInputLabel.setAttribute('for', 'task-input')
 
     // Set all of the attributes for the task details.
@@ -39,12 +43,24 @@ const createNewTaskModal = (appedingElement) => {
     newTaskDetail.setAttribute('class', 'task-detail')
     newTaskDetail.setAttribute('id', 'task-detail')
 
-    // Set attributes for task label.
-    newTaskLabel.innerText = "Task Details"
+    // Set attributes for task labels.
+    newTaskInputLabel.innerText = "Task Name"
+    newTaskDetailLabel.innerText = "Task Details"
+    // Give the span element and X to click and close the modal.
+    spanElement.innerText = "&times;"
 
     // Append the elements to one another.
     modalDiv.append(modalContent)
     modalContent.append(spanElement)
-    modalContent.append(modalContent)
+    modalContent.append(modalForm)
+    modalForm.append(newTaskInputLabel)
+    modalForm.append(newTaskInput)
+    modalForm.append(newTaskDetailLabel)
+    modalForm.append(newTaskDetail)
 
+}
+// Create functionality to toggle the display of element.
+// Need this to toggle the display of the modal element when creating a new task.
+const visToggle = (targetElement, classProp) => {
+    targetElement.classList.toggle(`${classProp}`)
 }
