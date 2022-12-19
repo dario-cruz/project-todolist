@@ -1,5 +1,5 @@
 import './index.css'
-import { makeDefaultProject } from "./inbox";
+import * as name from './components/page-elements'
 import { Project, projectList } from "./components/project-generator";
 import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./components/localStorageManipulator";
 import { processList, projectToDom } from './components/dom-manipulation';
