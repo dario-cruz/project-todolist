@@ -59,8 +59,13 @@ const newTaskModal = (appendElement) => {
     modalForm.append(newTaskDetail)
 
 }
-// Create functionality to toggle the display of element.
-// Need this to toggle the display of the modal element when creating a new task.
-const visToggle = (targetElement, classProp) => {
-    targetElement.classList.toggle(`${classProp}`)
+
+// Create eventlistener so that when to addTask button is pressed the modal opens so 
+// the user can enter some information. 
+const newTaskEvent = (targetElement, classProp) => {
+    // Need this to toggle the display of the modal element when creating a new task.
+    // Create functionality to toggle the display of element.
+    targetElement.addEventListener('click', () => {
+        targetElement.classList.toggle(`${classProp}`)
+    })
 }
