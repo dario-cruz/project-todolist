@@ -5,6 +5,7 @@ const createMainDiv = () => {
     const contentDiv = document.createElement('div')
     contentDiv.setAttribute('id', 'content')
     document.body.append(contentDiv)
+    return contentDiv
 }
 
 const createDefaultPageContent = () => {
@@ -123,4 +124,4 @@ const newTaskEvent = (targetElement, classProp) => {
 }
 
 
-export * from './project-generator'
+export {createMainDiv}

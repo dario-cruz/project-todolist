@@ -1,8 +1,8 @@
 import './index.css'
-import * as name from './components/page-elements'
 import { Project, projectList } from "./components/project-generator";
 import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./components/localStorageManipulator";
 import { processList, projectToDom } from './components/dom-manipulation';
+import { makeDefaultProject } from './inbox';
 
 // Add main content div to body for all other content to append to. 
 const contentDiv = document.createElement('div')
@@ -52,7 +52,6 @@ headerPanel.append(headingButtonDiv)
 headingTextDiv.append(pageTitle)
 headingButtonDiv.append(addTaskButton)
 leftPanel.append(newProjectDiv)
-
 
 // Check all localStorage items, convert, and add to array for dom appending.
 processAllLocalStorage(projectList)
@@ -131,4 +130,4 @@ addTaskButton.addEventListener('click', () => {
 
 
 
-export {leftPanel, rightPanel, contentDiv, footerPanel, headerPanel, newProjectDiv, addProjectButton}
+export {leftPanel, rightPanel, footerPanel, headerPanel, newProjectDiv, addProjectButton}
