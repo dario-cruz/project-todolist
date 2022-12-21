@@ -1,4 +1,6 @@
 import './page-elements.css'
+import { Project } from './project-generator'
+import { projectList } from './project-generator'
 
 // Create the main div for the rest of the project elements to append to. 
 const createMainDiv = () => {
@@ -75,12 +77,25 @@ const newTaskModal = (appendElement) => {
     const newTaskInputLabel = document.createElement('label')
     const newTaskDetail = document.createElement('input')
     const newTaskDetailLabel = document.createElement('label')
+    const newTaskDate = document.createElement('input')
+    const newTaskDateLabel = document.createElement('label')
+    // Create elements to allow for the user to select priority of sev of the project.
+    const newTaskPriority = document.createElement('select')
+    const newTaskPriorityLabel = document.createTextNode('label')
+    // Create options for the select element.
+    const taskPriorityOne = document.createElement('option')
+    const taskPriorityTwo = document.createElement('option')
+    const taskPriorityThree = document.createElement('option')
+
+    // Create submit button to attach event to. 
+    const newTaskSubmit = document.createElement('button')
 
     // Setup all of the attributes for the elements to be appended.
     modalDiv.setAttribute('class', 'modal-div')
     modalContent.setAttribute('class', 'modal-content')
     spanElement.setAttribute('class', 'span-close')
     modalForm.setAttribute('action', '')
+    modalForm.setAttribute('id', 'task-form')
     modalDiv.setAttribute('id', 'modal-div')
     
     // Form attributes for linking labels.
@@ -103,6 +118,32 @@ const newTaskModal = (appendElement) => {
     // Give the span element and X to click and close the modal.
     spanElement.innerText = "&times;"
 
+    // Set attributes for submit button
+    newTaskSubmit.setAttribute('class', 'modal-submit-button') 
+    newTaskSubmit.setAttribute('id', 'modal-submit-button')
+    newTaskSubmit.setAttribute('type', 'submit')
+    newTaskSubmit.innerText = "Submit"
+    
+    // Set attribute for date form
+    newTaskDate.setAttribute('type', 'date')
+    newTaskDate.setAttribute('value', `${getCurrentDate()}`)
+    newTaskDate.setAttribute('class', 'task-date')
+    newTaskDate.setAttribute('id', 'task-date')
+    newTaskDateLabel.setAttribute('for', 'task-date')
+
+    // Attributes for the priority select and options.
+    newTaskPriority.setAttribute('name', 'task-priority')
+    newTaskPriority.setAttribute('id', 'task-priority')
+    newTaskPriority.setAttribute('form', 'task-form')
+    
+    newTaskPriorityLabel.setAttribute('for', 'task-priority')
+    newTaskPriorityLabel.innerText = "Select Priority"
+
+    taskPriorityOne.setAttribute('value', '1')
+    taskPriorityTwo.setAttribute('value', '2')
+    taskPriorityThree.setAttributeNS('value', '3')
+
+    
     // Append the elements to one another.
     modalDiv.append(modalContent)
     modalContent.append(spanElement)
@@ -111,6 +152,29 @@ const newTaskModal = (appendElement) => {
     modalForm.append(newTaskInput)
     modalForm.append(newTaskDetailLabel)
     modalForm.append(newTaskDetail)
+    modalForm.append(newTaskSubmit)
+
+    // Create and event so that the users submitted input gets converted to a new
+    // task inside the project object. Make use of the class functions defined in
+    // the module.
+    newTaskSubmit.addEventListener('submit', (event) => {
+        event.preventDefault()
+        // Get current project that is selected and if none are selected do nothing.
+        let taskPanel = document.getElementById('task-panel')
+
+        if (taskPanel.getAttribute('data-object') == null) {
+            return
+        } else {
+            let currentProject = taskPanel.getAttribute('data-object')    
+            let objetToMod = projectList.findIndex(prop => prop.projectName == currentProject)
+            let taskName = newTaskInput.value
+            let taskNotes = newTaskDetail.value
+            let taskDate = newTaskDate.value
+
+            projectList[objetToMod].makeNewTask()
+        }
+    })
+
 }
 
 // Create eventlistener so that when to addTask button is pressed the modal opens so 
@@ -123,5 +187,13 @@ const newTaskEvent = (targetElement, classProp) => {
     })
 }
 
+const getCurrentDate = () => {
+    let today = new Date() 
+    let day = String(today.getDate()).padStart(2, '0')
+    let month = String(today.getMonth() + 1).padStart(2, '0')
+    let year = today.getFullYear()
+    today = year + '/' + month + '/' + day
+    return today
+}
 
 export {createMainDiv}
