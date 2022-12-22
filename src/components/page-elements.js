@@ -102,12 +102,14 @@ const newTaskModal = (appendElement) => {
         modalDiv.setAttribute('id', 'modal-div')
         
         // Form attributes for linking labels.
+        newTaskInput.setAttribute('required', '')
         newTaskInput.setAttribute('type', 'text')
         newTaskInput.setAttribute('id', 'task-input')
         newTaskInput.setAttribute('placeholder', '...enter task name')
         newTaskInputLabel.setAttribute('for', 'task-input')
     
         // Set all of the attributes for the task details.
+        newTaskDetail.setAttribute('required', '')
         newTaskDetail.setAttribute('type', 'text-area')
         newTaskDetail.setAttribute('col', '5')
         newTaskDetail.setAttribute('rows', '50')
@@ -128,6 +130,7 @@ const newTaskModal = (appendElement) => {
         newTaskSubmit.innerText = "Submit"
         
         // Set attribute for date form
+        newTaskDate.setAttribute('required', '')
         newTaskDate.setAttribute('type', 'date')
         newTaskDate.setAttribute('value', `${getCurrentDate()}`)
         newTaskDate.setAttribute('class', 'task-date')
@@ -161,7 +164,7 @@ const newTaskModal = (appendElement) => {
         // Create and event so that the users submitted input gets converted to a new
         // task inside the project object. Make use of the class functions defined in
         // the module.
-        newTaskSubmit.addEventListener('submit', (event) => {
+        modalForm.addEventListener('submit', (event) => {
             // Prevent the refreshing of the page.
             event.preventDefault()
             
@@ -177,8 +180,10 @@ const newTaskModal = (appendElement) => {
                 let taskDate = newTaskDate.value
                 let taskPriority = newTaskPriority.value
                 
+                console.log(projectList[objetToMod])
+                let selectedProject = projectList[objetToMod]
                 // Gather all of the form data and process into a task for project.
-                projectList[objetToMod].makeNewTask(taskName, taskPriority, taskNotes, taskDate)
+                selectedProject.makeNewTask(taskName, taskPriority, taskNotes, taskDate)
             }
         })
 
