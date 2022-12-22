@@ -143,7 +143,7 @@ const newTaskModal = (appendElement) => {
     taskPriorityTwo.setAttribute('value', '2')
     taskPriorityThree.setAttributeNS('value', '3')
 
-    
+
     // Append the elements to one another.
     modalDiv.append(modalContent)
     modalContent.append(spanElement)
@@ -170,8 +170,10 @@ const newTaskModal = (appendElement) => {
             let taskName = newTaskInput.value
             let taskNotes = newTaskDetail.value
             let taskDate = newTaskDate.value
-
-            projectList[objetToMod].makeNewTask()
+            let taskPriority = newTaskPriority.value
+            
+            // Gather all of the form data and process into a task for project.
+            projectList[objetToMod].makeNewTask(taskName, taskPriority, taskNotes, taskDate)
         }
     })
 
