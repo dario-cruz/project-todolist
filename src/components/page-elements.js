@@ -81,7 +81,7 @@ const newTaskModal = (appendElement) => {
     const newTaskDateLabel = document.createElement('label')
     // Create elements to allow for the user to select priority of sev of the project.
     const newTaskPriority = document.createElement('select')
-    const newTaskPriorityLabel = document.createTextNode('label')
+    const newTaskPriorityLabel = document.createElement('label')
     // Create options for the select element.
     const taskPriorityOne = document.createElement('option')
     const taskPriorityTwo = document.createElement('option')
@@ -132,27 +132,28 @@ const newTaskModal = (appendElement) => {
     newTaskDateLabel.setAttribute('for', 'task-date')
 
     // Attributes for the priority select and options.
-    newTaskPriority.setAttribute('name', 'task-priority')
+    newTaskPriority.setAttribute('name', 'task-priority-name')
     newTaskPriority.setAttribute('id', 'task-priority')
     newTaskPriority.setAttribute('form', 'task-form')
-    
-    newTaskPriorityLabel.setAttribute('for', 'task-priority')
+    newTaskPriorityLabel.setAttribute('for', 'task-priority-name')
     newTaskPriorityLabel.innerText = "Select Priority"
 
     taskPriorityOne.setAttribute('value', '1')
     taskPriorityTwo.setAttribute('value', '2')
-    taskPriorityThree.setAttributeNS('value', '3')
+    taskPriorityThree.setAttribute('value', '3')
 
     
     // Append the elements to one another.
     modalDiv.append(modalContent)
-    modalContent.append(spanElement)
-    modalContent.append(modalForm)
-    modalForm.append(newTaskInputLabel)
-    modalForm.append(newTaskInput)
-    modalForm.append(newTaskDetailLabel)
-    modalForm.append(newTaskDetail)
+    modalContent.append(spanElement, modalForm)
+    modalForm.append(newTaskInputLabel, newTaskInput)
+    modalForm.append(newTaskDetailLabel, newTaskDetail)
+    modalForm.append(newTaskPriorityLabel, newTaskPriority)
+    modalForm.append(newTaskDateLabel, newTaskDate)
+    newTaskPriority.append(taskPriorityOne, taskPriorityTwo, taskPriorityThree)
     modalForm.append(newTaskSubmit)
+    // Append entire element to argument element.
+    appendElement.append(modalDiv)
 
     // Create and event so that the users submitted input gets converted to a new
     // task inside the project object. Make use of the class functions defined in
@@ -196,4 +197,4 @@ const getCurrentDate = () => {
     return today
 }
 
-export {createMainDiv}
+export {createMainDiv, newTaskModal}
