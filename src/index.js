@@ -129,7 +129,8 @@ addTaskButton.addEventListener('click', () => {
     console.log(currentProject, listPosition)
     // Create the modal for form input and show it so the user can input a new task.
     newTaskModal(contentDiv)
-    document.getElementById('modal-div').style.visibility ='visible'
+    let modalElem = document.getElementById('modal-div')
+    modalElem.classList.toggle('closed-modal')
 }) 
 
 

@@ -92,6 +92,8 @@ const newTaskModal = (appendElement) => {
 
     // Setup all of the attributes for the elements to be appended.
     modalDiv.setAttribute('class', 'modal-div')
+    // Set class for closing and opening modal. 
+    modalDiv.setAttribute('class', 'closed-modal')
     modalContent.setAttribute('class', 'modal-content')
     spanElement.setAttribute('class', 'span-close')
     modalForm.setAttribute('action', '')
