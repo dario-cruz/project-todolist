@@ -119,7 +119,7 @@ const newTaskModal = (appendElement) => {
         newTaskInputLabel.innerText = "Task Name"
         newTaskDetailLabel.innerText = "Task Details"
         // Give the span element and X to click and close the modal.
-        spanElement.innerText = "&times;"
+        spanElement.innerHTML = "&times;"
     
         // Set attributes for submit button
         newTaskSubmit.setAttribute('class', 'modal-submit-button') 
