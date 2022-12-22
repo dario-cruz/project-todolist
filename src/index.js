@@ -3,6 +3,7 @@ import { Project, projectList } from "./components/project-generator";
 import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./components/localStorageManipulator";
 import { processList, projectToDom } from './components/dom-manipulation';
 import { makeDefaultProject } from './inbox';
+import { newTaskModal } from './components/page-elements';
 
 // Add main content div to body for all other content to append to. 
 const contentDiv = document.createElement('div')
@@ -126,6 +127,9 @@ addTaskButton.addEventListener('click', () => {
     
     // Check if the code is functioning as intended.
     console.log(currentProject, listPosition)
+    // Create the modal for form input and show it so the user can input a new task.
+    newTaskModal(contentDiv)
+    document.getElementById('modal-div').style.visibility ='visible'
 }) 
 
 
