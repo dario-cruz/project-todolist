@@ -162,10 +162,11 @@ const newTaskModal = (appendElement) => {
         // task inside the project object. Make use of the class functions defined in
         // the module.
         newTaskSubmit.addEventListener('submit', (event) => {
+            // Prevent the refreshing of the page.
             event.preventDefault()
+            
             // Get current project that is selected and if none are selected do nothing.
             let taskPanel = document.getElementById('task-panel')
-    
             if (taskPanel.getAttribute('data-object') == null) {
                 return
             } else {
@@ -180,8 +181,11 @@ const newTaskModal = (appendElement) => {
                 projectList[objetToMod].makeNewTask(taskName, taskPriority, taskNotes, taskDate)
             }
         })
-    } else {
-        console.log('modal already present.')
+
+        // On click of X icon close the modal and do not submit data.
+        spanElement.addEventListener('click', () => {
+            modalDiv.classList.toggle('closed-modal')
+        })
     }
     
     // Create eventlistener so that when to addTask button is pressed the modal opens so 
@@ -193,10 +197,10 @@ const newTaskModal = (appendElement) => {
             targetElement.classList.toggle(`${classProp}`)
         })
     }
-
-
 }
 
+// Get the current date and apply it to the date input.
+// This will keep the started for selection pointed to the current day.
 const getCurrentDate = () => {
     let today = new Date() 
     let day = String(today.getDate()).padStart(2, '0')
