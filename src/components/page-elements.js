@@ -180,10 +180,17 @@ const newTaskModal = (appendElement) => {
                 let taskDate = newTaskDate.value
                 let taskPriority = newTaskPriority.value
                 
-                console.log(projectList[objetToMod])
-                let selectedProject = projectList[objetToMod]
+                // Match the data prop of active project with the project object.
+                let targetProject = projectList.find(item => item.projectName == currentProject)
+                console.log(targetProject)
+                // Make sure that the targetProject has the current inheritance.
+                Object.setPrototypeOf(targetProject, Project)
+                
                 // Gather all of the form data and process into a task for project.
-                selectedProject.makeNewTask(taskName, taskPriority, taskNotes, taskDate)
+                targetProject.makeNewTask(taskName, taskPriority, taskNotes, taskDate)
+                
+                // Toggle modal vis.
+                modalDiv.classList.toggle('closed-modal')
             }
         })
 
