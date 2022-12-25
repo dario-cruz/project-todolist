@@ -1,6 +1,6 @@
-import './page-elements.css'
-import { Project } from './project-generator'
-import { projectList } from './project-generator'
+import './pageElements.css'
+import { Project } from './projectGenerator'
+import { projectList } from './projectGenerator'
 
 // Create the main div for the rest of the project elements to append to. 
 const createMainDiv = () => {
@@ -174,7 +174,6 @@ const newTaskModal = (appendElement) => {
                 return
             } else {
                 let currentProject = taskPanel.getAttribute('data-object')    
-                let objetToMod = projectList.findIndex(prop => prop.projectName == currentProject)
                 let taskName = newTaskInput.value
                 let taskNotes = newTaskDetail.value
                 let taskDate = newTaskDate.value
@@ -183,6 +182,7 @@ const newTaskModal = (appendElement) => {
                 // Match the data prop of active project with the project object.
                 let targetProject = projectList.find(item => item.projectName == currentProject)
                 console.log(targetProject)
+                
                 // Make sure that the targetProject has the current inheritance.
                 Object.setPrototypeOf(targetProject, Project)
                 

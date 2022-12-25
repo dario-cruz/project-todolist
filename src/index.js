@@ -1,9 +1,9 @@
 import './index.css'
-import { Project, projectList } from "./components/project-generator";
+import { Project, projectList } from "./components/projectGenerator";
 import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./components/localStorageManipulator";
-import { processList, projectToDom } from './components/dom-manipulation';
+import { processList, projectToDom } from './components/domManipulation';
 import { makeDefaultProject } from './inbox';
-import { newTaskModal } from './components/page-elements';
+import { newTaskModal } from './components/pageElements';
 
 // Add main content div to body for all other content to append to. 
 const contentDiv = document.createElement('div')

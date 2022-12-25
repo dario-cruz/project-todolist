@@ -1,4 +1,4 @@
-import { Task } from './task-generator'
+import { Task } from './taskGenerator'
 
 // Maintain a list of all projects created. 
 const projectList = []

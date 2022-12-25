@@ -1,4 +1,4 @@
-import { addProjectToArray, projectList, Project } from "./components/project-generator";
+import { addProjectToArray, projectList, Project } from "./components/projectGenerator";
 import { placeInStorage } from "./components/localStorageManipulator";
 
 // Make IIFE that will create the default task. 
