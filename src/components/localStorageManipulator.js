@@ -38,8 +38,8 @@ const getAllLocalStorage = () => {
 // Process all of the objects created to localStorage JSON
 const processProjectList = () => {
     projectList.forEach(item => {
-        item = JSON.stringify(item)
-        localStorage.setItem(item)
+        let stringItem = JSON.stringify(item)
+        localStorage.setItem(`${item.projectName}`, stringItem)
     })
 }
 

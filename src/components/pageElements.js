@@ -1,6 +1,7 @@
 import './pageElements.css'
-import { Project } from './projectGenerator'
-import { projectList } from './projectGenerator'
+import { Project, projectList } from './projectGenerator'
+import { Task } from './taskGenerator'
+import { processAllLocalStorage, clearAllStorage, processProjectList } from './localStorageManipulator'
 
 // Create the main div for the rest of the project elements to append to. 
 const createMainDiv = () => {
@@ -187,8 +188,14 @@ const newTaskModal = (appendElement) => {
                 Object.setPrototypeOf(targetProject, Project)
                 
                 // Gather all of the form data and process into a task for project.
-                targetProject.makeNewTask(taskName, taskPriority, taskNotes, taskDate)
+                // targetProject.makeNewTask(taskName, taskPriority, taskNotes, taskDate) <----- // This was not working for some reason. Not sure why......
+                let formTask = new Task(taskName, taskPriority, taskNotes, taskDate)
+                targetProject.projectTasks.push(formTask)
                 
+                // Process all of the projects and task and add them to the localStorage.
+                clearAllStorage()
+                processProjectList()
+
                 // Toggle modal vis.
                 modalDiv.classList.toggle('closed-modal')
             }
