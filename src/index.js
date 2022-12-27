@@ -4,12 +4,17 @@ import { getAllLocalStorage, processAllLocalStorage, placeInStorage } from "./co
 import { processList, projectToDom } from './components/domManipulation';
 import { makeDefaultProject } from './inbox';
 import { newTaskModal } from './components/pageElements';
+import { domElement } from './components/elementGenerator';
+
+
 
 // Add main content div to body for all other content to append to. 
 const contentDiv = document.createElement('div')
 contentDiv.setAttribute('id', 'content')
 document.body.append(contentDiv)
 
+const newDiv = new domElement('div', 'new-div')
+newDiv.createElement(contentDiv)
 // Define the elements of the page to append,
 const headerPanel = document.createElement('div')
 const leftPanel = document.createElement('div')

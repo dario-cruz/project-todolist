@@ -2,6 +2,7 @@ class domElement {
     constructor(elemType, elemClass) {
         this.elemType = elemType
         this.elemClass = elemClass
+        this.attributeList = []
     }
 
     set elemId(givenId) {
@@ -11,11 +12,16 @@ class domElement {
     set elemInnerText(givenText) {
         this.elemInnerText = givenText
     }
-    
-    setAttribute(givenAtt, givenAttVal) {
 
+    setAttribute(givenAtt, givenAttVal) {
+        let attributeObj = {attribute:givenAtt, attributeValue:givenAttVal}
+        this.attributeList.push(attributeObj)
     }
     
+    get list() {
+        return this.attributeList
+    }
+
     createElement(elementToAppendTo) {
         let createdElement = document.createElement(`${this.elemType}`)
         createdElement.setAttribute('class', `${this.elemClass}`)
@@ -28,6 +34,14 @@ class domElement {
             createdElement.innerText = `${this.elemInnerText}`
         }
 
+        if (this.attributeList.length > 0) {
+            this.attributeList.forEach(element => {
+                createdElement.setAttribute(`${element.attribute}`, `${element.attributeValue}`)
+            });
+        }
+
         elementToAppendTo.appendChild(createdElement)
     } 
 }
+
+export {domElement}
