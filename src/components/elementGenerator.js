@@ -26,11 +26,11 @@ class domElement {
         let createdElement = document.createElement(`${this.elemType}`)
         createdElement.setAttribute('class', `${this.elemClass}`)
         
-        if (this.elemId !== null) {
+        if (this.elemId !== undefined) {
             createdElement.setAttribute('id', `${this.elemId}`)
         }
         
-        if (this.elemInnerText !== null) {
+        if (this.elemInnerText !== undefined) {
             createdElement.innerText = `${this.elemInnerText}`
         }
 
