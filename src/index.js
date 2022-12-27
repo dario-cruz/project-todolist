@@ -21,7 +21,6 @@ const addProjectButton = document.createElement('button')
 const headingTextDiv = document.createElement('div')
 const headingButtonDiv = document.createElement('div')
 const addTaskButton = document.createElement('button')
-const newTaskDiv = document.createElement('div')
 
 
 // Set needed attributes for page elements. 
