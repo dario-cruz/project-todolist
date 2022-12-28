@@ -26,7 +26,7 @@ const addProjectButton = document.createElement('button')
 const headingTextDiv = document.createElement('div')
 const headingButtonDiv = document.createElement('div')
 const addTaskButton = document.createElement('button')
-
+const rightPanelPlaceholder = document.createElement('p')
 
 // Set needed attributes for page elements. 
 headerPanel.setAttribute('class', 'header-panel')
@@ -41,12 +41,14 @@ newProjectDiv.setAttribute('class', 'project-div')
 headingTextDiv.setAttribute('class', 'heading-text-div')
 headingButtonDiv.setAttribute('class', 'heading-button-div')
 addTaskButton.setAttribute('class', 'task-button')
+rightPanelPlaceholder.setAttribute('class', 'right-place-holder')
 
 
 // Content for main page elements.
 pageTitle.innerText = "- Just Do It! - a Todo List by Dario Cruz"
 addProjectButton.innerHTML = "Add Project"
 addTaskButton.innerText = "Add Task"
+rightPanelPlaceholder.innerText = "Please select a task from the left."
 
 
 // Append all the elements needed to root elements.

@@ -193,7 +193,9 @@ const newTaskModal = (appendElement) => {
                 targetProject.projectTasks.push(formTask)
                 
                 // Process all of the projects and task and add them to the localStorage.
+                // Clear all previously stored items.
                 clearAllStorage()
+                // Store all of the current and updated project objects.
                 processProjectList()
 
                 // Toggle modal vis.
