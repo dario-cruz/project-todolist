@@ -148,7 +148,9 @@ const newTaskModal = (appendElement) => {
         taskPriorityOne.setAttribute('value', '1')
         taskPriorityTwo.setAttribute('value', '2')
         taskPriorityThree.setAttribute('value', '3')
-    
+        taskPriorityOne.innerText = 'Priority 1'
+        taskPriorityTwo.innerText = 'Priority 2'
+        taskPriorityThree.innerText = 'Priority 3'
     
         // Append the elements to one another.
         modalDiv.append(modalContent)
@@ -229,6 +231,16 @@ const getCurrentDate = () => {
     let year = today.getFullYear()
     today = year + '/' + month + '/' + day
     return today
+}
+
+const taskEditModal = () => {
+    const modalDiv = document.createElement('div')
+    modalDiv.setAttribute('class', 'task-edit-modal')
+    modalDiv.setAttribute('id', 'task-edit-modal')
+
+    const modalContent = document.createElement('div')
+    modalContent.setAttribute('class', 'task-edit-content')
+
 }
 
 export {createMainDiv, newTaskModal}
