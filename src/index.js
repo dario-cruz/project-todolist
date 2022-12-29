@@ -26,7 +26,7 @@ const addProjectButton = document.createElement('button')
 const headingTextDiv = document.createElement('div')
 const headingButtonDiv = document.createElement('div')
 const addTaskButton = document.createElement('button')
-const rightPanelPlaceholder = document.createElement('p')
+const rightPanelPlaceholder = document.createElement('h1')
 
 // Set needed attributes for page elements. 
 headerPanel.setAttribute('class', 'header-panel')
@@ -59,6 +59,7 @@ headerPanel.append(headingButtonDiv)
 headingTextDiv.append(pageTitle)
 headingButtonDiv.append(addTaskButton)
 leftPanel.append(newProjectDiv)
+rightPanel.append(rightPanelPlaceholder)
 
 // Check all localStorage items, convert, and add to array for dom appending.
 processAllLocalStorage(projectList)

@@ -67,4 +67,31 @@ const processList = (arrayOfObjs) => {
     })
 }
 
+const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppendTo) => {
+    // Create needed elements to view project tasks. 
+    let hostElement = document.createElement('div')
+    hostElement.setAttribute('class', `task`)
+    let hostElementHeading = document.createElement('h1')
+    hostElementHeading.setAttribute('class', 'task-heading')
+    hostElementHeading.innerText = `${taskName}`
+    let hostElementNotes = document.createElement('p')
+    hostElementNotes.setAttribute('class', 'task-notes')
+    hostElementNotes.innerText = `${taskNotes}`
+    let hostElementPriority = document.createElement('p')
+    hostElementPriority.setAttribute('class', 'task-priority')
+    hostElementPriority.innerText = `Priority: ${taskPriority}`
+    let hostElementDueDate = document.createElement('p')
+    hostElementDueDate.setAttribute('class', 'task-due-date')
+    hostElementDueDate.innerText = `Due Date: ${taskDueDate}`
+
+    // Append elements to one another.
+    hostElement.appendChild(hostElementHeading)
+    hostElement.appendChild(hostElementNotes)
+    hostElement.appendChild(hostElementPriority)
+    hostElement.appendChild(hostElementDueDate)
+
+    // Append to the arg element.
+    elemToAppendTo.appendChild(hostElement)
+}
+
 export { projectToDom, processList }

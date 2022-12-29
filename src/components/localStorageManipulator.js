@@ -1,4 +1,3 @@
-import { projectToDom } from "./domManipulation"
 import { projectList } from "./projectGenerator"
 
 // Place project object into localStorage with identifier being the projectname.
