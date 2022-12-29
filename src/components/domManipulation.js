@@ -1,6 +1,5 @@
 import { leftPanel, rightPanel } from ".."
 import { domAppender } from "./domAppender"
-import { Project } from "./projectGenerator"
 
 const projectToDom = (projectObj) => {
     // Define all of the elements that need to be added to the dom. 
@@ -38,24 +37,15 @@ const projectToDom = (projectObj) => {
         // Iterate over the tasks items on the array and add then to the DOM. 
         projectObj.projectTasks.forEach(task => {
             // Create a div for each of the tasks. Headings and Notes will be attached to this.
-            let parentElement = document.createElement('div')
-            parentElement.setAttribute('class', 'task')
-            rightPanel.append(parentElement)
-            domAppender('h1', 'task-title', parentElement, task.taskName)
-            domAppender('p', 'task-notes', parentElement, task.taskNotes)
+            taskAppender(task.taskName, task.taskNotes, task.taskPriority, task.taskDueDate, rightPanel)
         });
     })
 
     const showAllTasks = () => {
         // Iterate over the tasks items on the array and add then to the DOM. 
         projectObj.projectTasks.forEach(task => {
-        
             // Create a div for each of the tasks. Headings and Notes will be attached to this.
-            let parentElement = document.createElement('div')
-            parentElement.setAttribute('class', 'task')
-            rightPanel.append(parentElement)
-            domAppender('h1', 'task-title', parentElement, task.taskName)
-            domAppender('p', 'task-notes', parentElement, task.taskNotes)
+            taskAppender(task.taskName, task.taskNotes, task.taskPriority, task.taskDueDate, rightPanel)
         });
     }
 }
@@ -71,9 +61,9 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
     // Create needed elements to view project tasks. 
     let hostElement = document.createElement('div')
     hostElement.setAttribute('class', `task`)
-    let hostElementHeading = document.createElement('h1')
-    hostElementHeading.setAttribute('class', 'task-heading')
-    hostElementHeading.innerText = `${taskName}`
+    let hostElementTitle = document.createElement('h1')
+    hostElementTitle.setAttribute('class', 'task-title')
+    hostElementTitle.innerText = `${taskName}`
     let hostElementNotes = document.createElement('p')
     hostElementNotes.setAttribute('class', 'task-notes')
     hostElementNotes.innerText = `${taskNotes}`
@@ -82,10 +72,14 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
     hostElementPriority.innerText = `Priority: ${taskPriority}`
     let hostElementDueDate = document.createElement('p')
     hostElementDueDate.setAttribute('class', 'task-due-date')
-    hostElementDueDate.innerText = `Due Date: ${taskDueDate}`
+    if (taskDueDate == undefined) {
+        hostElementDueDate.innerText = 'Due Date: None'
+    } else {
+        hostElementDueDate.innerText = `Due Date: ${taskDueDate}`
+    }
 
     // Append elements to one another.
-    hostElement.appendChild(hostElementHeading)
+    hostElement.appendChild(hostElementTitle)
     hostElement.appendChild(hostElementNotes)
     hostElement.appendChild(hostElementPriority)
     hostElement.appendChild(hostElementDueDate)
@@ -94,4 +88,4 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
     elemToAppendTo.appendChild(hostElement)
 }
 
-export { projectToDom, processList }
+export { projectToDom, processList, taskAppender }
