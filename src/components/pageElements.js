@@ -199,6 +199,10 @@ const newTaskModal = (appendElement) => {
                 clearAllStorage()
                 // Store all of the current and updated project objects.
                 processProjectList()
+                // Refresh the task panel so that the new task shows after submit.
+
+                let targetForClick = `${currentProject}` + '-tab'
+                document.getElementById(`${targetForClick}`).click()
 
                 // Toggle modal vis.
                 modalDiv.classList.toggle('closed-modal')
