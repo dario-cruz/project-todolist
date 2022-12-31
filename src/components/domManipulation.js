@@ -1,5 +1,4 @@
 import { leftPanel, rightPanel } from ".."
-import { domAppender } from "./domAppender"
 
 const projectToDom = (projectObj) => {
     // Define all of the elements that need to be added to the dom. 

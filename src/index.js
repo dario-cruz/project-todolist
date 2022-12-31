@@ -57,7 +57,7 @@ contentDiv.append(headerPanel, leftPanel, rightPanel, footerPanel)
 headerPanel.append(headingTextDiv)
 headerPanel.append(headingButtonDiv)
 headingTextDiv.append(pageTitle)
-headingButtonDiv.append(addTaskButton)
+newProjectDiv.append(addTaskButton)
 leftPanel.append(newProjectDiv)
 rightPanel.append(rightPanelPlaceholder)
 
