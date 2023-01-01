@@ -38,7 +38,10 @@ const projectToDom = (projectObj) => {
             // Create a div for each of the tasks. Headings and Notes will be attached to this.
             taskAppender(task.taskName, task.taskNotes, task.taskPriority, task.taskDueDate, rightPanel)
         });
-        document.querySelectorAll('div.task').taskElements.setAttribute('data-object', `${projectName}`)
+        // Get a list of all tasks and tag them with the project data attribute. 
+        // Will allow us to ID the related project and task objects for modification.
+        let listOfTaskDivs = document.querySelectorAll('div.task')
+        listOfTaskDivs.forEach(element => element.setAttribute('data-object', `${projectName}`))
     })
 
     const showAllTasks = () => {

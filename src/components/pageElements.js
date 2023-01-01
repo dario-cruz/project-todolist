@@ -247,4 +247,18 @@ const taskEditModal = () => {
 
 }
 
+const removeProjectButton = () => {
+    const removeProjectButton = document.createElement('button')
+    removeProjectButton.setAttribute('class', 'remove-task-button')
+    removeProjectButton.innerText = 'Remove Task'
+
+
+    // On click get the project and delete it.
+    removeProjectButton.addEventListener('click', () => {
+        let parentElement = removeProjectButton.parentNode
+        let targetProject = parentElement.getAttribute('data-object')
+        
+    })
+}
+
 export {createMainDiv, newTaskModal}
