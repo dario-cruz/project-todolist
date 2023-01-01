@@ -128,18 +128,20 @@ addTaskButton.addEventListener('click', () => {
     // Obtain data on what project tasks are being displayed so that we can modify and store information
     // in the correct place. 
     let currentProject = rightPanel.getAttribute('data-object')
-    
-    // Get the index position of the project being displayed. So we can modify it. 
-    let listPosition = projectList.findIndex(prop => prop.projectName == currentProject)
-    
-    // Check if the code is functioning as intended.
-    console.log(currentProject, listPosition)
-    // Create the modal for form input and show it so the user can input a new task.
-    newTaskModal(contentDiv)
-    // toggle the class for visibility of the form. 
-    let modalElem = document.getElementById('modal-div')
-    modalElem.classList.toggle('closed-modal') 
-
+    if (currentProject == undefined) {
+        alert('Please select a project.')
+    } else {
+        // Get the index position of the project being displayed. So we can modify it. 
+        let listPosition = projectList.findIndex(prop => prop.projectName == currentProject)
+        
+        // Check if the code is functioning as intended.
+        console.log(currentProject, listPosition)
+        // Create the modal for form input and show it so the user can input a new task.
+        newTaskModal(contentDiv)
+        // toggle the class for visibility of the form. 
+        let modalElem = document.getElementById('modal-div')
+        modalElem.classList.toggle('closed-modal') 
+    }
 }) 
 
 
