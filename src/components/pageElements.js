@@ -145,12 +145,12 @@ const newTaskModal = (appendElement) => {
         newTaskPriorityLabel.setAttribute('for', 'task-priority-name')
         newTaskPriorityLabel.innerText = "Select Priority"
     
-        taskPriorityOne.setAttribute('value', '1')
-        taskPriorityTwo.setAttribute('value', '2')
-        taskPriorityThree.setAttribute('value', '3')
-        taskPriorityOne.innerText = 'Priority 1'
-        taskPriorityTwo.innerText = 'Priority 2'
-        taskPriorityThree.innerText = 'Priority 3'
+        taskPriorityOne.setAttribute('value', 'Hi')
+        taskPriorityTwo.setAttribute('value', 'Low')
+        taskPriorityThree.setAttribute('value', 'None')
+        taskPriorityOne.innerText = 'High Priority'
+        taskPriorityTwo.innerText = 'Low Priority'
+        taskPriorityThree.innerText = 'No Priority'
     
         // Append the elements to one another.
         modalDiv.append(modalContent)
