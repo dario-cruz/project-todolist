@@ -183,19 +183,19 @@ const newTaskModal = (appendElement) => {
                 let taskPriority = newTaskPriority.value
                 
                 // Match the data prop of active project with the project object.
-                let targetProject = projectList.find(item => item.projectName == currentProject)
-                console.log(targetProject)
+                let targetProjectName = projectList.find(element => element.projectName == currentProject)
+                console.log(targetProjectName)
                 
-                // Make sure that the targetProject has the current inheritance.
-                Object.setPrototypeOf(targetProject, Project)
+                // Make sure that the targetProjectName has the current inheritance.
+                Object.setPrototypeOf(targetProjectName, Project)
                 
                 // Gather all of the form data and process into a task for project.
-                // targetProject.makeNewTask(taskName, taskPriority, taskNotes, taskDate) <----- // This was not working for some reason. Not sure why......
+                // targetProjectName.makeNewTask(taskName, taskPriority, taskNotes, taskDate) <----- // This was not working for some reason. Not sure why......
                 let formTask = new Task(taskName, taskPriority, taskNotes, taskDate)
-                targetProject.projectTasks.push(formTask)
+                targetProjectName.projectTasks.push(formTask)
                 
                 // Process all of the projects and task and add them to the localStorage.
-                // Clear all previously stored items.
+                // Clear all previously stored elements.
                 clearAllStorage()
                 // Store all of the current and updated project objects.
                 processProjectList()
@@ -247,18 +247,37 @@ const taskEditModal = () => {
 
 }
 
-const removeProjectButton = () => {
-    const removeProjectButton = document.createElement('button')
-    removeProjectButton.setAttribute('class', 'remove-task-button')
-    removeProjectButton.innerText = 'Remove Task'
+const removeProjectButton = (targetElement) => {
+    const removeButton = document.createElement('button')
+    removeButton.setAttribute('class', 'remove-project-button')
+    removeButton.innerText = 'Remove Project'
 
 
     // On click get the project and delete it.
-    removeProjectButton.addEventListener('click', () => {
-        let parentElement = removeProjectButton.parentNode
-        let targetProject = parentElement.getAttribute('data-object')
-        
+    removeButton.addEventListener('click', () => {
+        // Get the parent element so we can remove the project tab.
+        // Button will be placed in the same div as the project heading.
+        let parentElement = removeButton.parentNode
+        // Find out which project is currently selected.
+        let targetProjectName = parentElement.getAttribute('id')
+        targetProjectName = targetProjectName.toString().replaceAll('-tab', '')
+        console.log(targetProjectName)
+
+        // Remove the project from the projectList.
+        let targetProject = projectList.find(element => element.projectName == targetProjectName)
+        console.log(targetProject)
+        let targetProjectIndex = projectList.indexOf(targetProject)
+        projectList.splice(targetProjectIndex, 1)
+        console.log(projectList)
+
+        // Update local storage to reflect changes. 
+        clearAllStorage()
+        processProjectList()
+
+  
     })
+    // Attach the element.
+    targetElement.appendChild(removeButton) 
 }
 
-export {createMainDiv, newTaskModal}
+export {createMainDiv, newTaskModal, removeProjectButton}
