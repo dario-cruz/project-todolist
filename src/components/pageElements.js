@@ -1,7 +1,8 @@
 import './pageElements.css'
 import { Project, projectList } from './projectGenerator'
 import { Task } from './taskGenerator'
-import { processAllLocalStorage, clearAllStorage, processProjectList } from './localStorageManipulator'
+import { clearAllStorage, processProjectList } from './localStorageManipulator'
+import { clearTaskElems } from './domManipulation'
 
 // Create the main div for the rest of the project elements to append to. 
 const createMainDiv = () => {
@@ -274,6 +275,9 @@ const removeProjectButton = (targetElement) => {
         clearAllStorage()
         processProjectList()
 
+        // Update the dom
+        let theTarget = document.querySelector('#task-panel')
+        clearTaskElems(theTarget)
   
     })
     // Attach the element.

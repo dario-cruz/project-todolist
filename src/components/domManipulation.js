@@ -64,6 +64,7 @@ const processList = (arrayOfObjs) => {
     })
 }
 
+// Process tasks, make and append dom elements for displaying tasks.
 const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppendTo) => {
     // Create needed elements to view project tasks. 
     let hostElement = document.createElement('div')
@@ -95,4 +96,17 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
     elemToAppendTo.appendChild(hostElement)
 }
 
-export { projectToDom, processList, taskAppender }
+// Clear task panel, for after a project is removed. 
+// theTarget should be the root task div element.
+const clearTaskElems = (theTarget) => {
+    // Remove identifying attributes.
+    theTarget.removeAttribute('data-object')
+
+    // Remove all content and replace with placeholder text.
+    let placeHolderText = document.createElement('p')
+    placeHolderText.innerText = 'Please select a task from the left.'
+    theTarget.innerHTML = ''
+    theTarget.append(placeHolderText)
+}
+
+export { projectToDom, processList, taskAppender, clearTaskElems }
