@@ -98,7 +98,8 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
 
 // Clear task panel, for after a project is removed. 
 // theTarget should be the root task div element.
-const clearTaskElems = (theTarget) => {
+const clearTaskElem = (theTarget) => {
+    console.log(theTarget)
     // Remove identifying attributes.
     theTarget.removeAttribute('data-object')
 
@@ -107,6 +108,7 @@ const clearTaskElems = (theTarget) => {
     placeHolderText.innerText = 'Please select a task from the left.'
     theTarget.innerHTML = ''
     theTarget.append(placeHolderText)
+
 }
 
-export { projectToDom, processList, taskAppender, clearTaskElems }
+export { projectToDom, processList, taskAppender, clearTaskElem }

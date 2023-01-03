@@ -2,7 +2,7 @@ import './pageElements.css'
 import { Project, projectList } from './projectGenerator'
 import { Task } from './taskGenerator'
 import { clearAllStorage, processProjectList } from './localStorageManipulator'
-import { clearTaskElems } from './domManipulation'
+import { clearTaskElem } from './domManipulation'
 
 // Create the main div for the rest of the project elements to append to. 
 const createMainDiv = () => {
@@ -149,6 +149,8 @@ const newTaskModal = (appendElement) => {
         taskPriorityOne.setAttribute('value', 'Hi')
         taskPriorityTwo.setAttribute('value', 'Low')
         taskPriorityThree.setAttribute('value', 'None')
+        taskPriorityThree.setAttribute('selected', '')
+
         taskPriorityOne.innerText = 'High Priority'
         taskPriorityTwo.innerText = 'Low Priority'
         taskPriorityThree.innerText = 'No Priority'
@@ -277,7 +279,7 @@ const removeProjectButton = (targetElement) => {
 
         // Update the dom
         let theTarget = document.querySelector('#task-panel')
-        clearTaskElems(theTarget)
+        clearTaskElem(theTarget)
   
     })
     // Attach the element.
