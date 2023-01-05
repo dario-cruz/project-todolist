@@ -44,3 +44,7 @@
 .closed-modal {
     visibility: hidden;
 }
+.add-project-button {
+    height: 5rem;
+    width: 10rem;
+}

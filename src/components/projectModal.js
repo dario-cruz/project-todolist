@@ -1,9 +1,13 @@
-import { placeInStorage } from "./localStorageManipulator"
 import { Project, projectList } from "./projectGenerator"
+import { clearAllStorage, processProjectList, placeInStorage } from "./localStorageManipulator"
+import { processList } from "./domManipulation"
+
 
 const projectModal = (targetElement) => {
     const modalContainer = document.createElement('div')
-    modalContainer.setAttribute('class', 'modal-container')
+    // Set normal class.
+    // Set to be closed and not visible by default.
+    modalContainer.classList.add('modal-container', 'closed-modal')
 
     const modalContent = document.createElement('div')
     modalContent.setAttribute('class', 'modal-content')
@@ -28,6 +32,7 @@ const projectModal = (targetElement) => {
     const projectFormButton = document.createElement('button')
     projectFormButton.setAttribute('type', 'submit')
     projectFormButton.setAttribute('id', 'project-form-button')
+    projectFormButton.innerText = `Submit`
 
     // append all the things.
     projectForm.append(projectFormLabel)
@@ -52,21 +57,43 @@ const projectModal = (targetElement) => {
             projectList.push(newObj)
             // Place in local storage.
             placeInStorage(newObj)
+            // Toggle vis of modal.
+            modalContainer.classList.toggle('closed-modal')
 
+            // Process all of the projects and task and add them to the localStorage.
+            // Clear all previously stored elements.
+            clearAllStorage()
+            // Store all of the current and updated project objects.
+            processProjectList()
+
+            let elementList = document.querySelectorAll('.left-panel > div')
+            elementList.forEach(element => {
+                if (element.classList.contains('project-div')) {
+
+                } else {
+                    element.remove()    
+                }
+            })
+            
+            console.log(elementList)
+
+            processList(projectList)
         })(projectName)
     })
 }
 
 const projectButton = (targetElement, targetModal) => {
-    const button = document.createElement('button')
-    button.setAttribute('class', 'add-project-button')
-    button.setAttribute('id', 'add-project-button')
-    button.innerText = "Add Project"
+    const addProjectButton = document.createElement('button')
+    addProjectButton.setAttribute('class', 'add-project-button')
+    addProjectButton.setAttribute('id', 'add-project-button')
+    addProjectButton.innerText = "Add Project"
 
-    button.addEventListener('click', () => {
+    addProjectButton.addEventListener('click', () => {
         targetModal.classList.toggle('closed-modal')
     })
 
     // Attach the button to the targetElement
-    targetElement.append(button)
+    targetElement.append(addProjectButton)
 }
+
+export { projectModal, projectButton }
