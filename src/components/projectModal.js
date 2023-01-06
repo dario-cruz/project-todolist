@@ -1,16 +1,16 @@
+import './projectModal.css'
 import { Project, projectList } from "./projectGenerator"
 import { clearAllStorage, processProjectList, placeInStorage } from "./localStorageManipulator"
 import { processList } from "./domManipulation"
-
 
 const projectModal = (targetElement) => {
     const modalContainer = document.createElement('div')
     // Set normal class.
     // Set to be closed and not visible by default.
-    modalContainer.classList.add('modal-container', 'closed-modal')
-
+    modalContainer.classList.add('project-modal-container', 'project-closed-modal')
+    modalContainer.setAttribute('id', 'project-modal-container')
     const modalContent = document.createElement('div')
-    modalContent.setAttribute('class', 'modal-content')
+    modalContent.setAttribute('class', 'project-modal-content')
 
     const projectForm = document.createElement('form')
     // Remove the default behavior or the form. 
@@ -58,7 +58,7 @@ const projectModal = (targetElement) => {
             // Place in local storage.
             placeInStorage(newObj)
             // Toggle vis of modal.
-            modalContainer.classList.toggle('closed-modal')
+            modalContainer.classList.toggle('project-closed-modal')
 
             // Process all of the projects and task and add them to the localStorage.
             // Clear all previously stored elements.
@@ -89,7 +89,7 @@ const projectButton = (targetElement, targetModal) => {
     addProjectButton.innerText = "Add Project"
 
     addProjectButton.addEventListener('click', () => {
-        targetModal.classList.toggle('closed-modal')
+        targetModal.classList.toggle('project-closed-modal')
     })
 
     // Attach the button to the targetElement

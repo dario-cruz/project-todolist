@@ -1,5 +1,6 @@
 import { leftPanel, rightPanel } from ".."
 import { removeProjectButton } from "./pageElements"
+import { taskButton } from "./taskModal"
 
 const projectToDom = (projectObj) => {
     // Define all of the elements that need to be added to the dom. 
@@ -27,6 +28,9 @@ const projectToDom = (projectObj) => {
     
     // Append remove button.
     removeProjectButton(projectTab)
+
+    // Append add task button
+    taskButton(projectTab)
 
     // Add event for changing displayed tasks related to projects.
     projectTab.addEventListener('click', () => {
