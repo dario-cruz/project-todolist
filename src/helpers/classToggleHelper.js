@@ -1,6 +1,6 @@
 // toggles a class on an element. 
 // Using for testing at the moment.
-const classHelper = (targetElement, className) => {
+const classToggleHelper = (targetElement, className) => {
     if (targetElement.classList.contains(`${className}`)) {
         targetElement.classList.remove(`${className}`)
     } else {
@@ -8,4 +8,4 @@ const classHelper = (targetElement, className) => {
     }
 }
 
-export {classHelper}
+export {classToggleHelper}
