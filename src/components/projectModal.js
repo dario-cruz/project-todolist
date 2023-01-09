@@ -2,20 +2,20 @@ import './projectModal.css'
 import { Project, projectList } from "./projectGenerator"
 import { clearAllStorage, processProjectList, placeInStorage } from "./localStorageManipulator"
 import { processList } from "./domManipulation"
+import { attributeHelper } from '../helpers/attributeHelper'
 
 const projectModal = (targetElement) => {
+    // Modal container to control the visibility of content.
     const modalContainer = document.createElement('div')
-    // Set normal class.
-    // Set to be closed and not visible by default.
-    modalContainer.classList.add('project-modal-container', 'project-closed-modal')
-    modalContainer.setAttribute('id', 'project-modal-container')
+    attributeHelper(modalContainer, {'id':'project-modal-container', 'class':'project-modal-container'})
+    
+    // Actual div that contains the modal content.
     const modalContent = document.createElement('div')
-    modalContent.setAttribute('class', 'project-modal-content')
+    attributeHelper(modalContent, {'class':'project-modal-content'})
 
     const projectForm = document.createElement('form')
     // Remove the default behavior or the form. 
-    projectForm.setAttribute('action', '')
-    projectForm.setAttribute('method', '')
+    attributeHelper(projectForm, {'action':'', 'method':''})
     
     // Setting up label form project input.
     const projectFormLabel = document.createElement('label')
@@ -24,14 +24,11 @@ const projectModal = (targetElement) => {
 
     // Setup input for form.
     const projectFormInput = document.createElement('input')
-    projectFormInput.setAttribute('type', 'text')
-    projectFormInput.setAttribute('id', 'project-form-input')
-    projectFormInput.setAttribute('required', '')
+    attributeHelper(projectFormInput, {'type':'text', 'id':'project-form-input', 'required':''})
 
     // Button for submit
     const projectFormButton = document.createElement('button')
-    projectFormButton.setAttribute('type', 'submit')
-    projectFormButton.setAttribute('id', 'project-form-button')
+    attributeHelper(projectFormButton, {'id':'project-form-button', 'type':'submit'})
     projectFormButton.innerText = `Submit`
 
     // append all the things.
@@ -58,7 +55,8 @@ const projectModal = (targetElement) => {
             // Place in local storage.
             placeInStorage(newObj)
             // Toggle vis of modal.
-            modalContainer.classList.toggle('project-closed-modal')
+            // modalContainer.classList.toggle('project-closed-modal')
+            modalContainer.style.visibility = 'hidden'
 
             // Process all of the projects and task and add them to the localStorage.
             // Clear all previously stored elements.
@@ -84,12 +82,12 @@ const projectModal = (targetElement) => {
 
 const projectButton = (targetElement, targetModal) => {
     const addProjectButton = document.createElement('button')
-    addProjectButton.setAttribute('class', 'add-project-button')
-    addProjectButton.setAttribute('id', 'add-project-button')
+    attributeHelper(addProjectButton, {'id':'add-project-button', 'class':'add-project-button'})
     addProjectButton.innerText = "Add Project"
 
     addProjectButton.addEventListener('click', () => {
-        targetModal.classList.toggle('project-closed-modal')
+        // targetModal.classList.toggle('project-closed-modal')
+        document.getElementById('project-modal-container').style.visibility = 'visible'
     })
 
     // Attach the button to the targetElement

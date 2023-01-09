@@ -8,8 +8,7 @@ import { Project, projectList } from "./projectGenerator";
 const taskModal = (targetElement) => {
     // Create the contain to hold all of the content
     const modalContainer = document.createElement('div')
-    modalContainer.classList.add('task-modal-container', 'task-closed-modal')
-    modalContainer.setAttribute('id', 'task-modal-container')
+    attributeHelper(modalContainer, {'id': 'task-modal-container', 'class':'task-modal-container'})
 
     // Make container for the content to be appended.
     const modalContent = document.createElement('div')
@@ -107,7 +106,7 @@ const taskModal = (targetElement) => {
             document.getElementById(`${targetForClick}`).click()
 
             // Toggle the class that will control the visibility of the modal.
-            modalContainer.classList.toggle('task-closed-modal')
+            modalContainer.style.visibility = 'hidden'
         }
     })
 
@@ -148,7 +147,8 @@ const taskButton = (targetElement) => {
             // Check if the code is functioning as intended.
             console.log(currentProject, listPosition)
             // Toggle modal viz.
-            document.getElementById('task-modal-container').classList.toggle('task-closed-modal')
+            document.getElementById('task-modal-container').style.visibility = 'visible'
+            // document.getElementById('task-modal-container').classList.toggle('task-closed-modal')
         }
 
     })
