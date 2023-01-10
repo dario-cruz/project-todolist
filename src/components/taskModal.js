@@ -64,7 +64,7 @@ const taskModal = (targetElement) => {
     taskSpan.innerHTML = '&times;'
     // Allow user to close modal on span click.
     taskSpan.addEventListener('click', () => {
-        modalContainer.classList.toggle('closed-modal')
+        modalContainer.style.visibility = 'hidden'
     })
 
     // Add event for the submit of the form
@@ -112,6 +112,8 @@ const taskModal = (targetElement) => {
 
     // Append all the things.
     modalContainer.append(modalContent)
+
+    modalContent.append(taskSpan)
 
     modalContent.append(taskNameInputLabel)
     modalContent.append(taskNameInput)

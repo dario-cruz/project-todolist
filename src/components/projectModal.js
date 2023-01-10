@@ -13,13 +13,18 @@ const projectModal = (targetElement) => {
     const modalContent = document.createElement('div')
     attributeHelper(modalContent, {'class':'project-modal-content'})
 
+    const projectSpan = document.createElement('span')
+    attributeHelper(projectSpan, {'id':'project-span', 'class':'project-span-close'})
+    projectSpan.innerHTML = '&times;'
+
     const projectForm = document.createElement('form')
     // Remove the default behavior or the form. 
     attributeHelper(projectForm, {'action':'', 'method':''})
     
     // Setting up label form project input.
     const projectFormLabel = document.createElement('label')
-    projectFormLabel.setAttribute('for', 'project-form-input')
+    attributeHelper(projectFormLabel, {'for':'project-form-input'})
+    // projectFormLabel.setAttribute('for', 'project-form-input')
     projectFormLabel.innerText = 'Project Name'
 
     // Setup input for form.
@@ -35,9 +40,15 @@ const projectModal = (targetElement) => {
     projectForm.append(projectFormLabel)
     projectForm.append(projectFormInput)
     projectForm.append(projectFormButton)
+    modalContent.append(projectSpan)
     modalContent.append(projectForm)
     modalContainer.append(modalContent)
     targetElement.append(modalContainer)
+
+    // On span click close the modal without submitting any data.
+    projectSpan.addEventListener('click', () => {
+        modalContainer.style.visibility = 'hidden'
+    })
 
     // On submit take input and make project.
     projectForm.addEventListener('submit', (event) => {
