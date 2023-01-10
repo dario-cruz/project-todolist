@@ -1,8 +1,11 @@
-import { leftPanel, rightPanel } from ".."
 import { removeProjectButton } from "./pageElements"
 import { taskButton } from "./taskModal"
 
 const projectToDom = (projectObj) => {
+    // define needed elements to complete functionality
+    const rightPanel = document.getElementById('task-panel')
+    const leftPanel = document.getElementById('project-panel')
+
     // Define all of the elements that need to be added to the dom. 
     const projectTab = document.createElement('div')
     const projectTabHeading = document.createElement('h1')
