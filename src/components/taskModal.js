@@ -124,6 +124,8 @@ const taskModal = (targetElement) => {
     modalContent.append(taskPriorityInputLabel)
     modalContent.append(taskPriorityInput)
 
+    taskPriorityInput.append(priorityOne, priorityTwo, priorityThree)
+
     modalContent.append(taskDateInputLabel)
     modalContent.append(taskDateInput)
 
