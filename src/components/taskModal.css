@@ -13,6 +13,7 @@
     visibility: hidden;
 }
 .task-modal-content {
+    /* display: grid; */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -22,6 +23,16 @@
     width: 40rem;
     height: 30rem;
     border-radius: 0.5rem;
+    /* grid-template: repeat(8, 1fr) / repeat(2, 1fr);
+    grid-template-areas:
+    "top top"
+    "right left"
+    "right left"
+    "right left"
+    "right left"
+    "right left"
+    "right left"
+    "bottom bottom"; */
 }
 .task-span-close {
     float: right;
@@ -36,3 +47,39 @@
     background-color: darkgray;
 }
 
+/* Form styling */
+label {
+    display: inline-block;
+    width: 8rem;
+}
+input {
+    display: inline-block;
+}
+#modal-task-form {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: repeat(8, 1fr) / repeat(2, 1fr);
+    grid-template-areas:
+    "top top"
+    "right left"
+    "right left"
+    "right left"
+    "right left"
+    "right left"
+    "right left"
+    "bottom bottom";
+}
+
+.top-div {
+    grid-area: top;
+}
+.left-div {
+    grid-area: left;
+}
+.right-div {
+    grid-area: right;
+}
+.bottom-div {
+    grid-area: bottom;
+}

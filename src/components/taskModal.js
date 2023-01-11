@@ -16,7 +16,7 @@ const taskModal = (targetElement) => {
 
     // Create form for user input. 
     const modalTaskForm = document.createElement('form')
-    attributeHelper(modalTaskForm, {'action': '', 'method': ''})
+    attributeHelper(modalTaskForm, {'action': '', 'method': '', 'id':'modal-task-form'})
 
     // Create Task name input
     const taskNameInput = document.createElement('input')
@@ -28,7 +28,7 @@ const taskModal = (targetElement) => {
     // Create task detail input 
     const taskDetailInput = document.createElement('textarea')
     const taskDetailInputLabel = document.createElement('label')
-    attributeHelper(taskDetailInput, {'id': 'task-detail-input', 'rows': '4', 'cols': '50', 'required': ''})
+    attributeHelper(taskDetailInput, {'id': 'task-detail-input', 'rows': '4', 'cols': '25', 'required': ''})
     attributeHelper(taskDetailInputLabel, {'for': 'task-detail-input'})
     taskDetailInputLabel.innerText = 'Task Details:'
 
@@ -37,7 +37,7 @@ const taskModal = (targetElement) => {
     const taskPriorityInputLabel = document.createElement('label')
     attributeHelper(taskPriorityInput, {'id': 'task-priority-input', 'name': 'task-priority', 'required': ''})
     attributeHelper(taskPriorityInputLabel, {'for': 'task-priority-input'})
-    taskPriorityInput.innerText = 'Task Priority:'
+    taskPriorityInputLabel.innerText = 'Task Priority:'
 
     const priorityOne = document.createElement('option')
     attributeHelper(priorityOne, {'value': 'Priority 1'})
@@ -57,6 +57,37 @@ const taskModal = (targetElement) => {
     attributeHelper(taskDateInput, {'id': 'task-date-input', 'type': 'date', 'required': '', 'value': `${getCurrentDate()}`})
     attributeHelper(taskDateInputLabel, {'for': 'task-date-input'})
     taskDateInputLabel.innerText = 'Due Date:'
+
+    // Create a button for submitting the form. 
+    const taskFormSubmit = document.createElement('button')
+    attributeHelper(taskFormSubmit, {'id':'task-form-button', 'type':'submit'})
+    taskFormSubmit.innerText = 'Submit'
+
+    // Create a button for canceling the form and closing the modal.
+    const taskFormCancel = document.createElement('button')
+    attributeHelper(taskFormCancel, {'id':'task-form-cancel'})
+    taskFormCancel.innerText = 'Cancel'
+    // And the event on click to close the modal.
+    taskFormCancel.addEventListener('click', () => {
+        modalContainer.style.visibility = 'hidden'
+    })
+
+    // Create heading element that will change based on the name of the prohject selected.
+    const titleHeading = document.createElement('h1')
+    attributeHelper(titleHeading, {'class':'task-form-heading', 'id':'task-form-heading'})
+
+    // Create divs to store the form content in and organize using grid.
+    const topDiv = document.createElement('div')
+    attributeHelper(topDiv, {'class':'top-div'})
+
+    const rightDiv = document.createElement('div')
+    attributeHelper(rightDiv, {'class':'right-div'})
+
+    const leftDiv = document.createElement('div')
+    attributeHelper(leftDiv, {'class':'left-div'})
+
+    const bottomDiv = document.createElement('div')
+    attributeHelper(bottomDiv, {'class':'bottom-div'})
 
     // Create span element for closing the modal without completing input.
     const taskSpan = document.createElement('span')
@@ -110,24 +141,45 @@ const taskModal = (targetElement) => {
         }
     })
 
-    // Append all the things.
+    // Attach modal content to parent modal container.
     modalContainer.append(modalContent)
 
-    modalContent.append(taskSpan)
+    // Attach form element to modal content
+    modalContent.append(modalTaskForm)
 
-    modalContent.append(taskNameInputLabel)
-    modalContent.append(taskNameInput)
+    // Attach top div which will contain span element for closing modal.
+    modalTaskForm.append(topDiv)
+    topDiv.append(titleHeading, taskSpan)
 
-    modalContent.append(taskDetailInputLabel)
-    modalContent.append(taskDetailInput)
+    // Attach right div which will contain form elements.
+    modalTaskForm.append(rightDiv)
+    rightDiv.append(taskNameInputLabel, taskNameInput, taskDetailInputLabel, taskDetailInput)
 
-    modalContent.append(taskPriorityInputLabel)
-    modalContent.append(taskPriorityInput)
-
+    // Attach let dive which will contain form elements.
+    modalTaskForm.append(leftDiv)
     taskPriorityInput.append(priorityOne, priorityTwo, priorityThree)
+    leftDiv.append(taskPriorityInputLabel, taskPriorityInput, taskDateInputLabel, taskDateInput)
 
-    modalContent.append(taskDateInputLabel)
-    modalContent.append(taskDateInput)
+    // Attached the bottom div for adding buttons to submit or cancel the input. 
+    bottomDiv.append(taskFormCancel, taskFormSubmit)
+    modalTaskForm.append(bottomDiv)
+
+
+    // modalContent.append(taskSpan)
+
+    // modalContent.append(taskNameInputLabel)
+    // modalContent.append(taskNameInput)
+
+    // modalContent.append(taskDetailInputLabel)
+    // modalContent.append(taskDetailInput)
+
+    // modalContent.append(taskPriorityInputLabel)
+    // modalContent.append(taskPriorityInput)
+
+    // taskPriorityInput.append(priorityOne, priorityTwo, priorityThree)
+
+    // modalContent.append(taskDateInputLabel)
+    // modalContent.append(taskDateInput)
 
 
     // Append the final completed element to the target.
@@ -145,9 +197,13 @@ const taskButton = (targetElement) => {
         if (currentProject == undefined) {
             alert('Please select a project.')
         } else {
+            // Change the heading for the task modal based on the project selected.
+            let headingText = document.getElementById('task-panel').getAttribute('data-object')
+            headingText = headingText.replaceAll('-', ' ')
+            document.getElementById('task-form-heading').innerText = `Project: ${headingText}`
+
             // Get the index position of the project being displayed. So we can modify it. 
             let listPosition = projectList.findIndex(prop => prop.projectName == currentProject)
-            
             // Check if the code is functioning as intended.
             console.log(currentProject, listPosition)
             // Toggle modal viz.
