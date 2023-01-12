@@ -76,6 +76,7 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
     // Create needed elements to view project tasks. 
     let hostElement = document.createElement('div')
     hostElement.setAttribute('class', `task`)
+    hostElement.setAttribute('data-task', `${taskName}`)
     let hostElementTitle = document.createElement('h1')
     hostElementTitle.setAttribute('class', 'task-title')
     hostElementTitle.innerText = `${taskName}`

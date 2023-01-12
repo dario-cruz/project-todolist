@@ -163,7 +163,7 @@ const taskModal = (targetElement) => {
     // Attached the bottom div for adding buttons to submit or cancel the input. 
     bottomDiv.append(taskFormCancel, taskFormSubmit)
     modalTaskForm.append(bottomDiv)
-    
+
     // Append the final completed element to the target.
     targetElement.append(modalContainer)
 }
@@ -198,5 +198,14 @@ const taskButton = (targetElement) => {
     targetElement.append(addTaskButton)
 }
 
+const removeTask = () => {
+    const removeTaskButton = document.createElement('button')
+    attributeHelper(removeTaskButton, {'class':'remove-task-button'})
+
+    removeTaskButton.addEventListener('click', () => {
+        let targetProject = removeTaskButton.parentElement.getAttribute('data-object')
+        
+    })
+}
 
 export {taskModal, taskButton}
