@@ -77,7 +77,7 @@ const projectModal = (targetElement) => {
 
             let elementList = document.querySelectorAll('.left-panel > div')
             elementList.forEach(element => {
-                if (element.classList.contains('project-div')) {
+                if (element.classList.contains('new-project-div')) {
 
                 } else {
                     element.remove()    
