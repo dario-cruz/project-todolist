@@ -163,25 +163,7 @@ const taskModal = (targetElement) => {
     // Attached the bottom div for adding buttons to submit or cancel the input. 
     bottomDiv.append(taskFormCancel, taskFormSubmit)
     modalTaskForm.append(bottomDiv)
-
-
-    // modalContent.append(taskSpan)
-
-    // modalContent.append(taskNameInputLabel)
-    // modalContent.append(taskNameInput)
-
-    // modalContent.append(taskDetailInputLabel)
-    // modalContent.append(taskDetailInput)
-
-    // modalContent.append(taskPriorityInputLabel)
-    // modalContent.append(taskPriorityInput)
-
-    // taskPriorityInput.append(priorityOne, priorityTwo, priorityThree)
-
-    // modalContent.append(taskDateInputLabel)
-    // modalContent.append(taskDateInput)
-
-
+    
     // Append the final completed element to the target.
     targetElement.append(modalContainer)
 }
