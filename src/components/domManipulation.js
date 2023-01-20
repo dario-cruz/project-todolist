@@ -117,6 +117,10 @@ const clearTaskElem = (theTarget) => {
     theTarget.innerHTML = ''
     theTarget.append(placeHolderText)
 
+    // Mod the project obj to remove the task
+    
+    // Update localStorage to reflect the changes to project list. 
+
 }
 
 export { projectToDom, processList, taskAppender, clearTaskElem }

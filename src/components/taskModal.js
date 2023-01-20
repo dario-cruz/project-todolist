@@ -203,8 +203,16 @@ const removeTask = () => {
     attributeHelper(removeTaskButton, {'class':'remove-task-button'})
 
     removeTaskButton.addEventListener('click', () => {
+        // Set variables that point to the current project and task.
         let targetProject = removeTaskButton.parentElement.getAttribute('data-object')
-        
+        let targetTask = removeTaskButton.parentElement.getAttribute('data-task')
+        // Use variables to find the target project.
+        let foundProject = projectList.find(element => {
+            element.projectName == targetProject
+        })
+        // Find the target task.
+        let foundTask = foundProject.projectTasks.find(element => element.taskName == targetTask)
+
     })
 }
 
