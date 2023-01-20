@@ -198,9 +198,9 @@ const taskButton = (targetElement) => {
     targetElement.append(addTaskButton)
 }
 
-const removeTask = () => {
+const removeTask = (targetElement) => {
     const removeTaskButton = document.createElement('button')
-    attributeHelper(removeTaskButton, {'class':'remove-task-button'})
+    attributeHelper(removeTaskButton, {'class':'remove-task-button', 'id':'remove-task-button'})
 
     removeTaskButton.addEventListener('click', () => {
         // Set variables that point to the current project and task.
@@ -212,7 +212,9 @@ const removeTask = () => {
         })
         // Find the target task.
         let foundTask = foundProject.projectTasks.find(element => element.taskName == targetTask)
-
+        // Remove the task from the project it belongs to.
+        foundProject.projectTasks.pop(foundTask)
+        
     })
 }
 

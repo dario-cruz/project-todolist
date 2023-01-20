@@ -6,7 +6,7 @@ const projectList = []
 // Make function to add project to array
 const addProjectToArray = (Obj, Array) => {
     // Append Object to the designated array.
-    Array.push(Obj)
+    Array.unshift(Obj)
     console.log(Array)
 }
 
@@ -20,7 +20,7 @@ class Project {
     // Make new task using imported task module and store it in the associated projectTasks array. 
     makeNewTask(name, priority, notes, dueDate) {
         let newTask = new Task(name, priority, notes, dueDate)
-        this.projectTasks.push(newTask)
+        this.projectTasks.unshift(newTask)
     }
    
     // Display all tasks related to the project object. 
@@ -36,7 +36,7 @@ class Project {
 
     // Add the project to the array. 
     set addThisProjectTooArray(array) {
-        array.push(this)
+        array.unshift(this)
         // Check if object was placed.
         console.log(array)
     }
