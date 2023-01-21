@@ -1,5 +1,6 @@
 import { removeProjectButton } from "./pageElements"
 import { taskButton } from "./taskModal"
+import { removeTask } from "./taskModal"
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality
@@ -99,6 +100,7 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
     hostElement.appendChild(hostElementNotes)
     hostElement.appendChild(hostElementPriority)
     hostElement.appendChild(hostElementDueDate)
+    removeTask(hostElement)
 
     // Append to the arg element.
     elemToAppendTo.appendChild(hostElement)

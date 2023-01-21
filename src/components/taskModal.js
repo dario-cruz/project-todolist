@@ -199,8 +199,12 @@ const taskButton = (targetElement) => {
 }
 
 const removeTask = (targetElement) => {
+    // Create the button and give it some attributes.
     const removeTaskButton = document.createElement('button')
     attributeHelper(removeTaskButton, {'class':'remove-task-button', 'id':'remove-task-button'})
+    removeTaskButton.innerText = 'Remove Task'
+    // Append the button to the targetElement arg.
+    targetElement.append(removeTaskButton)
 
     removeTaskButton.addEventListener('click', () => {
         // Set variables that point to the current project and task.
@@ -210,12 +214,14 @@ const removeTask = (targetElement) => {
         let foundProject = projectList.find(element => {
             element.projectName == targetProject
         })
+        console.log(foundProject)
         // Find the target task.
         let foundTask = foundProject.projectTasks.find(element => element.taskName == targetTask)
         // Remove the task from the project it belongs to.
         foundProject.projectTasks.pop(foundTask)
-        
+        // Remove the task panel from the dom.
+        removeTaskButton.parentElement.remove()
     })
 }
 
-export {taskModal, taskButton}
+export {taskModal, taskButton, removeTask}
