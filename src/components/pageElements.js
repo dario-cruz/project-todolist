@@ -261,6 +261,7 @@ const removeProjectButton = (targetElement) => {
         // Get the parent element so we can remove the project tab.
         // Button will be placed in the same div as the project heading.
         let parentElement = removeButton.parentNode
+
         // Find out which project is currently selected.
         let targetProjectName = parentElement.getAttribute('id')
         targetProjectName = targetProjectName.toString().replaceAll('-tab', '')
@@ -272,6 +273,9 @@ const removeProjectButton = (targetElement) => {
         let targetProjectIndex = projectList.indexOf(targetProject)
         projectList.splice(targetProjectIndex, 1)
         console.log(projectList)
+
+        // Remove project tab from the dom.
+        parentElement.remove()
 
         // Update local storage to reflect changes. 
         clearAllStorage()
