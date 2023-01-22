@@ -1,7 +1,7 @@
 import { projectList } from "./projectGenerator"
 
-// Place project object into localStorage with identifier being the projectname.
-// Convert to JSON so object can be placed in localStorge. 
+// Place project object into localStorage with identifier being the project name.
+// Convert to JSON so object can be placed in localStorage. 
 const placeInStorage = (projectObj) => {
     window.localStorage.setItem(`${projectObj.projectName}`, JSON.stringify(projectObj))
 }
