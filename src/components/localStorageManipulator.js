@@ -40,6 +40,7 @@ const processProjectList = () => {
         let stringItem = JSON.stringify(item)
         localStorage.setItem(`${item.projectName}`, stringItem)
     })
+    console.log('All projects and tasks have been placed in localStorage.')
 }
 
 // Process list of json and stringified objs into native JS objs.

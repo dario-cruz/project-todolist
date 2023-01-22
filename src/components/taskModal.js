@@ -210,17 +210,22 @@ const removeTask = (targetElement) => {
         // Set variables that point to the current project and task.
         let targetProject = removeTaskButton.parentElement.getAttribute('data-object')
         let targetTask = removeTaskButton.parentElement.getAttribute('data-task')
+
         // Use variables to find the target project.
-        let foundProject = projectList.find(element => {
-            element.projectName == targetProject
-        })
-        console.log(foundProject)
+        let foundProject = projectList.find(element => element.projectName == targetProject)
+
         // Find the target task.
         let foundTask = foundProject.projectTasks.find(element => element.taskName == targetTask)
+
         // Remove the task from the project it belongs to.
         foundProject.projectTasks.pop(foundTask)
+
         // Remove the task panel from the dom.
         removeTaskButton.parentElement.remove()
+
+        // Update localStorage
+        clearAllStorage()
+        processProjectList()
     })
 }
 
