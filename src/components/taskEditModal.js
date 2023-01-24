@@ -5,7 +5,7 @@ import { attributeHelper } from "../helpers/attributeHelper"
 // Make sure to make use of the task class setters and getters for updating.
 
 
-const taskEditModal = (targetElement) => {
+const taskEditModal = (targetElement, targetTask) => {
     const EditModalContainer = document.createElement('div')
     attributeHelper(EditModalContainer, {'id':'edit-modal-container'})
 
@@ -16,23 +16,37 @@ const taskEditModal = (targetElement) => {
     attributeHelper(EditForm, {'action':'', 'id':'task-edit-form'})
     
     const EditTaskName = document.createElement('input')
-    attributeHelper(EditTaskName, {'type':'text', 'id':'edit-task-name'})
+    attributeHelper(EditTaskName, {'type':'text', 'id':'edit-task-name', 'required':''})
 
     const EditTaskDetail = document.createElement('textarea')
-    attributeHelper(EditTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':''})
+    attributeHelper(EditTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':'', 'required':''})
 
     const EditTaskPriority = document.createElement('select')
     attributeHelper(EditTaskPriority, {'id':'edit-task-priority', 'name':'edit-task-priority'})
     
     const lowPriority = document.createElement('option')
-    attributeHelper(lowPriority, {'value':'low'})
+    attributeHelper(lowPriority, {'value':'Priority 3'})
+    lowPriority.innerText = 'Low Priority'
     const medPriority = document.createElement('option')
-    attributeHelper(medPriority, {'value':'med'})
+    attributeHelper(medPriority, {'value':'Priority 2'})
+    
     const hiPriority = document.createElement('option')
-    attributeHelper(hiPriority, {'value':'hi'})
+    attributeHelper(hiPriority, {'value':'Priority 1'})
 
     const EditCancel = document.createElement('button')
+    EditCancel.innerText = 'Cancel'
 
     const EditSubmit = document.createElement('button')
     attributeHelper(EditSubmit, {'id':'edit-submit-button', 'type':'submit'})
+    EditSubmit.innerHTML = 'Submit'
+
+
+    // Eventlistener for form submit. 
+    // Should update the target task and update the dom with the information.
+    EditForm.addEventListener('submit', () => {
+
+    })
+
 }
+
+export {taskEditModal}
