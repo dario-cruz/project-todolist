@@ -12,6 +12,10 @@ const taskEditModal = (targetElement, targetTask) => {
     const EditModalContent = document.createElement('div')
     attributeHelper(EditModalContent, {'id':'edit-modal-content'})
 
+    const EditTaskHeading = document.createElement('h1')
+    attributeHelper(EditTaskHeading, {'class':'edit-task-heading'})
+    EditTaskHeading.innerText = `Editing: ${targetTask.taskName}`
+
     const EditForm = document.createElement('form')
     attributeHelper(EditForm, {'action':'', 'id':'task-edit-form'})
     
@@ -29,7 +33,7 @@ const taskEditModal = (targetElement, targetTask) => {
     lowPriority.innerText = 'Low Priority'
     const medPriority = document.createElement('option')
     attributeHelper(medPriority, {'value':'Priority 2'})
-    
+
     const hiPriority = document.createElement('option')
     attributeHelper(hiPriority, {'value':'Priority 1'})
 
