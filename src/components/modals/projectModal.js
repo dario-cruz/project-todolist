@@ -19,12 +19,11 @@ const projectModal = (targetElement) => {
 
     const projectForm = document.createElement('form')
     // Remove the default behavior or the form. 
-    attributeHelper(projectForm, {'action':'', 'method':''})
+    attributeHelper(projectForm, {'action':'', 'method':'', 'autocomplete':'off'})
     
     // Setting up label form project input.
     const projectFormLabel = document.createElement('label')
     attributeHelper(projectFormLabel, {'for':'project-form-input'})
-    // projectFormLabel.setAttribute('for', 'project-form-input')
     projectFormLabel.innerText = 'Project Name'
 
     // Setup input for form.
