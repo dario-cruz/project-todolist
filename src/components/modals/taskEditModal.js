@@ -17,7 +17,7 @@ const taskEditModal = (targetElement, targetTask) => {
     EditTaskHeading.innerText = `Editing: ${targetTask.taskName}`
 
     const EditForm = document.createElement('form')
-    attributeHelper(EditForm, {'action':'', 'id':'task-edit-form'})
+    attributeHelper(EditForm, {'action':'', 'id':'task-edit-form', 'autocomplete':'off'})
     
     const EditTaskName = document.createElement('input')
     attributeHelper(EditTaskName, {'type':'text', 'id':'edit-task-name', 'required':''})

@@ -16,7 +16,7 @@ const taskModal = (targetElement) => {
 
     // Create form for user input. 
     const modalTaskForm = document.createElement('form')
-    attributeHelper(modalTaskForm, {'action': '', 'method': '', 'id':'modal-task-form'})
+    attributeHelper(modalTaskForm, {'action': '', 'method': '', 'id':'modal-task-form', 'autocomplete':'off'})
 
     // Create Task name input
     const taskNameInput = document.createElement('input')
