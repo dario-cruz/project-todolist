@@ -1,8 +1,8 @@
 import './projectModal.css'
-import { Project, projectList } from "./projectGenerator"
-import { clearAllStorage, processProjectList, placeInStorage } from "./localStorageManipulator"
-import { processList } from "./domManipulation"
-import { attributeHelper } from '../helpers/attributeHelper'
+import { Project, projectList } from "../projectGenerator"
+import { clearAllStorage, processProjectList, placeInStorage } from "../localStorageManipulator"
+import { processList } from "../domManipulation"
+import { attributeHelper } from '../../helpers/attributeHelper'
 
 const projectModal = (targetElement) => {
     // Modal container to control the visibility of content.

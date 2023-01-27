@@ -1,6 +1,6 @@
 import { removeProjectButton } from "./pageElements"
-import { taskButton } from "./taskModal"
-import { removeTask } from "./taskModal"
+import { taskButton } from "./modals/taskModal"
+import { removeTask } from "./modals/taskModal"
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality

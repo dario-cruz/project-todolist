@@ -1,4 +1,4 @@
-import { attributeHelper } from "../helpers/attributeHelper"
+import { attributeHelper } from "../../helpers/attributeHelper"
 
 // Create a modal that will open on task click and allow the user to modify the task.
 // Modal form should pre-populate with task information.

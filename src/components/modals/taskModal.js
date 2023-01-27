@@ -1,9 +1,9 @@
 import './taskModal.css'
-import { attributeHelper } from "../helpers/attributeHelper";
-import { Task } from "./taskGenerator";
-import { clearAllStorage, processProjectList } from './localStorageManipulator'
-import { getCurrentDate } from "../helpers/dateHelpers";
-import { Project, projectList } from "./projectGenerator";
+import { attributeHelper } from "../../helpers/attributeHelper";
+import { Task } from "../taskGenerator";
+import { clearAllStorage, processProjectList } from '../localStorageManipulator'
+import { getCurrentDate } from "../../helpers/dateHelpers";
+import { Project, projectList } from "../projectGenerator";
 
 const taskModal = (targetElement) => {
     // Create the contain to hold all of the content
