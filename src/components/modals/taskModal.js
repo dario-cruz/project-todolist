@@ -157,7 +157,7 @@ const taskModal = (targetElement) => {
 
     // Attach let dive which will contain form elements.
     modalTaskForm.append(leftDiv)
-    taskPriorityInput.append(priorityOne, priorityTwo, priorityThree)
+    taskPriorityInput.append(priorityThree, priorityTwo, priorityOne)
     leftDiv.append(taskPriorityInputLabel, taskPriorityInput, taskDateInputLabel, taskDateInput)
 
     // Attached the bottom div for adding buttons to submit or cancel the input. 
