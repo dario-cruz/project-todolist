@@ -6,16 +6,22 @@ import { projectList } from "../../components/projectGenerator"
 
 
 const taskEditModal = (targetElement, targetTask) => {
+    // Container for the entire modal.
+    // Attach CSS props to this for toggling visibility of modal and content.
     const EditModalContainer = document.createElement('div')
     attributeHelper(EditModalContainer, {'id':'edit-modal-container'})
 
     const EditModalContent = document.createElement('div')
     attributeHelper(EditModalContent, {'id':'edit-modal-content'})
 
+    // Heading for the modal. Text content should change with task that is being edited.
     const EditTaskHeading = document.createElement('h1')
     attributeHelper(EditTaskHeading, {'class':'edit-task-heading'})
     EditTaskHeading.innerText = `Editing: ${targetTask.taskName}`
 
+    // Actual form element that contains all the inputs. 
+    // Form will be pre-populated with current values of the task object. 
+    // On submit the data from the form will update the object and the DOM. 
     const EditForm = document.createElement('form')
     attributeHelper(EditForm, {'action':'', 'id':'task-edit-form', 'autocomplete':'off'})
     
