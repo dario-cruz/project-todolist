@@ -27,9 +27,11 @@ const taskEditModal = (targetElement, targetTask) => {
     
     const EditTaskName = document.createElement('input')
     attributeHelper(EditTaskName, {'type':'text', 'id':'edit-task-name', 'required':''})
+    EditTaskName.value = targetTask.taskName
 
     const EditTaskDetail = document.createElement('textarea')
     attributeHelper(EditTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':'', 'required':''})
+    EditTaskDetail.value = targetTask.taskNotes
 
     const EditTaskPriority = document.createElement('select')
     attributeHelper(EditTaskPriority, {'id':'edit-task-priority', 'name':'edit-task-priority'})
@@ -43,9 +45,13 @@ const taskEditModal = (targetElement, targetTask) => {
     const hiPriority = document.createElement('option')
     attributeHelper(hiPriority, {'value':'Priority 1'})
 
+    const EditTaskDueDate = document.createElement('input')
+    attributeHelper(EditTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
+    EditTaskDueDate.value = targetTask.taskDueDate
+
     const EditCancel = document.createElement('button')
     EditCancel.innerText = 'Cancel'
-
+    
     const EditSubmit = document.createElement('button')
     attributeHelper(EditSubmit, {'id':'edit-submit-button', 'type':'submit'})
     EditSubmit.innerHTML = 'Submit'
