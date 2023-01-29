@@ -47,14 +47,14 @@ const taskEditModal = (targetElement, targetTask) => {
     attributeHelper(hiPriority, {'value':'Priority 1'})
 
     // Check what the target tsk priority is set to and add the selected prop to the appropriate option element. 
-    const priorityCheck = () => {
+    const priorityCheck = (() => {
         let priorityList = [lowPriority, medPriority, hiPriority]
         priorityList.forEach(element => {
             if (targetTask.taskPriority == element.value) {
                 attributeHelper(element, {'selected':''})
             }
         })
-    }
+    })()
 
     const EditTaskDueDate = document.createElement('input')
     attributeHelper(EditTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
@@ -71,7 +71,15 @@ const taskEditModal = (targetElement, targetTask) => {
     // Eventlistener for form submit. 
     // Should update the target task and update the dom with the information.
     EditForm.addEventListener('submit', () => {
+        // Update all task object values. 
+        targetTask.changeName(EditTaskName.value)
+        targetTask.changeNotes(EditTaskDetail.value)
+        targetTask.changeDueDate(EditTaskDueDate.value)
+        targetTask.changePriority(EditTaskPriority.value)
 
+        // Update localStorage
+
+        // Update the DOM to reflect changes.
     })
 
 }
