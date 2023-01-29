@@ -1,5 +1,6 @@
 import { attributeHelper } from "../../helpers/attributeHelper"
 import { projectList } from "../../components/projectGenerator"
+import { hi } from "date-fns/locale"
 // Create a modal that will open on task click and allow the user to modify the task.
 // Modal form should pre-populate with task information.
 // Make sure to make use of the task class setters and getters for updating.
@@ -45,13 +46,23 @@ const taskEditModal = (targetElement, targetTask) => {
     const hiPriority = document.createElement('option')
     attributeHelper(hiPriority, {'value':'Priority 1'})
 
+    // Check what the target tsk priority is set to and add the selected prop to the appropriate option element. 
+    const priorityCheck = () => {
+        let priorityList = [lowPriority, medPriority, hiPriority]
+        priorityList.forEach(element => {
+            if (targetTask.taskPriority == element.value) {
+                attributeHelper(element, {'selected':''})
+            }
+        })
+    }
+
     const EditTaskDueDate = document.createElement('input')
     attributeHelper(EditTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
     EditTaskDueDate.value = targetTask.taskDueDate
 
     const EditCancel = document.createElement('button')
     EditCancel.innerText = 'Cancel'
-    
+
     const EditSubmit = document.createElement('button')
     attributeHelper(EditSubmit, {'id':'edit-submit-button', 'type':'submit'})
     EditSubmit.innerHTML = 'Submit'
