@@ -56,14 +56,19 @@ const projectToDom = (projectObj) => {
         listOfTaskDivs.forEach(element => element.setAttribute('data-object', `${projectName}`))
     })
 
-    const showAllTasks = () => {
-        // Iterate over the tasks items on the array and add then to the DOM. 
-        projectObj.projectTasks.forEach(task => {
-            // Create a div for each of the tasks. Headings and Notes will be attached to this.
-            taskAppender(task.taskName, task.taskNotes, task.taskPriority, task.taskDueDate, rightPanel)
-        });
-    }
 }
+
+const updateTaskPanel = (targetProject, targetElem) => {
+    // Clear the targetElem to prep for elements to be added.
+    targetElem.innerHTML = ''
+
+    // Iterate over the tasks items on the array and add then to the DOM. 
+    targetProject.projectTasks.forEach(task => {
+        // Create a div for each of the tasks. Headings and Notes will be attached to this.
+        taskAppender(task.taskName, task.taskNotes, task.taskPriority, task.taskDueDate, targetElem)
+    });
+}
+
 
 // Process all of the objects in the projectList array and place them in the dom. 
 const processList = (arrayOfObjs) => {
@@ -125,4 +130,4 @@ const clearTaskElem = (theTarget) => {
 
 }
 
-export { projectToDom, processList, taskAppender, clearTaskElem }
+export { projectToDom, processList, taskAppender, clearTaskElem, updateTaskPanel }
