@@ -5,3 +5,17 @@
     box-sizing: border-box;
 }
 
+
+#edit-modal-container {
+    visibility: hidden;
+    z-index: 1;
+}
+
+
+#edit-modal-content {
+    display: grid;
+    height: 10rem;
+    width: 15rem;
+    grid-template-rows: 0.5fr 1fr 1fr 0.5fr;
+    grid-template-columns: 1fr 1fr;
+}

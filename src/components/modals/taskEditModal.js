@@ -1,3 +1,4 @@
+import './taskEditModal.css'
 import { attributeHelper } from "../../helpers/attributeHelper"
 import { projectList } from "../../components/projectGenerator"
 import { hi } from "date-fns/locale"
