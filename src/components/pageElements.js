@@ -63,17 +63,6 @@ const createDefaultPageContent = () => {
 
 }
 
-
-const taskEditModal = () => {
-    const modalDiv = document.createElement('div')
-    modalDiv.setAttribute('class', 'task-edit-modal')
-    modalDiv.setAttribute('id', 'task-edit-modal')
-
-    const modalContent = document.createElement('div')
-    modalContent.setAttribute('class', 'task-edit-content')
-
-}
-
 const removeProjectButton = (targetElement) => {
     const removeButton = document.createElement('button')
     removeButton.setAttribute('class', 'remove-project-button')

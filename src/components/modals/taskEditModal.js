@@ -9,7 +9,6 @@ import { updateTaskPanel } from "../domManipulation"
 // Modal form should pre-populate with task information.
 // Make sure to make use of the task class setters and getters for updating.
 
-
 const taskEditModal = (targetElement, targetTask) => {
     // Container for the entire modal.
     // Attach CSS props to this for toggling visibility of modal and content.
