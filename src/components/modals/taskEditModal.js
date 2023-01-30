@@ -1,6 +1,8 @@
 import { attributeHelper } from "../../helpers/attributeHelper"
 import { projectList } from "../../components/projectGenerator"
 import { hi } from "date-fns/locale"
+import { clearAllStorage, processProjectList } from "../localStorageManipulator"
+
 // Create a modal that will open on task click and allow the user to modify the task.
 // Modal form should pre-populate with task information.
 // Make sure to make use of the task class setters and getters for updating.
@@ -19,6 +21,16 @@ const taskEditModal = (targetElement, targetTask) => {
     const EditTaskHeading = document.createElement('h1')
     attributeHelper(EditTaskHeading, {'class':'edit-task-heading'})
     EditTaskHeading.innerText = `Editing: ${targetTask.taskName}`
+
+    // Span element for closing the modal when editing is not needed.
+    const EditTaskSpan = document.createElement('span')
+    EditTaskSpan.innerHTML = '&times;'
+
+    EditTaskSpan.addEventListener('click', () => {
+        // Toggle the viz of the modal for editing the task.
+
+    })
+
 
     // Actual form element that contains all the inputs. 
     // Form will be pre-populated with current values of the task object. 
@@ -78,8 +90,11 @@ const taskEditModal = (targetElement, targetTask) => {
         targetTask.changePriority(EditTaskPriority.value)
 
         // Update localStorage
+        clearAllStorage()
+        processProjectList()
 
         // Update the DOM to reflect changes.
+        
     })
 
 }
