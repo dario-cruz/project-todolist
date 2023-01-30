@@ -130,4 +130,12 @@ const taskEditModal = (targetElement, targetTask) => {
     bottomSection.append(EditCancel, EditSubmit)
 }
 
+// Create a func that adds and eventlistener to the correct dom element.
+const clickEditEvent = (targetElement) => {
+    targetElement.addEventListener('click', () => {
+        // Toggle the visibility of the modal form elements.
+        taskEditModal.classlist.toggle('is-visible')
+    })
+}
+
 export {taskEditModal}
