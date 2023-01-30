@@ -117,9 +117,18 @@ const taskEditModal = (targetElement, targetTask) => {
     })
 
     // Append all the things.
+
     targetElement.append(EditModalContainer)
 
     EditModalContainer.append(EditModalContent)
+
+    EditModalContent.append (EditForm,topSection, rightSection, leftSection, bottomSection)
+
+    topSection.append(EditTaskHeading, EditTaskSpan)
+    rightSection.append(EditTaskName, EditTaskDetail)
+    leftSection.append(EditTaskPriority, EditTaskDueDate)
+    
+    
     
 
 }
