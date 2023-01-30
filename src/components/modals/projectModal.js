@@ -56,7 +56,7 @@ const projectModal = (targetElement) => {
 
         // Grab user input and add as project.
         let projectName = projectFormInput.value
-        projectName = projectName.replaceAll(' ', '-')
+        // projectName = projectName.replaceAll(' ', '-')
 
         const processFormInput = ((objectName) => {
             // Create project and push to projectList array.

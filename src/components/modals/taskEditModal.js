@@ -2,6 +2,7 @@ import { attributeHelper } from "../../helpers/attributeHelper"
 import { projectList } from "../../components/projectGenerator"
 import { hi } from "date-fns/locale"
 import { clearAllStorage, processProjectList } from "../localStorageManipulator"
+import { updateTaskPanel } from "../domManipulation"
 
 // Create a modal that will open on task click and allow the user to modify the task.
 // Modal form should pre-populate with task information.
@@ -30,6 +31,21 @@ const taskEditModal = (targetElement, targetTask) => {
         // Toggle the viz of the modal for editing the task.
 
     })
+
+
+    // Grid elements that will organize and contain all of the content
+    const topSection = document.createElement('div')
+    attributeHelper(topSection, {'class':'top-section'})
+
+    const rightSection = document.createElement('div')
+    attributeHelper(rightSection, {'class':'right-section'})
+
+    const leftSection = document.createElement('div')
+    attributeHelper(leftSection, {'class':'left-section'})
+
+    const bottomSection = document.createElement('div')
+    attributeHelper(bottomSection, {'class':'bottom-section'})
+
 
 
     // Actual form element that contains all the inputs. 
@@ -94,8 +110,16 @@ const taskEditModal = (targetElement, targetTask) => {
         processProjectList()
 
         // Update the DOM to reflect changes.
-        
+        let foundProject = projectList.find(element => element == document.querySelector('#task-panel').getAttribute('data-object'))
+        updateTaskPanel(foundProject, document.querySelector('#task-panel'))
+
     })
+
+    // Append all the things.
+    targetElement.append(EditModalContainer)
+
+    EditModalContainer.append(EditModalContent)
+    
 
 }
 
