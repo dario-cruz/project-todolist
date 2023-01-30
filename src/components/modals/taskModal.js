@@ -149,7 +149,7 @@ const taskModal = (targetElement) => {
 
     // Attach top div which will contain span element for closing modal.
     modalTaskForm.append(topDiv)
-    topDiv.append(titleHeading, taskSpan)
+    topDiv.append(taskSpan, titleHeading)
 
     // Attach right div which will contain form elements.
     modalTaskForm.append(rightDiv)
