@@ -96,24 +96,6 @@ const taskEditModal = (targetElement, targetTask) => {
     EditSubmit.innerHTML = 'Submit'
 
 
-    // Eventlistener for form submit. 
-    // Should update the target task and update the dom with the information.
-    EditForm.addEventListener('submit', () => {
-        // Update all task object values. 
-        targetTask.changeName(EditTaskName.value)
-        targetTask.changeNotes(EditTaskDetail.value)
-        targetTask.changeDueDate(EditTaskDueDate.value)
-        targetTask.changePriority(EditTaskPriority.value)
-
-        // Update localStorage
-        clearAllStorage()
-        processProjectList()
-
-        // Update the DOM to reflect changes.
-        let foundProject = projectList.find(element => element == document.querySelector('#task-panel').getAttribute('data-object'))
-        updateTaskPanel(foundProject, document.querySelector('#task-panel'))
-
-    })
 
     // Append all the things.
     targetElement.append(EditModalContainer)
@@ -130,12 +112,54 @@ const taskEditModal = (targetElement, targetTask) => {
     bottomSection.append(EditCancel, EditSubmit)
 }
 
+const EditSubmitEvent = (targetElement) => {
+    // Get data-object attribute information from parent element.
+    let currentProject = targetElement.parentElement.getAttribute('data-object')
+    let currentTask = targetElement.getAttribute('data-task')
+    // Find the project object and task object associated with the project.
+    currentProject = projectList.find(element => element.projectName == currentProject)
+    currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
+    
+    // Eventlistener for form submit. 
+    // Should update the target task and update the dom with the information.
+    targetElement.addEventListener('submit', () => {
+        // Update all task object values. 
+        currentTask.changeName(EditTaskName.value)
+        currentTask.changeNotes(EditTaskDetail.value)
+        currentTask.changeDueDate(EditTaskDueDate.value)
+        currentTask.changePriority(EditTaskPriority.value)
+
+        // Update localStorage
+        clearAllStorage()
+        processProjectList()
+
+        // Update the DOM to reflect changes.
+        let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
+        updateTaskPanel(foundProject, document.querySelector('#task-panel'))
+
+    })
+}
+
+
+
 // Create a func that adds and eventlistener to the correct dom element.
 const clickEditEvent = (targetElement) => {
     targetElement.addEventListener('click', () => {
         // Toggle the visibility of the modal form elements.
         taskEditModal.classlist.toggle('is-visible')
+
+        // Get data-object attribute information from parent element.
+        let currentProject = targetElement.parentElement.getAttribute('data-object')
+        let currentTask = targetElement.getAttribute('data-task')
+
+        // Find the project object and task object associated with the project.
+        currentProject = projectList.find(element => element.projectName == currentProject)
+        currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
+
+        
     })
 }
 
-export {taskEditModal}
+
+
+export {taskEditModal, clickEditEvent, EditSubmitEvent}
