@@ -74,16 +74,6 @@ const taskEditModal = (targetElement, targetTask) => {
     const hiPriority = document.createElement('option')
     attributeHelper(hiPriority, {'value':'Priority 1'})
 
-    // Check what the target tsk priority is set to and add the selected prop to the appropriate option element. 
-    const priorityCheck = (() => {
-        let priorityList = [lowPriority, medPriority, hiPriority]
-        priorityList.forEach(element => {
-            if (targetTask.taskPriority == element.value) {
-                attributeHelper(element, {'selected':''})
-            }
-        })
-    })()
-
     const EditTaskDueDate = document.createElement('input')
     attributeHelper(EditTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
     EditTaskDueDate.value = targetTask.taskDueDate
@@ -145,17 +135,27 @@ const EditSubmitEvent = (targetElement) => {
 // Create a func that adds and eventlistener to the correct dom element.
 const clickEditEvent = (targetElement) => {
     targetElement.addEventListener('click', () => {
+        
         // Toggle the visibility of the modal form elements.
         taskEditModal.classlist.toggle('is-visible')
-
+        
         // Get data-object attribute information from parent element.
         let currentProject = targetElement.parentElement.getAttribute('data-object')
         let currentTask = targetElement.getAttribute('data-task')
-
+        
         // Find the project object and task object associated with the project.
         currentProject = projectList.find(element => element.projectName == currentProject)
         currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
-
+        
+        // Check what the target task priority is set to and add the selected prop to the appropriate option element. 
+        const priorityCheck = (() => {
+            let priorityList = [lowPriority, medPriority, hiPriority]
+            priorityList.forEach(element => {
+                if (currentTask.taskPriority == element.value) {
+                    attributeHelper(element, {'selected':''})
+                }
+            })
+        })()
         
     })
 }
