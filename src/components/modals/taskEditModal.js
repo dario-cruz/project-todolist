@@ -116,10 +116,10 @@ const EditSubmitEvent = (targetElement) => {
     // Should update the target task and update the dom with the information.
     targetElement.addEventListener('submit', () => {
         // Update all task object values. 
-        currentTask.changeName(taskEditModule.EditTaskName.value)
-        currentTask.changeNotes(taskEditModule.EditTaskDetail.value)
-        currentTask.changeDueDate(taskEditModule.EditTaskDueDate.value)
-        currentTask.changePriority(taskEditModule.EditTaskPriority.value)
+        currentTask.changeName(taskEditModal.EditTaskName.value)
+        currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
+        currentTask.changeDueDate(taskEditModal.EditTaskDueDate.value)
+        currentTask.changePriority(taskEditModal.EditTaskPriority.value)
 
         // Update localStorage
         clearAllStorage()
