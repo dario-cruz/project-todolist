@@ -149,9 +149,14 @@ const clickEditEvent = (targetElement) => {
         currentProject = projectList.find(element => element.projectName == currentProject)
         currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
         
+        // Get the current values from the task and load them into the form element.
+        taskEditModal.EditTaskName.value = currentTask.taskName
+        taskEditModal.EditTaskDetail.value = currentTask.taskNotes
+        taskEditModal.EditTaskDueDate.value = currentTask.taskDueDate
+        
         // Check what the target task priority is set to and add the selected prop to the appropriate option element. 
         const priorityCheck = (() => {
-            let priorityList = [lowPriority, medPriority, hiPriority]
+            let priorityList = [taskEditModal.owPriority, taskEditModal.medPriority, taskEditModal.hiPriority]
             priorityList.forEach(element => {
                 if (currentTask.taskPriority == element.value) {
                     attributeHelper(element, {'selected':''})
