@@ -100,6 +100,8 @@ const taskEditModal = (targetElement, targetTask) => {
     rightSection.append(EditTaskName, EditTaskDetail)
     leftSection.append(EditTaskPriority, EditTaskDueDate)
     bottomSection.append(EditCancel, EditSubmit)
+
+    return {EditForm, EditTaskName, EditTaskDetail, lowPriority, medPriority, hiPriority, EditTaskDueDate, taskEditModal}
 }
 
 const EditSubmitEvent = (targetElement) => {
@@ -114,10 +116,10 @@ const EditSubmitEvent = (targetElement) => {
     // Should update the target task and update the dom with the information.
     targetElement.addEventListener('submit', () => {
         // Update all task object values. 
-        currentTask.changeName(EditTaskName.value)
-        currentTask.changeNotes(EditTaskDetail.value)
-        currentTask.changeDueDate(EditTaskDueDate.value)
-        currentTask.changePriority(EditTaskPriority.value)
+        currentTask.changeName(taskEditModule.EditTaskName.value)
+        currentTask.changeNotes(taskEditModule.EditTaskDetail.value)
+        currentTask.changeDueDate(taskEditModule.EditTaskDueDate.value)
+        currentTask.changePriority(taskEditModule.EditTaskPriority.value)
 
         // Update localStorage
         clearAllStorage()
@@ -137,7 +139,7 @@ const clickEditEvent = (targetElement) => {
     targetElement.addEventListener('click', () => {
         
         // Toggle the visibility of the modal form elements.
-        taskEditModal.classlist.toggle('is-visible')
+        taskEditModule.taskEditModal.classlist.toggle('is-visible')
         
         // Get data-object attribute information from parent element.
         let currentProject = targetElement.parentElement.getAttribute('data-object')
