@@ -104,7 +104,7 @@ const taskEditModal = (targetElement, targetTask) => {
     return {EditForm, EditTaskName, EditTaskDetail, lowPriority, medPriority, hiPriority, EditTaskDueDate, taskEditModal}
 }
 
-const EditSubmitEvent = (targetElement) => {
+const editSubmitEvent = (targetElement) => {
     // Get data-object attribute information from parent element.
     let currentProject = targetElement.parentElement.getAttribute('data-object')
     let currentTask = targetElement.getAttribute('data-task')
@@ -164,4 +164,4 @@ const clickEditEvent = (targetElement) => {
 
 
 
-export {taskEditModal, clickEditEvent, EditSubmitEvent}
+export {taskEditModal, clickEditEvent, editSubmitEvent}
