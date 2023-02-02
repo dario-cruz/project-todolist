@@ -1,6 +1,7 @@
 import { removeProjectButton } from "./pageElements"
 import { taskButton } from "./modals/taskModal"
 import { removeTask } from "./modals/taskModal"
+import { clickEditEvent } from "./modals/taskEditModal"
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality
@@ -80,25 +81,28 @@ const processList = (arrayOfObjs) => {
 // Process tasks, make and append dom elements for displaying tasks.
 const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppendTo) => {
     // Create needed elements to view project tasks. 
-    let hostElement = document.createElement('div')
+    const hostElement = document.createElement('div')
     hostElement.setAttribute('class', `task`)
     hostElement.setAttribute('data-task', `${taskName}`)
-    let hostElementTitle = document.createElement('h1')
+    const hostElementTitle = document.createElement('h1')
     hostElementTitle.setAttribute('class', 'task-title')
     hostElementTitle.innerText = `${taskName}`
-    let hostElementNotes = document.createElement('p')
+    const hostElementNotes = document.createElement('p')
     hostElementNotes.setAttribute('class', 'task-notes')
     hostElementNotes.innerText = `${taskNotes}`
-    let hostElementPriority = document.createElement('p')
+    const hostElementPriority = document.createElement('p')
     hostElementPriority.setAttribute('class', 'task-priority')
     hostElementPriority.innerText = `Priority: ${taskPriority}`
-    let hostElementDueDate = document.createElement('p')
+    const hostElementDueDate = document.createElement('p')
     hostElementDueDate.setAttribute('class', 'task-due-date')
     if (taskDueDate == undefined) {
         hostElementDueDate.innerText = 'Due Date: None'
     } else {
         hostElementDueDate.innerText = `Due Date: ${taskDueDate}`
     }
+
+    // Attach event for hostElement.
+    clickEditEvent(hostElement)
 
     // Append elements to one another.
     hostElement.appendChild(hostElementTitle)
