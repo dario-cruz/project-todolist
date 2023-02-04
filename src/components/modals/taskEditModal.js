@@ -138,7 +138,13 @@ const clickEditEvent = (targetElement) => {
         
         // Toggle the visibility of the modal form elements.
         const editModal = document.querySelector('#edit-modal-container')
-        editModal.classList.toggle('is-visible')
+        // editModal.classList.toggle('is-visible')
+
+        if (editModal.style.visibility == 'hidden') {
+            editModal.style.visibility = 'visible'
+        } else {
+            editModal.style.visibility = 'hidden'
+        }
         
         // Get data-object attribute information from parent element.
         let currentProject = targetElement.parentElement.getAttribute('data-object')
@@ -168,11 +174,10 @@ const clickEditEvent = (targetElement) => {
         const priorityCheck = (() => {
             let priorityList = [formTaskPriorityLo, formTaskPriorityMed, formTaskPriorityHi]
             // clear all previous selected attributes.
-            projectList.forEach(function(element) {
-                if (element.hasAttribute('selected')) {
-                    element.removeAttribute('selected')
-                }
-            })
+            formTaskPriorityLo.removeAttribute('selected')
+            formTaskPriorityMed.removeAttribute('selected')
+            formTaskPriorityHi.removeAttribute('selected')
+
 
             // Iterate through all priorities and find the one that matches the task current and select it.
             projectList.forEach(function(item) {
