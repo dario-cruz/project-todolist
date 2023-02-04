@@ -92,6 +92,8 @@ const taskEditModal = (targetElement) => {
 
     EditForm.append(topSection, rightSection, leftSection, bottomSection)
 
+    EditTaskPriority.append(lowPriority, medPriority, hiPriority)
+
     topSection.append(EditTaskHeading, EditTaskSpan)
     rightSection.append(EditTaskName, EditTaskDetail)
     leftSection.append(EditTaskPriority, EditTaskDueDate)
@@ -154,6 +156,7 @@ const clickEditEvent = (targetElement) => {
         const formTaskPriorityMed = document.querySelector('#edit-priority-med')
         const formTaskPriorityLo = document.querySelector('#edit-priority-lo')
         const formEditHeading = document.querySelector('#edit-task-heading')
+        console.log(formTaskPriorityHi)
 
         // Get the current values from the task and load them into the form element.
         formTaskName.value = currentTask.taskName
@@ -165,11 +168,14 @@ const clickEditEvent = (targetElement) => {
         const priorityCheck = (() => {
             let priorityList = [formTaskPriorityLo, formTaskPriorityMed, formTaskPriorityHi]
             // clear all previous selected attributes.
-            projectList.forEach((item) => {
-                item.removeAttribute('selected')
+            projectList.forEach(function(element) {
+                if (element.hasAttribute('selected')) {
+                    element.removeAttribute('selected')
+                }
             })
+
             // Iterate through all priorities and find the one that matches the task current and select it.
-            projectList.forEach((item) => {
+            projectList.forEach(function(item) {
                 if (item.value == currentTask.taskPriority) {
                     attributeHelper(item, {'selected':''})
                 }
