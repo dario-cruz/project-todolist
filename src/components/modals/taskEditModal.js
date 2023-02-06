@@ -28,8 +28,11 @@ const taskEditModal = (targetElement) => {
 
     EditTaskSpan.addEventListener('click', () => {
         // Toggle the viz of the modal for editing the task.
-        EditModalContainer.classList.toggle('is-visible') 
-
+        if (EditModalContainer.style.visibility == 'hidden') {
+            EditModalContainer.style.visibility = 'visible'
+        } else {
+            EditModalContainer.style.visibility = 'hidden'
+        }
     })
 
 
@@ -77,6 +80,17 @@ const taskEditModal = (targetElement) => {
     const EditCancel = document.createElement('button')
     EditCancel.innerText = 'Cancel'
 
+    EditCancel.addEventListener('click', (e) => {
+        // Prevent default.
+        e.preventDefault()
+        // Toggle the viz of the modal for editing the task.
+        if (EditModalContainer.style.visibility == 'hidden') {
+            EditModalContainer.style.visibility = 'visible'
+        } else {
+            EditModalContainer.style.visibility = 'hidden'
+        }
+    })
+
     const EditSubmit = document.createElement('button')
     attributeHelper(EditSubmit, {'id':'edit-submit-button', 'type':'submit'})
     EditSubmit.innerHTML = 'Submit'
@@ -112,7 +126,9 @@ const editSubmitEvent = (targetElement) => {
     
     // Eventlistener for form submit. 
     // Should update the target task and update the dom with the information.
-    targetElement.addEventListener('submit', () => {
+    targetElement.addEventListener('submit', (e) => {
+        // Prevent the default page refresh behavior.
+        e.preventDefault()
         // Update all task object values. 
         currentTask.changeName(taskEditModal.EditTaskName.value)
         currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
@@ -148,12 +164,13 @@ const clickEditEvent = (targetElement) => {
         
         // Get data-object attribute information from parent element.
         let currentProject = targetElement.parentElement.getAttribute('data-object')
-        let currentTask = targetElement.getAttribute('data-task')
+        let currentTask = targetElement.parentElement.getAttribute('data-task')
+        console.log(currentProject, currentTask)
         
         // Find the project object and task object associated with the project.
         currentProject = projectList.find(element => element.projectName == currentProject)
         currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
-        
+
         // Define the elements to be edited.
         const formTaskName = document.querySelector('#edit-task-name')
         const formTaskDetail = document.querySelector('#edit-task-detail')

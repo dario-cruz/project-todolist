@@ -2,6 +2,7 @@ import { removeProjectButton } from "./pageElements"
 import { taskButton } from "./modals/taskModal"
 import { removeTask } from "./modals/taskModal"
 import { clickEditEvent } from "./modals/taskEditModal"
+import { attributeHelper } from "../helpers/attributeHelper"
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality
@@ -100,15 +101,18 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
     } else {
         hostElementDueDate.innerText = `Due Date: ${taskDueDate}`
     }
-
+    const editTaskButton = document.createElement('button')
+    attributeHelper(editTaskButton, {'id':'edit-task-button'})
+    editTaskButton.innerText = 'Edit'
     // Attach event for hostElement.
-    clickEditEvent(hostElement)
+    clickEditEvent(editTaskButton)
 
     // Append elements to one another.
     hostElement.appendChild(hostElementTitle)
     hostElement.appendChild(hostElementNotes)
     hostElement.appendChild(hostElementPriority)
     hostElement.appendChild(hostElementDueDate)
+    hostElement.appendChild(editTaskButton)
     removeTask(hostElement)
 
     // Append to the arg element.
