@@ -14,6 +14,7 @@ const taskEditModal = (targetElement) => {
     // Attach CSS props to this for toggling visibility of modal and content.
     const EditModalContainer = document.createElement('div')
     attributeHelper(EditModalContainer, {'id':'edit-modal-container'})
+    EditModalContainer.style.visibility = 'hidden'
 
     const EditModalContent = document.createElement('div')
     attributeHelper(EditModalContent, {'id':'edit-modal-content'})
@@ -28,11 +29,7 @@ const taskEditModal = (targetElement) => {
 
     EditTaskSpan.addEventListener('click', () => {
         // Toggle the viz of the modal for editing the task.
-        if (EditModalContainer.style.visibility == 'hidden') {
-            EditModalContainer.style.visibility = 'visible'
-        } else {
-            EditModalContainer.style.visibility = 'hidden'
-        }
+        toggleVis(EditModalContainer)
     })
 
 
@@ -49,13 +46,15 @@ const taskEditModal = (targetElement) => {
     const bottomSection = document.createElement('div')
     attributeHelper(bottomSection, {'class':'bottom-section'})
 
-
-
     // Actual form element that contains all the inputs. 
     // Form will be pre-populated with current values of the task object. 
     // On submit the data from the form will update the object and the DOM. 
     const EditForm = document.createElement('form')
     attributeHelper(EditForm, {'action':'', 'id':'task-edit-form', 'autocomplete':'off'})
+    //Prevent page refresh on form submit. 
+    EditForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+    })
     
     const EditTaskName = document.createElement('input')
     attributeHelper(EditTaskName, {'type':'text', 'id':'edit-task-name', 'required':''})
@@ -84,16 +83,41 @@ const taskEditModal = (targetElement) => {
         // Prevent default.
         e.preventDefault()
         // Toggle the viz of the modal for editing the task.
-        if (EditModalContainer.style.visibility == 'hidden') {
-            EditModalContainer.style.visibility = 'visible'
-        } else {
-            EditModalContainer.style.visibility = 'hidden'
-        }
+        toggleVis(EditModalContainer)
     })
 
-    const EditSubmit = document.createElement('button')
-    attributeHelper(EditSubmit, {'id':'edit-submit-button', 'type':'submit'})
-    EditSubmit.innerHTML = 'Submit'
+    const editSubmit = document.createElement('button')
+    attributeHelper(editSubmit, {'id':'edit-submit-button', 'type':'submit'})
+    editSubmit.innerHTML = 'Submit'
+
+    editSubmit.addEventListener('submit', (e) => {
+        // Prevent the default page refresh behavior.
+        e.preventDefault()
+        // Get data-object attribute information from parent element.
+        let currentProject = editSubmit.parentElement.getAttribute('data-object')
+        let currentTask = editSubmit.getAttribute('data-task')
+        // Find the project object and task object associated with the project.
+        currentProject = projectList.find(element => element.projectName == currentProject)
+        currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
+
+        // Update all task object values. 
+        currentTask.changeName(taskEditModal.EditTaskName.value)
+        currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
+        currentTask.changeDueDate(taskEditModal.EditTaskDueDate.value)
+        currentTask.changePriority(taskEditModal.EditTaskPriority.value)
+
+        // Update localStorage
+        clearAllStorage()
+        processProjectList()
+
+        // Update the DOM to reflect changes.
+        let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
+        updateTaskPanel(foundProject, document.querySelector('#task-panel'))
+
+        // Toggle viz of the edit modal.
+        let editModalContainer = document.querySelector('#edit-modal-container')
+        toggleVis(editModalContainer)
+    })
 
 
 
@@ -111,42 +135,8 @@ const taskEditModal = (targetElement) => {
     topSection.append(EditTaskHeading, EditTaskSpan)
     rightSection.append(EditTaskName, EditTaskDetail)
     leftSection.append(EditTaskPriority, EditTaskDueDate)
-    bottomSection.append(EditCancel, EditSubmit)
-
-    return {EditForm, EditTaskName, EditTaskDetail, lowPriority, medPriority, hiPriority, EditTaskDueDate, taskEditModal}
+    bottomSection.append(EditCancel, editSubmit)
 }
-
-const editSubmitEvent = (targetElement) => {
-    // Get data-object attribute information from parent element.
-    let currentProject = targetElement.parentElement.getAttribute('data-object')
-    let currentTask = targetElement.getAttribute('data-task')
-    // Find the project object and task object associated with the project.
-    currentProject = projectList.find(element => element.projectName == currentProject)
-    currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
-    
-    // Eventlistener for form submit. 
-    // Should update the target task and update the dom with the information.
-    targetElement.addEventListener('submit', (e) => {
-        // Prevent the default page refresh behavior.
-        e.preventDefault()
-        // Update all task object values. 
-        currentTask.changeName(taskEditModal.EditTaskName.value)
-        currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
-        currentTask.changeDueDate(taskEditModal.EditTaskDueDate.value)
-        currentTask.changePriority(taskEditModal.EditTaskPriority.value)
-
-        // Update localStorage
-        clearAllStorage()
-        processProjectList()
-
-        // Update the DOM to reflect changes.
-        let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
-        updateTaskPanel(foundProject, document.querySelector('#task-panel'))
-
-    })
-}
-
-
 
 // Create a func that adds and eventlistener to the correct dom element.
 const clickEditEvent = (targetElement) => {
@@ -154,13 +144,7 @@ const clickEditEvent = (targetElement) => {
         
         // Toggle the visibility of the modal form elements.
         const editModal = document.querySelector('#edit-modal-container')
-        // editModal.classList.toggle('is-visible')
-
-        if (editModal.style.visibility == 'hidden') {
-            editModal.style.visibility = 'visible'
-        } else {
-            editModal.style.visibility = 'hidden'
-        }
+        toggleVis(editModal)
         
         // Get data-object attribute information from parent element.
         let currentProject = targetElement.parentElement.getAttribute('data-object')
@@ -207,6 +191,8 @@ const clickEditEvent = (targetElement) => {
     })
 }
 
+const toggleVis = (target) => {
+    target.style.visibility == 'hidden' ? target.style.visibility = 'visible' : target.style.visibility = 'hidden' 
+}
 
-
-export {taskEditModal, clickEditEvent, editSubmitEvent}
+export {taskEditModal, clickEditEvent}
