@@ -38,13 +38,12 @@ class Project {
         // Check if object was placed.
         console.log(array)
     }
-    // Mark project complete.
-    set completion(value) {
-        if (value == 'true') {
-            this.projectCompletion = true
-        } else if (value == 'false') {
-            this.projectCompletion = false
-        }
+    // Mark project complete or not.
+    setComplete() {
+        this.projectCompletion = true
+    }
+    setNotComplete() {
+        this.projectCompletion = false
     }
 }
 

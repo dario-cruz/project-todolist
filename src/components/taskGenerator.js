@@ -35,12 +35,12 @@ class Task {
     set changeDueDate(newDueDate) {
         this.taskDueDate = newDueDate
     }
-    set completion(value) {
-        if (value == 'true') {
-            this.taskCompletion = true
-        } else if (value == 'false') {
-            this.taskCompletion = false
-        }
+    // Mark tasks complete or not.
+    setComplete() {
+        this.taskCompletion = true
+    }
+    setNotComplete() {
+        this.taskCompletion = false
     }
 }
 
