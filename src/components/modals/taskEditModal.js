@@ -53,7 +53,32 @@ const taskEditModal = (targetElement) => {
     attributeHelper(EditForm, {'action':'', 'id':'task-edit-form', 'autocomplete':'off'})
     //Prevent page refresh on form submit. 
     EditForm.addEventListener('submit', (e) => {
+        // Prevent default form behavior. 
         e.preventDefault()
+        // Get data-object attribute information from parent element.
+        let currentProject = editSubmit.parentElement.getAttribute('data-object')
+        let currentTask = editSubmit.getAttribute('data-task')
+        // Find the project object and task object associated with the project.
+        currentProject = projectList.find(element => element.projectName == currentProject)
+        currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
+        
+        // Update all task object values. 
+        currentTask.changeName(taskEditModal.EditTaskName.value)
+        currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
+        currentTask.changeDueDate(taskEditModal.EditTaskDueDate.value)
+        currentTask.changePriority(taskEditModal.EditTaskPriority.value)
+        
+        // Update localStorage
+        clearAllStorage()
+        processProjectList()
+        
+        // Update the DOM to reflect changes.
+        let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
+        updateTaskPanel(foundProject, document.querySelector('#task-panel'))
+        
+        // Toggle viz of the edit modal.
+        let editModalContainer = document.querySelector('#edit-modal-container')
+        toggleVis(editModalContainer)
     })
     
     const EditTaskName = document.createElement('input')
@@ -69,7 +94,7 @@ const taskEditModal = (targetElement) => {
     attributeHelper(lowPriority, {'value':'Priority 3', 'id':'edit-priority-lo'})
     lowPriority.innerText = 'Low Priority'
     const medPriority = document.createElement('option')
-    attributeHelper(medPriority, {'value':'Priority 2', 'id':'edit-priority-med'})
+    attributeHelper(medPriority, {'value':'Priority 2', 'id':'edit-pnpx riority-med'})
     const hiPriority = document.createElement('option')
     attributeHelper(hiPriority, {'value':'Priority 1', 'id':'edit-priority-hi'})
 
@@ -90,34 +115,34 @@ const taskEditModal = (targetElement) => {
     attributeHelper(editSubmit, {'id':'edit-submit-button', 'type':'submit'})
     editSubmit.innerHTML = 'Submit'
 
-    editSubmit.addEventListener('submit', (e) => {
-        // Prevent the default page refresh behavior.
-        e.preventDefault()
-        // Get data-object attribute information from parent element.
-        let currentProject = editSubmit.parentElement.getAttribute('data-object')
-        let currentTask = editSubmit.getAttribute('data-task')
-        // Find the project object and task object associated with the project.
-        currentProject = projectList.find(element => element.projectName == currentProject)
-        currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
+    // editSubmit.addEventListener('submit', (e) => {
+    //     // Prevent the default page refresh behavior.
+    //     e.preventDefault()
+    //     // Get data-object attribute information from parent element.
+    //     let currentProject = editSubmit.parentElement.getAttribute('data-object')
+    //     let currentTask = editSubmit.getAttribute('data-task')
+    //     // Find the project object and task object associated with the project.
+    //     currentProject = projectList.find(element => element.projectName == currentProject)
+    //     currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
 
-        // Update all task object values. 
-        currentTask.changeName(taskEditModal.EditTaskName.value)
-        currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
-        currentTask.changeDueDate(taskEditModal.EditTaskDueDate.value)
-        currentTask.changePriority(taskEditModal.EditTaskPriority.value)
+    //     // Update all task object values. 
+    //     currentTask.changeName(taskEditModal.EditTaskName.value)
+    //     currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
+    //     currentTask.changeDueDate(taskEditModal.EditTaskDueDate.value)
+    //     currentTask.changePriority(taskEditModal.EditTaskPriority.value)
 
-        // Update localStorage
-        clearAllStorage()
-        processProjectList()
+    //     // Update localStorage
+    //     clearAllStorage()
+    //     processProjectList()
 
-        // Update the DOM to reflect changes.
-        let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
-        updateTaskPanel(foundProject, document.querySelector('#task-panel'))
+    //     // Update the DOM to reflect changes.
+    //     let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
+    //     updateTaskPanel(foundProject, document.querySelector('#task-panel'))
 
-        // Toggle viz of the edit modal.
-        let editModalContainer = document.querySelector('#edit-modal-container')
-        toggleVis(editModalContainer)
-    })
+    //     // Toggle viz of the edit modal.
+    //     let editModalContainer = document.querySelector('#edit-modal-container')
+    //     toggleVis(editModalContainer)
+    // })
 
 
 
