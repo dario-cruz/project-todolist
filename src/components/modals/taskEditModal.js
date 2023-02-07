@@ -115,37 +115,6 @@ const taskEditModal = (targetElement) => {
     attributeHelper(editSubmit, {'id':'edit-submit-button', 'type':'submit'})
     editSubmit.innerHTML = 'Submit'
 
-    // editSubmit.addEventListener('submit', (e) => {
-    //     // Prevent the default page refresh behavior.
-    //     e.preventDefault()
-    //     // Get data-object attribute information from parent element.
-    //     let currentProject = editSubmit.parentElement.getAttribute('data-object')
-    //     let currentTask = editSubmit.getAttribute('data-task')
-    //     // Find the project object and task object associated with the project.
-    //     currentProject = projectList.find(element => element.projectName == currentProject)
-    //     currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
-
-    //     // Update all task object values. 
-    //     currentTask.changeName(taskEditModal.EditTaskName.value)
-    //     currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
-    //     currentTask.changeDueDate(taskEditModal.EditTaskDueDate.value)
-    //     currentTask.changePriority(taskEditModal.EditTaskPriority.value)
-
-    //     // Update localStorage
-    //     clearAllStorage()
-    //     processProjectList()
-
-    //     // Update the DOM to reflect changes.
-    //     let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
-    //     updateTaskPanel(foundProject, document.querySelector('#task-panel'))
-
-    //     // Toggle viz of the edit modal.
-    //     let editModalContainer = document.querySelector('#edit-modal-container')
-    //     toggleVis(editModalContainer)
-    // })
-
-
-
     // Append all the things.
     targetElement.append(EditModalContainer)
 
