@@ -5,6 +5,7 @@ class Task {
         this.taskPriority = taskPriority
         this.taskNotes = taskNotes
         this.taskDueDate = taskDueDate
+        this.taskCompletion = false
     }
     
     // Getters for needed task elements
@@ -33,6 +34,13 @@ class Task {
     }
     set changeDueDate(newDueDate) {
         this.taskDueDate = newDueDate
+    }
+    set completion(value) {
+        if (value == 'true') {
+            this.taskCompletion = true
+        } else if (value == 'false') {
+            this.taskCompletion = false
+        }
     }
 }
 
