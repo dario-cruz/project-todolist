@@ -3,7 +3,7 @@ import { attributeHelper } from "../../helpers/attributeHelper"
 import { projectList } from "../../components/projectGenerator"
 import { hi } from "date-fns/locale"
 import { clearAllStorage, processProjectList } from "../localStorageManipulator"
-import { updateTaskPanel } from "../domManipulation"
+import { updateTaskPanel, editTaskButton } from "../domManipulation"
 
 // Create a modal that will open on task click and allow the user to modify the task.
 // Modal form should pre-populate with task information.
@@ -11,27 +11,27 @@ import { updateTaskPanel } from "../domManipulation"
 
 // Container for the entire modal.
 const editModalContainer = document.createElement('div')
-const EditModalContent = document.createElement('div')
+const editModalContent = document.createElement('div')
 // Heading for the modal. Text content should change with task that is being edited.
-const EditTaskHeading = document.createElement('h1')
+const editTaskHeading = document.createElement('h1')
 // Span element for closing the modal when editing is not needed.
-const EditTaskSpan = document.createElement('span')
+const editTaskSpan = document.createElement('span')
 // Grid elements that will organize and contain all of the content
 const topSection = document.createElement('div')
 const rightSection = document.createElement('div')
 const leftSection = document.createElement('div')
 const bottomSection = document.createElement('div')
 // Actual form element that contains all the inputs. 
-const EditForm = document.createElement('form')
+const editForm = document.createElement('form')
 // Form elements
-const EditTaskName = document.createElement('input')
-const EditTaskDetail = document.createElement('textarea')
-const EditTaskPriority = document.createElement('select')
+const editTaskName = document.createElement('input')
+const editTaskDetail = document.createElement('textarea')
+const editTaskPriority = document.createElement('select')
 const lowPriority = document.createElement('option')
 const medPriority = document.createElement('option')
 const hiPriority = document.createElement('option')
-const EditTaskDueDate = document.createElement('input')
-const EditCancel = document.createElement('button')
+const editTaskDueDate = document.createElement('input')
+const editCancel = document.createElement('button')
 const editSubmit = document.createElement('button')
 
 
@@ -40,13 +40,13 @@ const taskEditModal = (targetElement) => {
     attributeHelper(editModalContainer, {'id':'edit-modal-container'})
     editModalContainer.style.visibility = 'hidden'
 
-    attributeHelper(EditModalContent, {'id':'edit-modal-content'})
+    attributeHelper(editModalContent, {'id':'edit-modal-content'})
 
-    attributeHelper(EditTaskHeading, {'class':'edit-task-heading', 'id':'edit-task-heading'})
+    attributeHelper(editTaskHeading, {'class':'edit-task-heading', 'id':'edit-task-heading'})
 
-    EditTaskSpan.innerHTML = '&times;'
+    editTaskSpan.innerHTML = '&times;'
 
-    EditTaskSpan.addEventListener('click', () => {
+    editTaskSpan.addEventListener('click', () => {
         // Toggle the viz of the modal for editing the task.
         toggleVis(editModalContainer)
     })
@@ -60,24 +60,25 @@ const taskEditModal = (targetElement) => {
 
     // Form will be pre-populated with current values of the task object. 
     // On submit the data from the form will update the object and the DOM. 
-    attributeHelper(EditForm, {'action':'', 'id':'task-edit-form', 'autocomplete':'off'})
+    attributeHelper(editForm, {'action':'', 'id':'task-edit-form', 'autocomplete':'off'})
     //Prevent page refresh on form submit. 
-    EditForm.addEventListener('submit', (e) => {
+    editForm.addEventListener('submit', (e) => {
         // Prevent default form behavior. 
         e.preventDefault()
+       
         // Get data-object attribute information from parent element.
-        let currentProject = editSubmit.parentElement.getAttribute('data-object')
-        let currentTask = editSubmit.parentElement.getAttribute('data-task')
+        let currentProject = editTaskButton.parentElement.getAttribute('data-object')
+        let currentTask = editTaskButton.parentElement.getAttribute('data-task')
         console.log(currentProject, currentTask)
         // Find the project object and task object associated with the project.
         currentProject = projectList.find(element => element.projectName == currentProject)
         currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
         
         // Update all task object values. 
-        currentTask.changeName(taskEditModal.EditTaskName.value)
-        currentTask.changeNotes(taskEditModal.EditTaskDetail.value)
-        currentTask.changeDueDate(taskEditModal.EditTaskDueDate.value)
-        currentTask.changePriority(taskEditModal.EditTaskPriority.value)
+        currentTask.changeName(editForm.editTaskName.value)
+        currentTask.changeNotes(editForm.editTaskDetail.value)
+        currentTask.changeDueDate(editForm.editTaskDueDate.value)
+        currentTask.changePriority(editForm.editTaskPriority.value)
         
         // Update localStorage
         clearAllStorage()
@@ -92,11 +93,11 @@ const taskEditModal = (targetElement) => {
         toggleVis(editModalContainer)
     })
     
-    attributeHelper(EditTaskName, {'type':'text', 'id':'edit-task-name', 'required':''})
+    attributeHelper(editTaskName, {'type':'text', 'id':'edit-task-name', 'required':''})
 
-    attributeHelper(EditTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':'', 'required':''})
+    attributeHelper(editTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':'', 'required':''})
 
-    attributeHelper(EditTaskPriority, {'id':'edit-task-priority', 'name':'edit-task-priority'})
+    attributeHelper(editTaskPriority, {'id':'edit-task-priority', 'name':'edit-task-priority'})
     
     attributeHelper(lowPriority, {'value':'Priority 3', 'id':'edit-priority-lo'})
     lowPriority.innerText = 'Low Priority'
@@ -105,11 +106,11 @@ const taskEditModal = (targetElement) => {
     attributeHelper(hiPriority, {'value':'Priority 1', 'id':'edit-priority-hi'})
     hiPriority.innerText = 'High Priority'
 
-    attributeHelper(EditTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
+    attributeHelper(editTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
 
-    EditCancel.innerText = 'Cancel'
+    editCancel.innerText = 'Cancel'
 
-    EditCancel.addEventListener('click', (e) => {
+    editCancel.addEventListener('click', (e) => {
         // Prevent default.
         e.preventDefault()
         // Toggle the viz of the modal for editing the task.
@@ -120,18 +121,18 @@ const taskEditModal = (targetElement) => {
     // Append all the things.
     targetElement.append(editModalContainer)
 
-    editModalContainer.append(EditModalContent)
+    editModalContainer.append(editModalContent)
 
-    EditModalContent.append (EditForm)
+    editModalContent.append (editForm)
 
-    EditForm.append(topSection, rightSection, leftSection, bottomSection)
+    editForm.append(topSection, rightSection, leftSection, bottomSection)
 
-    EditTaskPriority.append(lowPriority, medPriority, hiPriority)
+    editTaskPriority.append(lowPriority, medPriority, hiPriority)
 
-    topSection.append(EditTaskHeading, EditTaskSpan)
-    rightSection.append(EditTaskName, EditTaskDetail)
-    leftSection.append(EditTaskPriority, EditTaskDueDate)
-    bottomSection.append(EditCancel, editSubmit)
+    topSection.append(editTaskHeading, editTaskSpan)
+    rightSection.append(editTaskName, editTaskDetail)
+    leftSection.append(editTaskPriority, editTaskDueDate)
+    bottomSection.append(editCancel, editSubmit)
 }
 
 // Create a func that adds and eventlistener to the correct dom element.
@@ -153,10 +154,10 @@ const clickEditEvent = (targetElement) => {
 
 
         // Get the current values from the task and load them into the form element.
-        EditTaskName.value = currentTask.taskName
-        EditTaskDetail.value = currentTask.taskNotes
-        EditTaskDueDate.value = currentTask.taskDueDate
-        EditTaskHeading.innerText = `Editing: ${currentTask.taskName}`
+        editTaskName.value = currentTask.taskName
+        editTaskDetail.value = currentTask.taskNotes
+        editTaskDueDate.value = currentTask.taskDueDate
+        editTaskHeading.innerText = `Editing: ${currentTask.taskName}`
         
         // Check what the target task priority is set to and add the selected prop to the appropriate option element. 
         const priorityCheck = (() => {

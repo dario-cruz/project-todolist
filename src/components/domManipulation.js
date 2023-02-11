@@ -81,6 +81,10 @@ const processList = (arrayOfObjs) => {
     })
 }
 
+// Define element to trigger editing of task.
+const editTaskButton = document.createElement('button')
+attributeHelper(editTaskButton, {'id':'edit-task-button'})
+
 // Process tasks, make and append dom elements for displaying tasks.
 const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppendTo) => {
     // Create needed elements to view project tasks. 
@@ -103,8 +107,7 @@ const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppe
     } else {
         hostElementDueDate.innerText = `Due Date: ${taskDueDate}`
     }
-    const editTaskButton = document.createElement('button')
-    attributeHelper(editTaskButton, {'id':'edit-task-button'})
+
     editTaskButton.innerText = 'Edit'
     // Attach event for hostElement.
     // clickEditEvent(editTaskButton)
@@ -193,4 +196,4 @@ const clearTaskElem = (theTarget) => {
 
 }
 
-export { projectToDom, processList, taskAppender, clearTaskElem, updateTaskPanel }
+export { projectToDom, processList, taskAppender, clearTaskElem, updateTaskPanel, editTaskButton }
