@@ -75,10 +75,10 @@ const taskEditModal = (targetElement) => {
         currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
         
         // Update all task object values. 
-        currentTask.changeName(editForm.editTaskName.value)
-        currentTask.changeNotes(editForm.editTaskDetail.value)
-        currentTask.changeDueDate(editForm.editTaskDueDate.value)
-        currentTask.changePriority(editForm.editTaskPriority.value)
+        currentTask.taskName = editTaskName.value
+        currentTask.taskNotes = editTaskDetail.value
+        currentTask.taskDueDate = editTaskDueDate.value
+        currentTask.taskPriority = editTaskPriority.value
         
         // Update localStorage
         clearAllStorage()
