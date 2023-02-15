@@ -56,7 +56,6 @@ const projectModal = (targetElement) => {
 
         // Grab user input and add as project.
         let projectName = projectFormInput.value
-        // projectName = projectName.replaceAll(' ', '-')
 
         const processFormInput = ((objectName) => {
             // Create project and push to projectList array.
@@ -65,7 +64,6 @@ const projectModal = (targetElement) => {
             // Place in local storage.
             placeInStorage(newObj)
             // Toggle vis of modal.
-            // modalContainer.classList.toggle('project-closed-modal')
             modalContainer.style.visibility = 'hidden'
 
             // Process all of the projects and task and add them to the localStorage.
@@ -87,7 +85,10 @@ const projectModal = (targetElement) => {
 
             processList(projectList)
         })(projectName)
+        // Click the element after form submit.
+
     })
+
 }
 
 const projectButton = (targetElement, targetModal) => {
@@ -96,7 +97,6 @@ const projectButton = (targetElement, targetModal) => {
     addProjectButton.innerText = "Add Project"
 
     addProjectButton.addEventListener('click', () => {
-        // targetModal.classList.toggle('project-closed-modal')
         document.getElementById('project-modal-container').style.visibility = 'visible'
     })
 
