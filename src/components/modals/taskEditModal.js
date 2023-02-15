@@ -180,7 +180,6 @@ const clickEditEvent = (targetElement) => {
 // Make func that can be called to toggle viz of modal element.
 const toggleVis = (target) => {
     target.classList.toggle('not-visible')
-    // target.style.visibility == 'hidden' ? target.style.visibility = 'visible' : target.style.visibility = 'hidden' 
 }
 
 export {taskEditModal, clickEditEvent, toggleVis}
