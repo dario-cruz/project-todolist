@@ -4,6 +4,7 @@ import { removeTask } from "./modals/taskModal"
 import { attributeHelper } from "../helpers/attributeHelper"
 import { toggleVis } from "./modals/taskEditModal"
 import { projectList } from "./projectGenerator"
+import { currentItem } from "../helpers/currentItemHolder"
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality
@@ -47,11 +48,13 @@ const projectToDom = (projectObj) => {
         // Set data attribute that changes with data being displayed.
         // We can reference this when we want to add tasks to the object and update the dom. 
         rightPanel.setAttribute('data-object', `${projectName}`)
+        currentItem.currentProject = projectObj
+        console.log(currentItem)
 
         // Iterate over the tasks items on the array and add then to the DOM. 
         projectObj.projectTasks.forEach(task => {
             // Create a div for each of the tasks. Headings and Notes will be attached to this.
-            taskAppender(task.taskName, task.taskNotes, task.taskPriority, task.taskDueDate, rightPanel)
+            taskAppender(task, rightPanel)
         });
         // Get a list of all tasks and tag them with the project data attribute. 
         // Will allow us to ID the related project and task objects for modification.
@@ -68,7 +71,7 @@ const updateTaskPanel = (targetProject, targetElem) => {
     // Iterate over the tasks items on the array and add then to the DOM. 
     targetProject.projectTasks.forEach(task => {
         // Create a div for each of the tasks. Headings and Notes will be attached to this.
-        taskAppender(task.taskName, task.taskNotes, task.taskPriority, task.taskDueDate, targetElem)
+        taskAppender(task, targetElem)
     });
 }
 
@@ -135,28 +138,32 @@ editTaskButton.addEventListener('click', () => {
 })
 
 // Process tasks, make and append dom elements for displaying tasks.
-const taskAppender = (taskName, taskNotes, taskPriority, taskDueDate, elemToAppendTo) => {
+const taskAppender = (task, elemToAppendTo) => {
     // Create needed elements to view project tasks. 
     const hostElement = document.createElement('div')
     hostElement.setAttribute('class', `task`)
-    hostElement.setAttribute('data-task', `${taskName}`)
+    hostElement.setAttribute('data-task', `${task.taskName}`)
     const hostElementTitle = document.createElement('h1')
     hostElementTitle.setAttribute('class', 'task-title')
-    hostElementTitle.innerText = `${taskName}`
+    hostElementTitle.innerText = `${task.taskName}`
     const hostElementNotes = document.createElement('p')
     hostElementNotes.setAttribute('class', 'task-notes')
-    hostElementNotes.innerText = `${taskNotes}`
+    hostElementNotes.innerText = `${task.taskNotes}`
     const hostElementPriority = document.createElement('p')
     hostElementPriority.setAttribute('class', 'task-priority')
-    hostElementPriority.innerText = `Priority: ${taskPriority}`
+    hostElementPriority.innerText = `Priority: ${task.taskPriority}`
     const hostElementDueDate = document.createElement('p')
     hostElementDueDate.setAttribute('class', 'task-due-date')
-    if (taskDueDate == undefined) {
+    if (task.taskDueDate == undefined) {
         hostElementDueDate.innerText = 'Due Date: None'
     } else {
-        hostElementDueDate.innerText = `Due Date: ${taskDueDate}`
+        hostElementDueDate.innerText = `Due Date: ${task.taskDueDate}`
     }
 
+    hostElement.addEventListener('click', () => {
+        currentItem.currentTask = task
+        console.log(currentItem)
+    })
 
     // Append elements to one another.
     hostElement.appendChild(hostElementTitle)
