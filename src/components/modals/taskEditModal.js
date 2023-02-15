@@ -37,8 +37,7 @@ const editSubmit = document.createElement('button')
 
 const taskEditModal = (targetElement) => {
     // Attach CSS props to this for toggling visibility of modal and content.
-    attributeHelper(editModalContainer, {'id':'edit-modal-container'})
-    editModalContainer.style.visibility = 'hidden'
+    attributeHelper(editModalContainer, {'id':'edit-modal-container', 'class':'not-visible'})
 
     attributeHelper(editModalContent, {'id':'edit-modal-content'})
 
@@ -140,8 +139,7 @@ const clickEditEvent = (targetElement) => {
     targetElement.addEventListener('click', () => {
         
         // Toggle the visibility of the modal form elements.
-        const editModal = document.querySelector('#edit-modal-container')
-        toggleVis(editModal)
+        toggleVis(editModalContainer)
         
         // Get data-object attribute information from parent element.
         let currentProject = targetElement.parentElement.getAttribute('data-object')
@@ -179,8 +177,10 @@ const clickEditEvent = (targetElement) => {
     })
 }
 
+// Make func that can be called to toggle viz of modal element.
 const toggleVis = (target) => {
-    target.style.visibility == 'hidden' ? target.style.visibility = 'visible' : target.style.visibility = 'hidden' 
+    target.classList.toggle('not-visible')
+    // target.style.visibility == 'hidden' ? target.style.visibility = 'visible' : target.style.visibility = 'hidden' 
 }
 
 export {taskEditModal, clickEditEvent, toggleVis}
