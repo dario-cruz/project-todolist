@@ -1,4 +1,5 @@
 import { attributeHelper } from "../helpers/attributeHelper"
+import { projectButton } from "./modals/projectModal"
 import './pageFrame.css'
 
 // Header panel for storing Heading and other elements
@@ -40,6 +41,7 @@ const pageFrame = (targetElement) => {
     headerContent.append(pageHeading)
     rightPanel.append(rightPlanePlaceholder)
     leftPanel.append(newProjectDiv)
+    projectButton(newProjectDiv)
     targetElement.append(headerPanel, rightPanel, leftPanel, footerPanel)
 }    
 

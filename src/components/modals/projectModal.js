@@ -91,7 +91,7 @@ const projectModal = (targetElement) => {
 
 }
 
-const projectButton = (targetElement, targetModal) => {
+const projectButton = (targetElement) => {
     const addProjectButton = document.createElement('button')
     attributeHelper(addProjectButton, {'id':'add-project-button', 'class':'add-project-button'})
     addProjectButton.innerText = "Add Project"

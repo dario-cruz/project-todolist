@@ -24,10 +24,7 @@ processAllLocalStorage(projectList)
 
 // Append all items put in the array to the dom.
 processList(projectList)
-// Append project modal
+// Append modals
 projectModal(contentDiv)
-// Append add project button to dom.
-projectButton(document.querySelector('#new-project-div'), document.querySelector('#project-modal-container'))
-
 taskModal(contentDiv)
 taskEditModal(contentDiv)
