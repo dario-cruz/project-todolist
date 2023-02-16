@@ -4,7 +4,8 @@ import { removeTask } from "./modals/taskModal"
 import { attributeHelper } from "../helpers/attributeHelper"
 import { toggleVis } from "./modals/taskEditModal"
 import { projectList } from "./projectGenerator"
-import { currentItem } from "../helpers/currentItemHolder"
+import { currentItem,targetObject } from "../helpers/currentItemHolder"
+
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality
@@ -161,6 +162,7 @@ const taskAppender = (task, elemToAppendTo) => {
     }
 
     hostElement.addEventListener('click', () => {
+        // Update to current project and task in the state holder object. 
         currentItem.currentTask = task
         console.log(currentItem)
     })

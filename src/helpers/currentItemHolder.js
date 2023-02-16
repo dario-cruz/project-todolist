@@ -8,8 +8,8 @@ let currentItem = {
 
 // Create function to match the current project and task to the project and task on the project list.
 const targetObject = () => {
-    let projectLoc = projectList.find(element => element == currentProject)
-    let taskLoc = projectLoc.projectTasks.find(element => element == currentTask)
+    let projectLoc = projectList.find(element => element == currentItem.currentProject)
+    let taskLoc = projectLoc.projectTasks.find(element => element == currentItem.currentTask)
 
     return taskLoc
 }
