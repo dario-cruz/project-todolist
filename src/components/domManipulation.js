@@ -4,7 +4,7 @@ import { removeTask } from "./modals/taskModal"
 import { attributeHelper } from "../helpers/attributeHelper"
 import { toggleVis } from "./modals/taskEditModal"
 import { projectList } from "./projectGenerator"
-import { currentItem,targetObject } from "../helpers/currentItemHolder"
+import { currentItem } from "../helpers/currentItemHolder"
 
 
 const projectToDom = (projectObj) => {

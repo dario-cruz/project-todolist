@@ -2,7 +2,7 @@ import './index.css'
 import { projectList } from "./components/projectGenerator";
 import { processAllLocalStorage } from "./components/localStorageManipulator";
 import { processList } from './components/domManipulation';
-import { projectButton, projectModal } from './components//modals/projectModal';
+import { projectModal } from './components//modals/projectModal';
 import { taskModal, taskButton } from './components/modals/taskModal';
 import { pageFrame } from './components/pageFrame';
 import { makeDefaultProject } from './inbox';

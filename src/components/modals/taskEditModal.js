@@ -3,6 +3,7 @@ import { attributeHelper } from "../../helpers/attributeHelper"
 import { projectList } from "../../components/projectGenerator"
 import { clearAllStorage, processProjectList } from "../localStorageManipulator"
 import { updateTaskPanel, editTaskButton } from "../domManipulation"
+import { targetObject } from '../../helpers/currentItemHolder'
 
 // Create a modal that will open on task click and allow the user to modify the task.
 // Modal form should pre-populate with task information.
@@ -64,19 +65,14 @@ const taskEditModal = (targetElement) => {
         // Prevent default form behavior. 
         e.preventDefault()
        
-        // Get data-object attribute information from parent element.
-        let currentProject = editTaskButton.parentElement.getAttribute('data-object')
-        let currentTask = editTaskButton.parentElement.getAttribute('data-task')
-        console.log(currentProject, currentTask)
-        // Find the project object and task object associated with the project.
-        currentProject = projectList.find(element => element.projectName == currentProject)
-        currentTask = currentProject.projectTasks.find(element => element.taskName == currentTask)
-        
+        // Set the current project/task object for form population and updating.
+        let currentObject = targetObject()
+
         // Update all task object values. 
-        currentTask.taskName = editTaskName.value
-        currentTask.taskNotes = editTaskDetail.value
-        currentTask.taskDueDate = editTaskDueDate.value
-        currentTask.taskPriority = editTaskPriority.value
+        currentObject.taskName = editTaskName.value
+        currentObject.taskNotes = editTaskDetail.value
+        currentObject.taskDueDate = editTaskDueDate.value
+        currentObject.taskPriority = editTaskPriority.value
         
         // Update localStorage
         clearAllStorage()
@@ -140,21 +136,15 @@ const clickEditEvent = (targetElement) => {
         // Toggle the visibility of the modal form elements.
         toggleVis(editModalContainer)
         
-        // Get data-object attribute information from parent element.
-        let currentProject = targetElement.parentElement.getAttribute('data-object')
-        let currentTask = targetElement.parentElement.getAttribute('data-task')
-        console.log(currentProject, currentTask)
-        
-        // Find the project object and task object associated with the project.
-        currentProject = projectList.find(element => element.projectName == `${currentProject}`)
-        currentTask = currentProject.projectTasks.find(element => element.taskName == `${currentTask}`)
+        // Set the current project/task object for form population and updating.
+        let currentObject = targetObject()
 
 
         // Get the current values from the task and load them into the form element.
-        editTaskName.value = currentTask.taskName
-        editTaskDetail.value = currentTask.taskNotes
-        editTaskDueDate.value = currentTask.taskDueDate
-        editTaskHeading.innerText = `Editing: ${currentTask.taskName}`
+        editTaskName.value = currentObject.taskName
+        editTaskDetail.value = currentObject.taskNotes
+        editTaskDueDate.value = currentObject.taskDueDate
+        editTaskHeading.innerText = `Editing: ${currentObject.taskName}`
         
         // Check what the target task priority is set to and add the selected prop to the appropriate option element. 
         const priorityCheck = (() => {
@@ -167,7 +157,7 @@ const clickEditEvent = (targetElement) => {
 
             // Iterate through all priorities and find the one that matches the task current and select it.
             projectList.forEach(function(item) {
-                if (item.value == currentTask.taskPriority) {
+                if (item.value == currentObject.taskPriority) {
                     attributeHelper(item, {'selected':''})
                 }
             })
