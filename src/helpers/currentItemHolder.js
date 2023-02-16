@@ -1,8 +1,17 @@
 import { projectList } from "../components/projectGenerator";
 
+// Create a holder object for storing the current project and task  to be updated and edited. 
 let currentItem = {
     currentProject: '',
     currentTask: ''
 }
 
-export {currentItem}
+// Create function to match the current project and task to the project and task on the project list.
+const targetObject = () => {
+    let projectLoc = projectList.find(element => element == currentProject)
+    let taskLoc = projectLoc.projectTasks.find(element => element == currentTask)
+
+    return taskLoc
+}
+
+export {currentItem, targetObject}
