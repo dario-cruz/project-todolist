@@ -10,11 +10,14 @@
     grid-area: header;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
+    color: white;
+    background-color: orange;
+    text-decoration: underline;
 }
 .right-panel {
     grid-area: right;
     display: grid;
-    grid-template-rows: repeat(4, 6rem);
+    grid-template-rows: repeat(4, 8rem);
     grid-template-columns: 1fr;
     grid-auto-rows: 6rem;
 }
@@ -26,9 +29,19 @@
     grid-auto-rows: 6rem;
 }
 
-/* Stop the user from selecting hte project name text. */
-.left-panel > div > h1 {
+.project-heading {
+    /* Stop the user from selecting hte project name text. */
     user-select: none;
+    /* Define custom font. */
+    font-family: "bebas";
+}
+/* Stop the user from selecting the task name and text. */
+.task {
+    user-select: none;
+}
+/* Apply custom font to all task headings. */
+.task > h1 {
+    font-family: "bebas";
 }
 
 .footer-panel {
@@ -37,4 +50,13 @@
 /* Style the text elements. */
 .header-page-heading {
     font-family: "quicksilver-itl";
+}
+
+/* Stop the user from selection the page heading. */
+.header-content-div > h1 {
+    user-select: none;
+}
+
+.heading {
+    font-family: 'bebas';
 }

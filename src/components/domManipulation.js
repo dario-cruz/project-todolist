@@ -61,6 +61,13 @@ const projectToDom = (projectObj) => {
         // Get a list of all tasks and tag them with the project data attribute. 
         // Will allow us to ID the related project and task objects for modification.
         let listOfTaskDivs = document.querySelectorAll('div.task')
+        // If no tasks are present create and append place holder text.
+        if (listOfTaskDivs.length == 0) {
+            let placeHolderHeading = document.createElement('h1')
+            attributeHelper(placeHolderHeading, {'class':'heading'})
+            placeHolderHeading.innerText = 'Please create a task.'
+            rightPanel.append(placeHolderHeading)
+        }
         listOfTaskDivs.forEach(element => element.setAttribute('data-object', `${projectName}`))
     })
 

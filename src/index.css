@@ -34,18 +34,8 @@
     "footer footer";
 }
 
-.header-panel {
-    color: white;
-    background-color: orange;
-    text-decoration: underline;
-}
 
-/* Stop the user from selection the page heading. */
-.header-content-div > h1 {
-    user-select: none;
-}
 
-/* Set all headings to use specific font face. */
-.right-panel > h1, .left-panel > div > h1 {
-    font-family: bebas;
+p {
+    font-family: 'Courier New', Courier, monospace;
 }
