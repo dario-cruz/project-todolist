@@ -94,7 +94,7 @@ const projectModal = (targetElement) => {
 const projectButton = (targetElement) => {
     const addProjectButton = document.createElement('button')
     attributeHelper(addProjectButton, {'id':'add-project-button', 'class':'add-project-button'})
-    addProjectButton.innerText = "Add Project"
+    addProjectButton.innerText = "New Project"
 
     addProjectButton.addEventListener('click', () => {
         document.getElementById('project-modal-container').style.visibility = 'visible'

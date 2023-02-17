@@ -25,6 +25,12 @@
     grid-template-columns: 1fr;
     grid-auto-rows: 6rem;
 }
+
+/* Stop the user from selecting hte project name text. */
+.left-panel > div > h1 {
+    user-select: none;
+}
+
 .footer-panel {
     grid-area: footer;
 }

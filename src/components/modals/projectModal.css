@@ -35,3 +35,9 @@
 .project-span-close:hover {
     background-color: darkgray;
 }
+
+.new-project-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
