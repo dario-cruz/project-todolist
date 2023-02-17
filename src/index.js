@@ -3,7 +3,7 @@ import { projectList } from "./components/projectGenerator";
 import { processAllLocalStorage } from "./components/localStorageManipulator";
 import { processList } from './components/domManipulation';
 import { projectModal } from './components//modals/projectModal';
-import { taskModal, taskButton } from './components/modals/taskModal';
+import { taskModal } from './components/modals/taskModal';
 import { pageFrame } from './components/pageFrame';
 import { makeDefaultProject } from './inbox';
 import { taskEditModal } from './components/modals/taskEditModal';
