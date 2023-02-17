@@ -5,6 +5,7 @@ import { attributeHelper } from "../helpers/attributeHelper"
 import { toggleVis } from "./modals/taskEditModal"
 import { projectList } from "./projectGenerator"
 import { currentItem } from "../helpers/currentItemHolder"
+import { formDateFormatter } from "../helpers/formDateFormatter"
 
 
 const projectToDom = (projectObj) => {
@@ -158,7 +159,8 @@ const taskAppender = (task, elemToAppendTo) => {
     if (task.taskDueDate == undefined) {
         hostElementDueDate.innerText = 'Due Date: None'
     } else {
-        hostElementDueDate.innerText = `Due Date: ${task.taskDueDate}`
+        let formattedDate = formDateFormatter(`${task.taskDueDate}`)
+        hostElementDueDate.innerText = `Due Date: ${formattedDate}`
     }
 
     hostElement.addEventListener('click', () => {

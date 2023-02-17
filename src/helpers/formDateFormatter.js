@@ -4,7 +4,7 @@ import {format} from "date-fns";
 
 const formDateFormatter  = (dateString) => {
     let dateArray = dateString.split('-')
-    dateString = format(new Date(`${dateArray[0]},${dateArray[1]},${dateArray[2]}`), 'dd/MM/yyyy')
+    dateString = format(new Date(`${dateArray[0]},${dateArray[1]},${dateArray[2]}`), 'MM/dd/yyyy')
     return dateString
 }
 
