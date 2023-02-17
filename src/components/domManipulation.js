@@ -64,7 +64,7 @@ const projectToDom = (projectObj) => {
         // If no tasks are present create and append place holder text.
         if (listOfTaskDivs.length == 0) {
             let placeHolderHeading = document.createElement('h1')
-            attributeHelper(placeHolderHeading, {'class':'heading'})
+            attributeHelper(placeHolderHeading, {'class':'place-holder-heading'})
             placeHolderHeading.innerText = 'Please create a task.'
             rightPanel.append(placeHolderHeading)
         }
