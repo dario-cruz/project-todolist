@@ -34,7 +34,15 @@
     "footer footer";
 }
 
+button {
+    cursor: pointer;
+}
 
+/* Stop selection of the span text element, change select to pointer */
+span {
+    user-select: none;
+    cursor: pointer;
+}
 
 p {
     font-family: 'Courier New', Courier, monospace;
