@@ -11,8 +11,6 @@ const makeDefaultProject = () => {
         inboxProject.makeNewTask('Clean the Kitchen', 'Hi', 'Make sure to clean under the cabinet.')
         inboxProject.makeNewTask('Take out Trash', 'Low', 'Remember to sort the recycling.')
     
-        //Add it to the project list. 
-        // addProjectToArray(inboxProject, projectList)
         //Add to localStorage
         placeInStorage(inboxProject)
     } else {

@@ -92,59 +92,65 @@ const processList = (arrayOfObjs) => {
     })
 }
 
-// Define element to trigger editing of task.
-const editTaskButton = document.createElement('button')
-attributeHelper(editTaskButton, {'id':'edit-task-button'})
-
-editTaskButton.innerText = 'Edit'
-// Create event on click to display editModal and populate form with current task information.
-editTaskButton.addEventListener('click', () => {
+const createEditTaskButton = (targetElement) => {
+    // Define element to trigger editing of task.
+    const editTaskButton = document.createElement('button')
+    attributeHelper(editTaskButton, {'id':'edit-task-button'})
+    editTaskButton.innerText = 'Edit'
+    
+    // Create event on click to display editModal and populate form with current task information.
+    editTaskButton.addEventListener('click', () => {
+            
+        // Toggle the visibility of the modal form elements.
+        const editModal = document.querySelector('#edit-modal-container')
+        toggleVis(editModal)
         
-    // Toggle the visibility of the modal form elements.
-    const editModal = document.querySelector('#edit-modal-container')
-    toggleVis(editModal)
+        // Get data-object attribute information from parent element.
+        let currentProject = editTaskButton.parentElement.getAttribute('data-object')
+        let currentTask = editTaskButton.parentElement.getAttribute('data-task')
+        console.log(currentProject, currentTask)
+        
+        // Find the project object and task object associated with the project.
+        currentProject = projectList.find(element => element.projectName == `${currentProject}`)
+        currentTask = currentProject.projectTasks.find(element => element.taskName == `${currentTask}`)
     
-    // Get data-object attribute information from parent element.
-    let currentProject = editTaskButton.parentElement.getAttribute('data-object')
-    let currentTask = editTaskButton.parentElement.getAttribute('data-task')
-    console.log(currentProject, currentTask)
+        // Define all of the needed editTaskModal elements. 
+        const editTaskName = document.querySelector('#edit-task-name')
+        const editTaskDetail = document.querySelector('#edit-task-detail')
+        const editTaskDueDate = document.querySelector('#edit-task-duedate')
+        const editTaskHeading = document.querySelector('#edit-task-heading')
+        const lowPriority = document.querySelector('#edit-priority-lo')
+        const medPriority = document.querySelector('#edit-priority-med')
+        const hiPriority = document.querySelector('#edit-priority-hi')
     
-    // Find the project object and task object associated with the project.
-    currentProject = projectList.find(element => element.projectName == `${currentProject}`)
-    currentTask = currentProject.projectTasks.find(element => element.taskName == `${currentTask}`)
-
-    // Define all of the needed editTaskModal elements. 
-    const editTaskName = document.querySelector('#edit-task-name')
-    const editTaskDetail = document.querySelector('#edit-task-detail')
-    const editTaskDueDate = document.querySelector('#edit-task-duedate')
-    const editTaskHeading = document.querySelector('#edit-task-heading')
-    const lowPriority = document.querySelector('#edit-priority-lo')
-    const medPriority = document.querySelector('#edit-priority-med')
-    const hiPriority = document.querySelector('#edit-priority-hi')
-
-    // Get the current values from the task and load them into the form element.
-    editTaskName.value = currentTask.taskName
-    editTaskDetail.value = currentTask.taskNotes
-    editTaskDueDate.value = currentTask.taskDueDate
-    editTaskHeading.innerText = `Editing: ${currentTask.taskName}`
+        // Get the current values from the task and load them into the form element.
+        editTaskName.value = currentTask.taskName
+        editTaskDetail.value = currentTask.taskNotes
+        editTaskDueDate.value = currentTask.taskDueDate
+        editTaskHeading.innerText = `Editing: ${currentTask.taskName}`
+        
+        // Check what the target task priority is set to and add the selected prop to the appropriate option element. 
+        const priorityCheck = (() => {
+            let priorityList = [lowPriority, medPriority, hiPriority]
+            // clear all previous selected attributes.
+            lowPriority.removeAttribute('selected')
+            medPriority.removeAttribute('selected')
+            hiPriority.removeAttribute('selected')
     
-    // Check what the target task priority is set to and add the selected prop to the appropriate option element. 
-    const priorityCheck = (() => {
-        let priorityList = [lowPriority, medPriority, hiPriority]
-        // clear all previous selected attributes.
-        lowPriority.removeAttribute('selected')
-        medPriority.removeAttribute('selected')
-        hiPriority.removeAttribute('selected')
+    
+            // Iterate through all priorities and find the one that matches the task current and select it.
+            projectList.forEach(function(item) {
+                if (item.value == currentTask.taskPriority) {
+                    attributeHelper(item, {'selected':''})
+                }
+            })
+        })()
+    })
 
+    // Append to the target.
+    targetElement.append(editTaskButton)
+}
 
-        // Iterate through all priorities and find the one that matches the task current and select it.
-        projectList.forEach(function(item) {
-            if (item.value == currentTask.taskPriority) {
-                attributeHelper(item, {'selected':''})
-            }
-        })
-    })()
-})
 
 // Process tasks, make and append dom elements for displaying tasks.
 const taskAppender = (task, elemToAppendTo) => {
@@ -169,20 +175,20 @@ const taskAppender = (task, elemToAppendTo) => {
         let formattedDate = formDateFormatter(`${task.taskDueDate}`)
         hostElementDueDate.innerText = `Due Date: ${formattedDate}`
     }
-
-    hostElement.addEventListener('click', () => {
-        // Update to current project and task in the state holder object. 
-        currentItem.currentTask = task
-        console.log(currentItem)
-    })
-
+    
     // Append elements to one another.
     hostElement.appendChild(hostElementTitle)
     hostElement.appendChild(hostElementNotes)
     hostElement.appendChild(hostElementPriority)
     hostElement.appendChild(hostElementDueDate)
-    hostElement.appendChild(editTaskButton)
+    createEditTaskButton(hostElement)
     removeTask(hostElement)
+    
+    hostElement.addEventListener('click', () => {
+        // Update to current project and task in the state holder object. 
+        currentItem.currentTask = task
+        console.log(currentItem)
+    })
 
     // Append to the arg element.
     elemToAppendTo.appendChild(hostElement)
@@ -207,4 +213,4 @@ const clearTaskElem = (theTarget) => {
 
 }
 
-export { projectToDom, processList, taskAppender, clearTaskElem, updateTaskPanel, editTaskButton }
+export { projectToDom, processList, taskAppender, clearTaskElem, updateTaskPanel,  }
