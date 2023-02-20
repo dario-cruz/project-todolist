@@ -8,7 +8,7 @@ const makeDefaultProject = () => {
         // Create default project "inbox" and add default task to the project.
         const inboxProject = new Project('Inbox')
         // Create elements for the left-panel. 
-        inboxProject.makeNewTask('Clean the Kitchen', 'Hi', 'Make sure to clean under the cabinet.', '2030-01-02')
+        inboxProject.makeNewTask('Clean the Kitchen', 'High', 'Make sure to clean under the cabinet.', '2030-01-02')
         inboxProject.makeNewTask('Take out Trash', 'Low', 'Remember to sort the recycling.', '2023-02-02')
     
         //Add to localStorage

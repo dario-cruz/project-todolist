@@ -40,16 +40,16 @@ const taskModal = (targetElement) => {
     taskPriorityInputLabel.innerText = 'Task Priority:'
 
     const priorityOne = document.createElement('option')
-    attributeHelper(priorityOne, {'value': 'Priority 1'})
+    attributeHelper(priorityOne, {'value': 'High'})
     priorityOne.innerText = 'High Priority'
 
     const priorityTwo = document.createElement('option')
-    attributeHelper(priorityTwo, {'value': 'Priority 2'})
-    priorityTwo.innerText = 'Low Priority'
+    attributeHelper(priorityTwo, {'value': 'Medium'})
+    priorityTwo.innerText = 'Medium Priority'
 
     const priorityThree = document.createElement('option')
-    attributeHelper(priorityThree, {'value': 'Priority 3'})
-    priorityThree.innerText = 'No Priority'
+    attributeHelper(priorityThree, {'value': 'Low'})
+    priorityThree.innerText = 'Low Priority'
 
     // Create task date input 
     const taskDateInput = document.createElement('input')

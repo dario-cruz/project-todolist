@@ -93,11 +93,11 @@ const taskEditModal = (targetElement) => {
 
     attributeHelper(editTaskPriority, {'id':'edit-task-priority', 'name':'edit-task-priority'})
     
-    attributeHelper(lowPriority, {'value':'Priority 3', 'id':'edit-priority-lo'})
+    attributeHelper(lowPriority, {'value':'Low', 'id':'edit-priority-lo'})
     lowPriority.innerText = 'Low Priority'
-    attributeHelper(medPriority, {'value':'Priority 2', 'id':'edit-priority-med'})
+    attributeHelper(medPriority, {'value':'Medium', 'id':'edit-priority-med'})
     medPriority.innerText = "Medium Priority"
-    attributeHelper(hiPriority, {'value':'Priority 1', 'id':'edit-priority-hi'})
+    attributeHelper(hiPriority, {'value':'High', 'id':'edit-priority-hi'})
     hiPriority.innerText = 'High Priority'
 
     attributeHelper(editTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
