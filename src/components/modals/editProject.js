@@ -13,6 +13,10 @@ attributeHelper(editProjectContainer, {'id':'edit-project-container','class':'is
 const editProjectContent = document.createElement('div')
 attributeHelper(editProjectContent, {'id':'edit-project-content'})
 
+// Modal Heading
+const editProjectHeading =document.createElement('h1')
+attributeHelper(editProjectHeading, {'id':'edit-project-heading'})
+
 // Modal Form
 const editProjectForm = document.createElement('form')
 attributeHelper(editProjectForm, {'id':'edit-project-form', 'action':''})
@@ -67,7 +71,7 @@ editProjectSpan.addEventListener('click', () => {
 const editProjectModal = (targetElement) => {
     // Build out the structure of the modal.
     editProjectContainer.append(editProjectContent)
-    editProjectContent.append(editProjectForm, editProjectSpan)
+    editProjectContent.append(editProjectHeading, editProjectForm, editProjectSpan)
     editProjectForm.append(editProjectNameLabel, editProjectName, editProjectSubmit)
 
     // Attach the modal to the target.
@@ -80,6 +84,10 @@ const editProjectButton = (targetElement) => {
     editButton.innerText = 'Edit'
 
     editButton.addEventListener('click', () => {
+        let targetProj = targetProject()
+        // Change heading to show current project being modded. 
+        editProjectHeading.innerText = `Editing: ${targetProj.projectName}`
+        
         // Toggle viz of element.
         editProjectContainer.classList.toggle('is-hidden')
     })
