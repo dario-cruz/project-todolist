@@ -4,11 +4,11 @@ import { removeTask } from "./modals/taskModal"
 import { attributeHelper } from "../helpers/attributeHelper"
 import { toggleVis } from "./modals/taskEditModal"
 import { projectList } from "./projectGenerator"
-import { currentItem } from "../helpers/currentItemHolder"
+import { currentItem, targetObject, targetProject } from "../helpers/currentItemHolder"
 import { formDateFormatter } from "../helpers/formDateFormatter"
 import { editProjectButton } from "./modals/editProject"
 import './domManipulator.css'
-import { hoursToSeconds } from "date-fns"
+import { isDate } from "date-fns"
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality
@@ -106,19 +106,20 @@ const createEditTaskButton = (targetElement) => {
     
     // Create event on click to display editModal and populate form with current task information.
     editTaskButton.addEventListener('click', () => {
-            
+        
+        editTaskButton.parentElement.click()     
         // Toggle the visibility of the modal form elements.
         const editModal = document.querySelector('#edit-modal-container')
         toggleVis(editModal)
         
         // Get data-object attribute information from parent element.
-        let currentProject = editTaskButton.parentElement.getAttribute('data-object')
-        let currentTask = editTaskButton.parentElement.getAttribute('data-task')
-        console.log(currentProject, currentTask)
+        let currentProject = targetProject()
+        let currentTask = targetObject()
+        console.log(currentTask)
         
         // Find the project object and task object associated with the project.
-        currentProject = projectList.find(element => element.projectName == `${currentProject}`)
-        currentTask = currentProject.projectTasks.find(element => element.taskName == `${currentTask}`)
+        // currentProject = projectList.find(element => element.projectName == `${currentProject}`)
+        // currentTask = currentProject.projectTasks.find(element => element.taskName == `${currentTask}`)
     
         // Define all of the needed editTaskModal elements. 
         const editTaskName = document.querySelector('#edit-task-name')
@@ -193,10 +194,6 @@ const taskAppender = (task, elemToAppendTo) => {
     // Append elements to one another.
     hostElement.append(leftSide, rightSide)
     leftSide.append(hostElementTitle, hostElementNotes, hostElementPriority, hostElementDueDate)
-    // hostElement.appendChild(hostElementTitle)
-    // hostElement.appendChild(hostElementNotes)
-    // hostElement.appendChild(hostElementPriority)
-    // hostElement.appendChild(hostElementDueDate)
     createEditTaskButton(hostElement)
     removeTask(hostElement)
     
