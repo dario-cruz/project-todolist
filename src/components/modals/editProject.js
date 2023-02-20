@@ -1,5 +1,6 @@
 import { attributeHelper } from "../../helpers/attributeHelper"
-import { currentItem, targetObject } from "../../helpers/currentItemHolder"
+import { currentItem } from "../../helpers/currentItemHolder"
+import { projectList } from "../projectGenerator"
 
 // Modal Container
 const editProjectContainer = document.createElement('div')
@@ -12,6 +13,14 @@ attributeHelper(editProjectContent, {'id':'edit-project-content'})
 // Modal Form
 const editProjectForm = document.createElement('form')
 attributeHelper(editProjectForm, {'id':'edit-project-form', 'action':''})
+editProjectForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    let targetProject = projectList.find(element => element == currentItem.currentProject)
+    // Update the project name value with value from input.
+    targetProject.projectName = editProjectName.value
+    
+})
 
 // Form Inputs
 const editProjectNameLabel = document.createElement('label')
