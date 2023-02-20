@@ -116,10 +116,6 @@ const createEditTaskButton = (targetElement) => {
         let currentProject = targetProject()
         let currentTask = targetObject()
         console.log(currentTask)
-        
-        // Find the project object and task object associated with the project.
-        // currentProject = projectList.find(element => element.projectName == `${currentProject}`)
-        // currentTask = currentProject.projectTasks.find(element => element.taskName == `${currentTask}`)
     
         // Define all of the needed editTaskModal elements. 
         const editTaskName = document.querySelector('#edit-task-name')
