@@ -54,7 +54,7 @@
     user-select: none;
 }
 /* Apply custom font to all task headings. */
-.task > h1 {
+.task > div > h1 {
     font-family: "bebas";
 }
 
