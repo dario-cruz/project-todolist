@@ -84,6 +84,8 @@ const editProjectButton = (targetElement) => {
     editButton.innerText = 'Edit'
 
     editButton.addEventListener('click', () => {
+        editButton.parentElement.click()
+
         let targetProj = targetProject()
         // Change heading to show current project being modded. 
         editProjectHeading.innerText = `Editing: ${targetProj.projectName}`
