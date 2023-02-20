@@ -51,7 +51,9 @@ editProjectSpan.innerHTML = '&times'
 // Exportable func for adding element to the dom.
 const editProjectModal = (targetElement) => {
     // Build out the structure of the modal.
-
+    editProjectContainer.append(editProjectContent)
+    editProjectContent.append(editProjectForm, editProjectSpan)
+    editProjectForm.append(editProjectNameLabel, editProjectName, editProjectSubmit)
 
     // Attach the modal to the target.
     targetElement.append(editProjectContainer)
