@@ -6,6 +6,7 @@ import { toggleVis } from "./modals/taskEditModal"
 import { projectList } from "./projectGenerator"
 import { currentItem } from "../helpers/currentItemHolder"
 import { formDateFormatter } from "../helpers/formDateFormatter"
+import { editProjectButton } from "./modals/editProject"
 
 
 const projectToDom = (projectObj) => {
@@ -35,6 +36,9 @@ const projectToDom = (projectObj) => {
     
     // Append the project-tab to the left-panel DOM element.
     leftPanel.append(projectTab)
+
+    // Append the edit button
+    editProjectButton(projectTab)
     
     // Append remove button.
     removeProjectButton(projectTab)

@@ -7,6 +7,7 @@ import { taskModal } from './components/modals/taskModal';
 import { pageFrame } from './components/pageFrame';
 import { makeDefaultProject } from './inbox';
 import { taskEditModal } from './components/modals/taskEditModal';
+import { editProjectModal } from './components/modals/editProject';
 
 // Add main content div to body for all other content to append to. 
 const contentDiv = document.createElement('div')
@@ -28,3 +29,4 @@ processList(projectList)
 projectModal(contentDiv)
 taskModal(contentDiv)
 taskEditModal(contentDiv)
+editProjectModal(contentDiv)

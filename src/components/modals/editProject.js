@@ -49,6 +49,11 @@ const editProjectSpan = document.createElement('span')
 attributeHelper(editProjectSpan, {'id':'edit-project-span'})
 editProjectSpan.innerHTML = '&times'
 
+editProjectSpan.addEventListener('click', () => {
+    // Toggle viz of modal element. 
+    editProjectContainer.classList.toggle('is-hidden')
+})
+
 
 // Exportable func for adding element to the dom.
 const editProjectModal = (targetElement) => {
@@ -67,8 +72,11 @@ const editProjectButton = (targetElement) => {
     editButton.innerText = 'Edit'
 
     editButton.addEventListener('click', () => {
-        // Add class to element so it is visible.
+        // Toggle viz of element.
+        editProjectContainer.classList.toggle('is-hidden')
     })
+    // Append the button to the target.
+    targetElement.append(editButton)
 }
 
 export {editProjectModal, editProjectButton}
