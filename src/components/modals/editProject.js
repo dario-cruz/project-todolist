@@ -37,12 +37,14 @@ editProjectForm.addEventListener('submit', (e) => {
 // Form Inputs
 const editProjectNameLabel = document.createElement('label')
 attributeHelper(editProjectNameLabel, {'for':'edit-project-input','form':'edit-project-form'})
+editProjectNameLabel.innerText = 'Edit Project Name:'
 const editProjectName = document.createElement('input')
 attributeHelper(editProjectName, {'id':'edit-project-input','type':'text', 'required':''})
 
 // Submit button
 const editProjectSubmit = document.createElement('button')
 attributeHelper(editProjectSubmit, {'id':'edit-project-submit'})
+editProjectSubmit.innerText = 'Submit'
 
 // Span element for closing modal.
 const editProjectSpan = document.createElement('span')
