@@ -28,7 +28,7 @@ const projectModal = (targetElement) => {
 
     // Setup input for form.
     const projectFormInput = document.createElement('input')
-    attributeHelper(projectFormInput, {'type':'text', 'id':'project-form-input', 'required':''})
+    attributeHelper(projectFormInput, {'type':'text', 'id':'project-form-input', 'required':'', 'maxlength': '15'})
 
     // Button for submit
     const projectFormButton = document.createElement('button')

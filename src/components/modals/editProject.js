@@ -49,7 +49,7 @@ const editProjectNameLabel = document.createElement('label')
 attributeHelper(editProjectNameLabel, {'for':'edit-project-input','form':'edit-project-form'})
 editProjectNameLabel.innerText = 'Edit Project Name:'
 const editProjectName = document.createElement('input')
-attributeHelper(editProjectName, {'id':'edit-project-input','type':'text', 'required':''})
+attributeHelper(editProjectName, {'id':'edit-project-input','type':'text', 'required':'', 'maxlength':'15'})
 
 // Submit button
 const editProjectSubmit = document.createElement('button')
