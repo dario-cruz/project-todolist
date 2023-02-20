@@ -14,4 +14,9 @@ const targetObject = () => {
     return taskLoc
 }
 
-export {currentItem, targetObject}
+const targetProject = () => {
+    let projectLoc = projectList.find(element => element == currentItem.currentProject)
+    return projectLoc
+}
+
+export {currentItem, targetObject, targetProject}

@@ -4,6 +4,7 @@ import { Task } from "../taskGenerator";
 import { clearAllStorage, processProjectList } from '../localStorageManipulator'
 import { getCurrentDate } from "../../helpers/dateHelpers";
 import { Project, projectList } from "../projectGenerator";
+import { currentItem, targetObject, targetProject } from '../../helpers/currentItemHolder';
 
 const taskModal = (targetElement) => {
     // Create the contain to hold all of the content
@@ -207,15 +208,11 @@ const removeTask = (targetElement) => {
     targetElement.append(removeTaskButton)
 
     removeTaskButton.addEventListener('click', () => {
-        // Set variables that point to the current project and task.
-        let targetProject = removeTaskButton.parentElement.getAttribute('data-object')
-        let targetTask = removeTaskButton.parentElement.getAttribute('data-task')
-
         // Use variables to find the target project.
-        let foundProject = projectList.find(element => element.projectName == targetProject)
+        let foundProject = targetProject()
 
         // Find the target task.
-        let foundTask = foundProject.projectTasks.find(element => element.taskName == targetTask)
+        let foundTask = targetObject()
 
         // Remove the task from the project it belongs to.
         foundProject.projectTasks.pop(foundTask)
