@@ -35,6 +35,9 @@ editProjectForm.addEventListener('submit', (e) => {
     clearAllStorage()
     processProjectList()
     processList(projectList)
+
+    // Toggle viz of modal.
+    editProjectContainer.classList.toggle('is-hidden')
 })
 
 // Form Inputs
