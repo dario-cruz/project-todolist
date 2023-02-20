@@ -22,7 +22,7 @@ const taskModal = (targetElement) => {
     // Create Task name input
     const taskNameInput = document.createElement('input')
     const taskNameInputLabel = document.createElement('label')
-    attributeHelper(taskNameInput, {'type': 'text', 'id': 'task-name-input', 'required': ''})
+    attributeHelper(taskNameInput, {'type': 'text', 'id': 'task-name-input', 'required': '', 'maxlength':'20'})
     attributeHelper(taskNameInputLabel, {'for': 'task-name-input'})
     taskNameInputLabel.innerText = 'Task Name'
 

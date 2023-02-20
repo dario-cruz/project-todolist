@@ -87,7 +87,7 @@ const taskEditModal = (targetElement) => {
         toggleVis(editModalContainer)
     })
     
-    attributeHelper(editTaskName, {'type':'text', 'id':'edit-task-name', 'required':''})
+    attributeHelper(editTaskName, {'type':'text', 'id':'edit-task-name', 'required':'', 'maxlength':'20'})
 
     attributeHelper(editTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':'', 'required':''})
 

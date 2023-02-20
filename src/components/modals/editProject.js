@@ -66,6 +66,15 @@ editProjectSpan.addEventListener('click', () => {
     editProjectContainer.classList.toggle('is-hidden')
 })
 
+// Grid elements for positioning and styling.
+const leftSide = document.createElement('div')
+
+const rightSide = document.createElement('div')
+
+const topSide = document.createElement('div')
+
+const bottomSide = document.createElement('div')
+
 
 // Exportable func for adding element to the dom.
 const editProjectModal = (targetElement) => {
