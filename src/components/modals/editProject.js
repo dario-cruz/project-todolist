@@ -50,7 +50,11 @@ editProjectSpan.innerHTML = '&times'
 
 // Exportable func for adding element to the dom.
 const editProjectModal = (targetElement) => {
+    // Build out the structure of the modal.
 
+
+    // Attach the modal to the target.
+    targetElement.append(editProjectContainer)
 }
 
 const editProjectButton = (targetElement) => {
@@ -62,6 +66,5 @@ const editProjectButton = (targetElement) => {
         // Add class to element so it is visible.
     })
 }
-
 
 export {editProjectModal, editProjectButton}
