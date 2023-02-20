@@ -1,3 +1,4 @@
+import './editProject.css'
 import { attributeHelper } from "../../helpers/attributeHelper"
 import { currentItem } from "../../helpers/currentItemHolder"
 import { processList } from "../domManipulation"
@@ -45,6 +46,7 @@ attributeHelper(editProjectSubmit, {'id':'edit-project-submit'})
 
 // Span element for closing modal.
 const editProjectSpan = document.createElement('span')
+attributeHelper(editProjectSpan, {'id':'edit-project-span'})
 editProjectSpan.innerHTML = '&times'
 
 
