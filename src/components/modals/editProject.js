@@ -53,5 +53,15 @@ const editProjectModal = (targetElement) => {
 
 }
 
+const editProjectButton = (targetElement) => {
+    const editButton = document.createElement('button')
+    attributeHelper(editButton, {'id':'edit-project-button'})
+    editButton.innerText = 'Edit'
 
-export {editProjectModal}
+    editButton.addEventListener('click', () => {
+        // Add class to element so it is visible.
+    })
+}
+
+
+export {editProjectModal, editProjectButton}
