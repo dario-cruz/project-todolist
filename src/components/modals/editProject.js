@@ -1,5 +1,6 @@
 import { attributeHelper } from "../../helpers/attributeHelper"
 import { currentItem } from "../../helpers/currentItemHolder"
+import { processList } from "../domManipulation"
 import { projectList } from "../projectGenerator"
 
 // Modal Container
@@ -19,7 +20,17 @@ editProjectForm.addEventListener('submit', (e) => {
     let targetProject = projectList.find(element => element == currentItem.currentProject)
     // Update the project name value with value from input.
     targetProject.projectName = editProjectName.value
-    
+
+    // Update left-panel with updated project name. 
+    let elementList = document.querySelectorAll('.left-panel > div')
+    elementList.forEach(element => {
+        if (element.classList.contains('new-project-div')) {
+
+        } else {
+            element.remove()
+        }
+    })
+    processList(projectList)
 })
 
 // Form Inputs
