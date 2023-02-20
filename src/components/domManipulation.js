@@ -40,11 +40,12 @@ const projectToDom = (projectObj) => {
     // Append the edit button
     editProjectButton(projectTab)
     
+    // Append add task button
+    taskButton(projectTab)
+    
     // Append remove button.
     removeProjectButton(projectTab)
 
-    // Append add task button
-    taskButton(projectTab)
 
     // Add event for changing displayed tasks related to projects.
     projectTab.addEventListener('click', () => {
