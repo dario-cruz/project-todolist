@@ -87,7 +87,10 @@ const editProjectButton = (targetElement) => {
         let targetProj = targetProject()
         // Change heading to show current project being modded. 
         editProjectHeading.innerText = `Editing: ${targetProj.projectName}`
-        
+       
+        // Set the input value to be the name of project being edited.
+        editProjectName.value = targetProj.projectName
+
         // Toggle viz of element.
         editProjectContainer.classList.toggle('is-hidden')
     })
