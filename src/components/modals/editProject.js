@@ -1,8 +1,9 @@
 import './editProject.css'
 import { attributeHelper } from "../../helpers/attributeHelper"
-import { currentItem } from "../../helpers/currentItemHolder"
+import { currentItem, targetProject } from "../../helpers/currentItemHolder"
 import { processList } from "../domManipulation"
 import { projectList } from "../projectGenerator"
+import { clearAllStorage, processProjectList } from '../localStorageManipulator'
 
 // Modal Container
 const editProjectContainer = document.createElement('div')
@@ -18,9 +19,9 @@ attributeHelper(editProjectForm, {'id':'edit-project-form', 'action':''})
 editProjectForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    let targetProject = projectList.find(element => element == currentItem.currentProject)
+    let targetProj = targetProject()
     // Update the project name value with value from input.
-    targetProject.projectName = editProjectName.value
+    targetProj.projectName = editProjectName.value
 
     // Update left-panel with updated project name. 
     let elementList = document.querySelectorAll('.left-panel > div')
@@ -31,6 +32,8 @@ editProjectForm.addEventListener('submit', (e) => {
             element.remove()
         }
     })
+    clearAllStorage()
+    processProjectList()
     processList(projectList)
 })
 
