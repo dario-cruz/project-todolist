@@ -1,0 +1,13 @@
+/*Divide the task div in half left side will contain all task data, right side will contain countdown to due date.*/
+.task {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "left right";
+}
+#left-side {
+    grid-area: left;
+}
+#right-side {
+    grid-area: right;
+}

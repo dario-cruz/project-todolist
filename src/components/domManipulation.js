@@ -7,7 +7,8 @@ import { projectList } from "./projectGenerator"
 import { currentItem } from "../helpers/currentItemHolder"
 import { formDateFormatter } from "../helpers/formDateFormatter"
 import { editProjectButton } from "./modals/editProject"
-
+import './domManipulator.css'
+import { hoursToSeconds } from "date-fns"
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality
@@ -181,11 +182,21 @@ const taskAppender = (task, elemToAppendTo) => {
         hostElementDueDate.innerText = `Due Date: ${formattedDate}`
     }
     
+    // Create divs for grid to contain all information.
+    const leftSide = document.createElement('div')
+    attributeHelper(leftSide, {'id':'task-left-side'})
+    
+    const rightSide = document.createElement('div')
+    attributeHelper(rightSide, {'id':'task-right-side'})
+
+
     // Append elements to one another.
-    hostElement.appendChild(hostElementTitle)
-    hostElement.appendChild(hostElementNotes)
-    hostElement.appendChild(hostElementPriority)
-    hostElement.appendChild(hostElementDueDate)
+    hostElement.append(leftSide, rightSide)
+    leftSide.append(hostElementTitle, hostElementNotes, hostElementPriority, hostElementDueDate)
+    // hostElement.appendChild(hostElementTitle)
+    // hostElement.appendChild(hostElementNotes)
+    // hostElement.appendChild(hostElementPriority)
+    // hostElement.appendChild(hostElementDueDate)
     createEditTaskButton(hostElement)
     removeTask(hostElement)
     
