@@ -5,7 +5,7 @@ import { projectList } from "../projectGenerator"
 
 // Modal Container
 const editProjectContainer = document.createElement('div')
-attributeHelper(editProjectContainer, {'id':'edit-project-container'})
+attributeHelper(editProjectContainer, {'id':'edit-project-container','class':'is-hidden'})
 
 // Modal Content
 const editProjectContent = document.createElement('div')
