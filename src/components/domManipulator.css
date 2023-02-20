@@ -5,13 +5,16 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: "left right";
 }
-#left-side {
+.task-left-side {
     grid-area: left;
 }
-#right-side {
+.task-right-side {
     grid-area: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /* Apply custom font to all task headings. */
-.task-title {
+.task-title, .task-due-time {
     font-family: "bebas";
 }

@@ -8,7 +8,7 @@ import { currentItem, targetObject, targetProject } from "../helpers/currentItem
 import { formDateFormatter } from "../helpers/formDateFormatter"
 import { editProjectButton } from "./modals/editProject"
 import './domManipulator.css'
-import { isDate } from "date-fns"
+import { getDateDistance } from "../helpers/dateHelpers"
 
 const projectToDom = (projectObj) => {
     // define needed elements to complete functionality
@@ -116,7 +116,7 @@ const createEditTaskButton = (targetElement) => {
         let currentProject = targetProject()
         let currentTask = targetObject()
         console.log(currentTask)
-    
+
         // Define all of the needed editTaskModal elements. 
         const editTaskName = document.querySelector('#edit-task-name')
         const editTaskDetail = document.querySelector('#edit-task-detail')
@@ -161,15 +161,19 @@ const taskAppender = (task, elemToAppendTo) => {
     const hostElement = document.createElement('div')
     hostElement.setAttribute('class', `task`)
     hostElement.setAttribute('data-task', `${task.taskName}`)
+
     const hostElementTitle = document.createElement('h1')
     hostElementTitle.setAttribute('class', 'task-title')
     hostElementTitle.innerText = `${task.taskName}`
+    
     const hostElementNotes = document.createElement('p')
     hostElementNotes.setAttribute('class', 'task-notes')
     hostElementNotes.innerText = `${task.taskNotes}`
+    
     const hostElementPriority = document.createElement('p')
     hostElementPriority.setAttribute('class', 'task-priority')
     hostElementPriority.innerText = `Priority: ${task.taskPriority}`
+    
     const hostElementDueDate = document.createElement('p')
     hostElementDueDate.setAttribute('class', 'task-due-date')
     if (task.taskDueDate == undefined) {
@@ -179,17 +183,22 @@ const taskAppender = (task, elemToAppendTo) => {
         hostElementDueDate.innerText = `Due Date: ${formattedDate}`
     }
     
+    const hostElementTime = document.createElement('h1')
+    attributeHelper(hostElementTime, {'class':'task-due-time'})
+    hostElementTime.innerText = `Due in ${getDateDistance(task.taskDueDate)}`
+
     // Create divs for grid to contain all information.
     const leftSide = document.createElement('div')
-    attributeHelper(leftSide, {'id':'task-left-side'})
+    attributeHelper(leftSide, {'class':'task-left-side'})
     
     const rightSide = document.createElement('div')
-    attributeHelper(rightSide, {'id':'task-right-side'})
+    attributeHelper(rightSide, {'class':'task-right-side'})
 
 
     // Append elements to one another.
     hostElement.append(leftSide, rightSide)
     leftSide.append(hostElementTitle, hostElementNotes, hostElementPriority, hostElementDueDate)
+    rightSide.append(hostElementTime)
     createEditTaskButton(hostElement)
     removeTask(hostElement)
     
