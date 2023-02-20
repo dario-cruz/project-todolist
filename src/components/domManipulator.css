@@ -11,3 +11,7 @@
 #right-side {
     grid-area: right;
 }
+/* Apply custom font to all task headings. */
+.task-title {
+    font-family: "bebas";
+}

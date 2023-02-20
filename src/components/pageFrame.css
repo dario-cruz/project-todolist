@@ -53,10 +53,6 @@
 .task {
     user-select: none;
 }
-/* Apply custom font to all task headings. */
-.task > div > h1 {
-    font-family: "bebas";
-}
 
 /* Styling for footer-panel */
 .footer-panel {
