@@ -71,8 +71,6 @@ editForm.addEventListener('submit', (e) => {
     toggleVis(editModalContainer)
 })
 
-
-
 // Form elements
 const editTaskName = document.createElement('input')
 attributeHelper(editTaskName, {'type':'text', 'id':'edit-task-name', 'required':'', 'maxlength':'20'})

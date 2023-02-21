@@ -17,10 +17,17 @@
 
 #edit-modal-content {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas: 
+    "top top"
+    "left right"
+    "left right"
+    "left right"
+    "left right"
+    "bottom bottom";
     height: 10rem;
     width: 15rem;
-    grid-template-rows: 0.5fr 1fr 1fr 0.5fr;
-    grid-template-columns: 1fr 1fr;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -34,4 +41,16 @@
 
 .not-visible {
     visibility: hidden;
+}
+.top-selection {
+    grid-area: top;
+}
+.right-selection {
+    grid-area: right;
+}
+.left-selection {
+    grid-area: left;
+}
+.bottom-selection {
+    grid-area: bottom;
 }
