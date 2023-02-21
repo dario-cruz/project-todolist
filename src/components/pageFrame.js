@@ -1,6 +1,7 @@
 import { attributeHelper } from "../helpers/attributeHelper"
 import { projectButton } from "./modals/projectModal"
 import './pageFrame.css'
+import Icon from '../images/clipboard-check.svg'
 
 // Header panel for storing Heading and other elements
 const headerPanel = document.createElement('div')
@@ -9,10 +10,14 @@ attributeHelper(headerPanel, {'class':'header-panel'})
 // Page title or headerPanel.
 const headerContent = document.createElement('div')
 attributeHelper(headerContent, {'class':'header-content-div'})
-
+// Heading element and attributes.
 const pageHeading = document.createElement('h1')
 attributeHelper(pageHeading, {'class':'header-page-heading'})
-pageHeading.innerText = "- Just Do It! - a Todo List by Dario Cruz"
+pageHeading.innerText = "-Just Do It!- a Todo List by Dario Cruz"
+// Icon for heading of site.
+const mainIcon = new Image()
+attributeHelper(mainIcon, {'class':'main-icon'})
+mainIcon.src = Icon
 
 // Panel for selecting and modifying projects.
 const leftPanel = document.createElement('div')
@@ -38,7 +43,7 @@ attributeHelper(footerPanel, {'class':'footer-panel'})
 const pageFrame = (targetElement) => { 
     // Append all of the elements.
     headerPanel.append(headerContent)
-    headerContent.append(pageHeading)
+    headerContent.append(mainIcon, pageHeading)
     rightPanel.append(rightPlanePlaceholder)
     leftPanel.append(newProjectDiv)
     projectButton(newProjectDiv)

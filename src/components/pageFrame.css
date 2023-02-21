@@ -73,3 +73,9 @@
 .place-holder-heading, .right-panel-placeholder {
     font-family: 'bebas';
 }
+
+/* Icon styling. */
+.main-icon {
+    width: 2rem;
+    margin-right: 1rem;
+}
