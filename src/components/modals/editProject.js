@@ -67,10 +67,8 @@ editProjectSpan.addEventListener('click', () => {
 })
 
 // Grid elements for positioning and styling.
-const leftSide = document.createElement('div')
-attributeHelper(leftSide, {'class':'edit-project-left'})
-const rightSide = document.createElement('div')
-attributeHelper(rightSide, {'class':'edit-project-right'})
+const midSide = document.createElement('div')
+attributeHelper(midSide, {'class':'edit-project-mid'})
 const topSide = document.createElement('div')
 attributeHelper(topSide, {'class':'edit-project-top'})
 const bottomSide = document.createElement('div')
@@ -80,8 +78,21 @@ attributeHelper(bottomSide, {'class':'edit-project-bottom'})
 const editProjectModal = (targetElement) => {
     // Build out the structure of the modal.
     editProjectContainer.append(editProjectContent)
-    editProjectContent.append(editProjectHeading, editProjectForm, editProjectSpan)
-    editProjectForm.append(editProjectNameLabel, editProjectName, editProjectSubmit)
+    
+    editProjectContent.append(editProjectForm)
+    
+    editProjectForm.append(topSide, midSide, bottomSide)
+    
+    topSide.append(editProjectHeading, editProjectSpan)
+
+    midSide.append(editProjectNameLabel, editProjectName)
+    
+    bottomSide.append(editProjectSubmit)
+
+    // editProjectContent.append(editProjectHeading, editProjectForm, editProjectSpan)
+
+
+    // editProjectForm.append(editProjectNameLabel, editProjectName, editProjectSubmit)
 
     // Attach the modal to the target.
     targetElement.append(editProjectContainer)

@@ -13,13 +13,10 @@
 
 #edit-project-content {
     position: absolute;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     top: 50%;
     left: 50%;
     width: 30rem;
-    height: 5rem;
+    height: 10rem;
     background-color: white;
     border: solid black 0.2rem;
     transform: translate(-50%, -50%);
@@ -36,4 +33,24 @@
 }
 #edit-project-span:hover {
     background-color: darkgray;
+}
+
+
+#edit-project-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3fr);
+    grid-template-areas: 
+    "top"
+    "mid"
+    "bottom";
+}
+.edit-project-top {
+    grid-area: top;
+}
+.edit-project-mid {
+    grid-area: mid;
+}
+.edit-project-bottom {
+    grid-area: bottom;
 }
