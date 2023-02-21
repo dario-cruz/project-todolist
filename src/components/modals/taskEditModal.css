@@ -16,16 +16,6 @@
 }
 
 #edit-modal-content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-template-areas: 
-    "top top"
-    "left right"
-    "left right"
-    "left right"
-    "left right"
-    "bottom bottom";
     height: 10rem;
     width: 15rem;
     position: absolute;
@@ -38,19 +28,33 @@
     border-radius: 0.5rem;
     transform: translate(-50%, -50%);
 }
-
 .not-visible {
     visibility: hidden;
 }
-.top-selection {
+#task-edit-form {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas: 
+    "top top"
+    "left right"
+    "left right"
+    "left right"
+    "left right"
+    "bottom bottom";
+}
+
+.top-section {
     grid-area: top;
 }
-.right-selection {
+.right-section {
     grid-area: right;
 }
-.left-selection {
+.left-section {
     grid-area: left;
 }
-.bottom-selection {
+.bottom-section {
     grid-area: bottom;
 }
