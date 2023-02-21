@@ -11,107 +11,107 @@ import { targetObject } from '../../helpers/currentItemHolder'
 
 // Container for the entire modal.
 const editModalContainer = document.createElement('div')
+attributeHelper(editModalContainer, {'id':'edit-modal-container', 'class':'not-visible'})
 const editModalContent = document.createElement('div')
+attributeHelper(editModalContent, {'id':'edit-modal-content'})
+
 // Heading for the modal. Text content should change with task that is being edited.
 const editTaskHeading = document.createElement('h1')
+attributeHelper(editTaskHeading, {'class':'edit-task-heading', 'id':'edit-task-heading'})
+
 // Span element for closing the modal when editing is not needed.
 const editTaskSpan = document.createElement('span')
+editTaskSpan.innerHTML = '&times;'
+editTaskSpan.addEventListener('click', () => {
+    // Toggle the viz of the modal for editing the task.
+    toggleVis(editModalContainer)
+})
+
 // Grid elements that will organize and contain all of the content
 const topSection = document.createElement('div')
+attributeHelper(topSection, {'class':'top-section'})
+
 const rightSection = document.createElement('div')
+attributeHelper(rightSection, {'class':'right-section'})
+
 const leftSection = document.createElement('div')
+attributeHelper(leftSection, {'class':'left-section'})
+
 const bottomSection = document.createElement('div')
+attributeHelper(bottomSection, {'class':'bottom-section'})
+
 // Actual form element that contains all the inputs. 
 const editForm = document.createElement('form')
+attributeHelper(editForm, {'action':'', 'id':'task-edit-form', 'autocomplete':'off'})
+// Form will be pre-populated with current values of the task object. 
+// On submit the data from the form will update the object and the DOM. 
+editForm.addEventListener('submit', (e) => {
+    // Prevent default form behavior. 
+    e.preventDefault()
+   
+    // Set the current project/task object for form population and updating.
+    let currentObject = targetObject()
+
+    // Update all task object values. 
+    currentObject.taskName = editTaskName.value
+    currentObject.taskNotes = editTaskDetail.value
+    currentObject.taskDueDate = editTaskDueDate.value
+    currentObject.taskPriority = editTaskPriority.value
+    
+    // Update localStorage
+    clearAllStorage()
+    processProjectList()
+    
+    // Update the DOM to reflect changes.
+    let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
+    updateTaskPanel(foundProject, document.querySelector('#task-panel'))
+    
+    // Toggle viz of the edit modal.
+    let editModalContainer = document.querySelector('#edit-modal-container')
+    toggleVis(editModalContainer)
+})
+
+
+
 // Form elements
 const editTaskName = document.createElement('input')
-const editTaskDetail = document.createElement('textarea')
-const editTaskPriority = document.createElement('select')
-const lowPriority = document.createElement('option')
-const medPriority = document.createElement('option')
-const hiPriority = document.createElement('option')
-const editTaskDueDate = document.createElement('input')
-const editCancel = document.createElement('button')
-const editSubmit = document.createElement('button')
+attributeHelper(editTaskName, {'type':'text', 'id':'edit-task-name', 'required':'', 'maxlength':'20'})
 
+const editTaskDetail = document.createElement('textarea')
+attributeHelper(editTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':'', 'required':''})
+
+const editTaskPriority = document.createElement('select')
+attributeHelper(editTaskPriority, {'id':'edit-task-priority', 'name':'edit-task-priority'})
+
+const lowPriority = document.createElement('option')
+attributeHelper(lowPriority, {'value':'Low', 'id':'edit-priority-lo'})
+lowPriority.innerText = 'Low Priority'
+
+const medPriority = document.createElement('option')
+attributeHelper(medPriority, {'value':'Medium', 'id':'edit-priority-med'})
+medPriority.innerText = "Medium Priority"
+
+const hiPriority = document.createElement('option')
+attributeHelper(hiPriority, {'value':'High', 'id':'edit-priority-hi'})
+hiPriority.innerText = 'High Priority'
+
+const editTaskDueDate = document.createElement('input')
+attributeHelper(editTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
+
+const editCancel = document.createElement('button')
+editCancel.innerText = 'Cancel'
+editCancel.addEventListener('click', (e) => {
+    // Prevent default.
+    e.preventDefault()
+    // Toggle the viz of the modal for editing the task.
+    toggleVis(editModalContainer)
+})
+
+const editSubmit = document.createElement('button')
+attributeHelper(editSubmit, {'id':'edit-submit-button', 'type':'submit'})
+editSubmit.innerHTML = 'Submit'
 
 const taskEditModal = (targetElement) => {
-    // Attach CSS props to this for toggling visibility of modal and content.
-    attributeHelper(editModalContainer, {'id':'edit-modal-container', 'class':'not-visible'})
-
-    attributeHelper(editModalContent, {'id':'edit-modal-content'})
-
-    attributeHelper(editTaskHeading, {'class':'edit-task-heading', 'id':'edit-task-heading'})
-
-    editTaskSpan.innerHTML = '&times;'
-
-    editTaskSpan.addEventListener('click', () => {
-        // Toggle the viz of the modal for editing the task.
-        toggleVis(editModalContainer)
-    })
-    
-    attributeHelper(topSection, {'class':'top-section'})
-    attributeHelper(rightSection, {'class':'right-section'})
-    attributeHelper(leftSection, {'class':'left-section'})
-    attributeHelper(bottomSection, {'class':'bottom-section'})
-    attributeHelper(editSubmit, {'id':'edit-submit-button', 'type':'submit'})
-    editSubmit.innerHTML = 'Submit'
-
-    // Form will be pre-populated with current values of the task object. 
-    // On submit the data from the form will update the object and the DOM. 
-    attributeHelper(editForm, {'action':'', 'id':'task-edit-form', 'autocomplete':'off'})
-    //Prevent page refresh on form submit. 
-    editForm.addEventListener('submit', (e) => {
-        // Prevent default form behavior. 
-        e.preventDefault()
-       
-        // Set the current project/task object for form population and updating.
-        let currentObject = targetObject()
-
-        // Update all task object values. 
-        currentObject.taskName = editTaskName.value
-        currentObject.taskNotes = editTaskDetail.value
-        currentObject.taskDueDate = editTaskDueDate.value
-        currentObject.taskPriority = editTaskPriority.value
-        
-        // Update localStorage
-        clearAllStorage()
-        processProjectList()
-        
-        // Update the DOM to reflect changes.
-        let foundProject = projectList.find(element => element.projectName == document.querySelector('#task-panel').getAttribute('data-object'))
-        updateTaskPanel(foundProject, document.querySelector('#task-panel'))
-        
-        // Toggle viz of the edit modal.
-        let editModalContainer = document.querySelector('#edit-modal-container')
-        toggleVis(editModalContainer)
-    })
-    
-    attributeHelper(editTaskName, {'type':'text', 'id':'edit-task-name', 'required':'', 'maxlength':'20'})
-
-    attributeHelper(editTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':'', 'required':''})
-
-    attributeHelper(editTaskPriority, {'id':'edit-task-priority', 'name':'edit-task-priority'})
-    
-    attributeHelper(lowPriority, {'value':'Low', 'id':'edit-priority-lo'})
-    lowPriority.innerText = 'Low Priority'
-    attributeHelper(medPriority, {'value':'Medium', 'id':'edit-priority-med'})
-    medPriority.innerText = "Medium Priority"
-    attributeHelper(hiPriority, {'value':'High', 'id':'edit-priority-hi'})
-    hiPriority.innerText = 'High Priority'
-
-    attributeHelper(editTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
-
-    editCancel.innerText = 'Cancel'
-
-    editCancel.addEventListener('click', (e) => {
-        // Prevent default.
-        e.preventDefault()
-        // Toggle the viz of the modal for editing the task.
-        toggleVis(editModalContainer)
-    })
-
-
     // Append all the things.
     targetElement.append(editModalContainer)
 
