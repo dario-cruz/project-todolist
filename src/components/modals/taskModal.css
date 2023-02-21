@@ -19,8 +19,8 @@
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 1rem 1.5rem;
-    width: 40rem;
-    height: 30rem;
+    width: 30rem;
+    height: 20rem;
     border-radius: 0.5rem;
 }
 .task-span-close {
@@ -48,15 +48,13 @@ input {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template: repeat(8, 1fr) / repeat(2, 1fr);
+    grid-template: repeat(6, 1fr) / repeat(2, 1fr);
     grid-template-areas:
     "top top"
     "right left"
     "right left"
-    "right left"
-    "right left"
-    "right left"
-    "right left"
+    "right-two left-two"
+    "right-two left-two"
     "bottom bottom";
 }
 
@@ -66,8 +64,14 @@ input {
 .left-div {
     grid-area: left;
 }
+.left-div-two {
+    grid-area: left-two;
+}
 .right-div {
     grid-area: right;
+}
+.right-div-two {
+    grid-area: right-two;
 }
 .bottom-div {
     grid-area: bottom;
