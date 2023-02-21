@@ -84,8 +84,14 @@ const taskModal = (targetElement) => {
     const rightDiv = document.createElement('div')
     attributeHelper(rightDiv, {'class':'right-div'})
 
+    const rightDivTwo = document.createElement('div')
+    attributeHelper(rightDivTwo, {'class':'right-div-two'})
+
     const leftDiv = document.createElement('div')
     attributeHelper(leftDiv, {'class':'left-div'})
+
+    const leftDivTwo = document.createElement('div')
+    attributeHelper(leftDivTwo, {'class':'left-div-two'})
 
     const bottomDiv = document.createElement('div')
     attributeHelper(bottomDiv, {'class':'bottom-div'})
