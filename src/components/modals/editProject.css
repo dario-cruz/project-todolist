@@ -23,9 +23,9 @@
 }
 
 #edit-project-span {
-    float: right;
+    font-size: large;
     width: 1.5rem;
-    line-height: 1.5rem;
+    height: 1.5rem;
     text-align: center;
     cursor: pointer;
     border-radius: 0.25rem;
@@ -37,6 +37,7 @@
 
 
 #edit-project-form {
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3fr);
@@ -47,10 +48,21 @@
 }
 .edit-project-top {
     grid-area: top;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: .8rem;
+    padding-right: .8rem;
 }
 .edit-project-mid {
     grid-area: mid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .edit-project-bottom {
     grid-area: bottom;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

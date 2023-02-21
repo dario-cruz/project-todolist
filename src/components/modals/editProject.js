@@ -88,13 +88,7 @@ const editProjectModal = (targetElement) => {
     midSide.append(editProjectNameLabel, editProjectName)
     
     bottomSide.append(editProjectSubmit)
-
-    // editProjectContent.append(editProjectHeading, editProjectForm, editProjectSpan)
-
-
-    // editProjectForm.append(editProjectNameLabel, editProjectName, editProjectSubmit)
-
-    // Attach the modal to the target.
+    
     targetElement.append(editProjectContainer)
 }
 
