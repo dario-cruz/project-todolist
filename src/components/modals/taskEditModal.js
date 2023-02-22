@@ -130,8 +130,8 @@ const taskEditModal = (targetElement) => {
     editTaskPriority.append(lowPriority, medPriority, hiPriority)
 
     topSection.append(editTaskHeading, editTaskSpan)
-    rightSection.append(editTaskName, editTaskDetail)
-    leftSection.append(editTaskPriority, editTaskDueDate)
+    leftSection.append(editTaskNameLabel, editTaskName, editTaskDetailLabel, editTaskDetail)
+    rightSection.append(editTaskPriorityLabel ,editTaskPriority, editTaskDueDateLabel, editTaskDueDate)
     bottomSection.append(editCancel, editSubmit)
 }
 
