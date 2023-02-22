@@ -75,7 +75,7 @@ const taskModal = (targetElement) => {
 
     // Create heading element that will change based on the name of the prohject selected.
     const titleHeading = document.createElement('h1')
-    attributeHelper(titleHeading, {'class':'task-form-heading', 'id':'task-form-heading'})
+    attributeHelper(titleHeading, {'class':'modal-heading', 'id':'task-form-heading'})
 
     // Create divs to store the form content in and organize using grid.
     const topDiv = document.createElement('div')
