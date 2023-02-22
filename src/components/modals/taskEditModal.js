@@ -17,10 +17,11 @@ attributeHelper(editModalContent, {'id':'edit-modal-content'})
 
 // Heading for the modal. Text content should change with task that is being edited.
 const editTaskHeading = document.createElement('h1')
-attributeHelper(editTaskHeading, {'class':'edit-task-heading', 'id':'edit-task-heading'})
+attributeHelper(editTaskHeading, {'class':'modal-heading', 'id':'edit-task-heading'})
 
 // Span element for closing the modal when editing is not needed.
 const editTaskSpan = document.createElement('span')
+attributeHelper(editTaskSpan, {'class':'modal-span'})
 editTaskSpan.innerHTML = '&times;'
 editTaskSpan.addEventListener('click', () => {
     // Toggle the viz of the modal for editing the task.

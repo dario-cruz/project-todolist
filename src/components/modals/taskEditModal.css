@@ -16,15 +16,13 @@
 }
 
 #edit-modal-content {
-    height: 10rem;
-    width: 15rem;
+    height: 15rem;
+    width: 30rem;
     position: absolute;
     top: 50%;
     left: 50%;
     background-color: white;
     padding: 1rem 1.5rem;
-    width: 40rem;
-    height: 30rem;
     border-radius: 0.5rem;
     transform: translate(-50%, -50%);
 }
@@ -35,6 +33,7 @@
     height: 100%;
     width: 100%;
     display: grid;
+    gap: 1em;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas: 
@@ -48,13 +47,36 @@
 
 .top-section {
     grid-area: top;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .right-section {
     grid-area: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .left-section {
     grid-area: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .bottom-section {
     grid-area: bottom;
+}
+
+.modal-span {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgrey;
+}
+
+.modal-span:hover {
+    background-color: darkgray;
 }

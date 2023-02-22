@@ -48,3 +48,13 @@ span {
 p {
     font-family: 'Courier New', Courier, monospace;
 }
+
+/* Global stop of textarea resizing. */
+textarea {
+    resize: none;
+}
+
+/* Global modal heading props */
+.modal-heading {
+    font-family: bebas;
+}
