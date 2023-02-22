@@ -48,6 +48,7 @@ input {
     width: 100%;
     height: 100%;
     display: grid;
+    gap: 1em;
     grid-template: repeat(6, 1fr) / repeat(2, 1fr);
     grid-template-areas:
     "top top"
@@ -63,21 +64,35 @@ input {
 }
 .left-div {
     grid-area: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .left-div-two {
     grid-area: left-two;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 .right-div {
     grid-area: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 .right-div-two {
     grid-area: right-two;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 .bottom-div {
     grid-area: bottom;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding-left: 2rem;
     padding-right: 2rem;
 }
