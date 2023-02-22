@@ -30,13 +30,10 @@ editTaskSpan.addEventListener('click', () => {
 // Grid elements that will organize and contain all of the content
 const topSection = document.createElement('div')
 attributeHelper(topSection, {'class':'top-section'})
-
 const rightSection = document.createElement('div')
 attributeHelper(rightSection, {'class':'right-section'})
-
 const leftSection = document.createElement('div')
 attributeHelper(leftSection, {'class':'left-section'})
-
 const bottomSection = document.createElement('div')
 attributeHelper(bottomSection, {'class':'bottom-section'})
 
@@ -71,28 +68,39 @@ editForm.addEventListener('submit', (e) => {
     toggleVis(editModalContainer)
 })
 
+
 // Form elements
+const editTaskNameLabel = document.createElement('label')
+attributeHelper(editTaskNameLabel, {'class':'modal-label', 'for':'edit-task-name'})
+editTaskNameLabel.innerText = 'Task Name:'
 const editTaskName = document.createElement('input')
 attributeHelper(editTaskName, {'type':'text', 'id':'edit-task-name', 'required':'', 'maxlength':'20'})
 
+const editTaskDetailLabel = document.createElement('label')
+attributeHelper(editTaskDetailLabel, {'class':'modal-label', 'for':'edit-task-detail'})
+editTaskDetailLabel.innerText = `Task Details:`
 const editTaskDetail = document.createElement('textarea')
 attributeHelper(editTaskDetail, {'id':'edit-task-detail', 'rows':'', 'cols':'', 'required':''})
 
+const editTaskPriorityLabel = document.createElement('label')
+attributeHelper(editTaskPriorityLabel, {'class':'modal-label', 'for':'edit-task-priority'})
+editTaskPriorityLabel.innerText = `Task Priority:`
 const editTaskPriority = document.createElement('select')
 attributeHelper(editTaskPriority, {'id':'edit-task-priority', 'name':'edit-task-priority'})
 
 const lowPriority = document.createElement('option')
 attributeHelper(lowPriority, {'value':'Low', 'id':'edit-priority-lo'})
 lowPriority.innerText = 'Low Priority'
-
 const medPriority = document.createElement('option')
 attributeHelper(medPriority, {'value':'Medium', 'id':'edit-priority-med'})
 medPriority.innerText = "Medium Priority"
-
 const hiPriority = document.createElement('option')
 attributeHelper(hiPriority, {'value':'High', 'id':'edit-priority-hi'})
 hiPriority.innerText = 'High Priority'
 
+const editTaskDueDateLabel = document.createElement('label')
+attributeHelper(editTaskDueDateLabel, {'class':'modal-label', 'for':'edit-task-duedate'})
+editTaskDueDateLabel.innerText = `Task Due Date:`
 const editTaskDueDate = document.createElement('input')
 attributeHelper(editTaskDueDate, {'type':'date', 'id':'edit-task-duedate'})
 
