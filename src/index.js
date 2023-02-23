@@ -31,4 +31,6 @@ projectModal(contentDiv)
 taskModal(contentDiv)
 taskEditModal(contentDiv)
 editProjectModal(contentDiv)
-checkTheString('This is a project nAME093')
+
+// Testing regex on the main page before implementation. 
+checkTheString('This is a project nAME093dfsdf')
