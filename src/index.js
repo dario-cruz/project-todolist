@@ -8,6 +8,7 @@ import { pageFrame } from './components/pageFrame';
 import { makeDefaultProject } from './inbox';
 import { taskEditModal } from './components/modals/taskEditModal';
 import { editProjectModal } from './components/modals/editProject';
+import { checkTheString } from './components/Validation/projectValidation';
 
 // Add main content div to body for all other content to append to. 
 const contentDiv = document.createElement('div')
@@ -30,3 +31,4 @@ projectModal(contentDiv)
 taskModal(contentDiv)
 taskEditModal(contentDiv)
 editProjectModal(contentDiv)
+checkTheString('This is a project nAME093')
