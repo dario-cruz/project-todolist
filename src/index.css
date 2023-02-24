@@ -34,24 +34,27 @@
     "footer footer";
 }
 
+
+/* Global Element Styling */
 button {
     cursor: pointer;
     font-family: 'Courier New', Courier, monospace;
 }
-
 /* Stop selection of the span text element, change select to pointer */
 span {
     user-select: none;
     cursor: pointer;
 }
-
 p {
     font-family: 'Courier New', Courier, monospace;
 }
-
-/* Global stop of textarea resizing. */
+/* Stop of textarea resizing. */
 textarea {
     resize: none;
+}
+label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
 }
 
 /* Global modal heading props */
