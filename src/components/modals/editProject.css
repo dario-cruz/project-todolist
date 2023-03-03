@@ -6,9 +6,11 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
+    transition: all ease .5s;
 }
 .is-hidden {
     visibility: hidden;
+    opacity: 0;
 }
 
 #edit-project-content {

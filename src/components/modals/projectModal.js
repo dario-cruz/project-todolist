@@ -7,7 +7,7 @@ import { attributeHelper } from '../../helpers/attributeHelper'
 const projectModal = (targetElement) => {
     // Modal container to control the visibility of content.
     const modalContainer = document.createElement('div')
-    attributeHelper(modalContainer, {'id':'project-modal-container', 'class':'project-modal-container'})
+    attributeHelper(modalContainer, {'id':'project-modal-container', 'class':'project-modal-container', 'class':'is-hidden'})
     
     // Actual div that contains the modal content.
     const modalContent = document.createElement('div')
@@ -46,7 +46,7 @@ const projectModal = (targetElement) => {
 
     // On span click close the modal without submitting any data.
     projectSpan.addEventListener('click', () => {
-        modalContainer.style.visibility = 'hidden'
+        modalContainer.classList.toggle('is-hidden')
     })
 
     // On submit take input and make project.
@@ -64,7 +64,7 @@ const projectModal = (targetElement) => {
             // Place in local storage.
             placeInStorage(newObj)
             // Toggle vis of modal.
-            modalContainer.style.visibility = 'hidden'
+            modalContainer.classList.toggle('is-hidden')
 
             // Process all of the projects and task and add them to the localStorage.
             // Clear all previously stored elements.
@@ -97,7 +97,7 @@ const projectButton = (targetElement) => {
     addProjectButton.innerText = "New Project"
 
     addProjectButton.addEventListener('click', () => {
-        document.getElementById('project-modal-container').style.visibility = 'visible'
+        document.getElementById('project-modal-container').classList.toggle('is-hidden')
     })
 
     // Attach the button to the targetElement
