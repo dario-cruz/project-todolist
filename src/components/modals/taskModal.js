@@ -70,7 +70,7 @@ const taskModal = (targetElement) => {
     taskFormCancel.innerText = 'Cancel'
     // And the event on click to close the modal.
     taskFormCancel.addEventListener('click', () => {
-        modalContainer.style.visibility = 'hidden'
+        modalContainer.classList.toggle('is-visible')
     })
 
     // Create heading element that will change based on the name of the prohject selected.
@@ -102,7 +102,7 @@ const taskModal = (targetElement) => {
     taskSpan.innerHTML = '&times;'
     // Allow user to close modal on span click.
     taskSpan.addEventListener('click', () => {
-        modalContainer.style.visibility = 'hidden'
+        modalContainer.classList.toggle('is-visible')
     })
 
     // Add event for the submit of the form
@@ -144,7 +144,7 @@ const taskModal = (targetElement) => {
             document.getElementById(`${targetForClick}`).click()
 
             // Toggle the class that will control the visibility of the modal.
-            modalContainer.style.visibility = 'hidden'
+            modalContainer.classList.toggle('is-visible')
         }
     })
 
@@ -198,8 +198,7 @@ const taskButton = (targetElement) => {
             // Check if the code is functioning as intended.
             console.log(currentProject, listPosition)
             // Toggle modal viz.
-            document.getElementById('task-modal-container').style.visibility = 'visible'
-            // document.getElementById('task-modal-container').classList.toggle('task-closed-modal')
+            document.getElementById('task-modal-container').classList.toggle('is-visible')
         }
 
     })
